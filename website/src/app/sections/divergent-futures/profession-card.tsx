@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useRef, useState, useEffect } from "react";
+import { forwardRef, useRef, useState, useEffect, memo } from "react";
 import Image from "next/image";
 import s from "./profession-card.module.scss";
 import { useIsoLayoutEffect } from "../../hooks/use-iso-layout-effect";
@@ -9,7 +9,7 @@ import { gsap } from "gsap";
 interface Profession {
   id: string;
   name: string;
-  icon: React.ElementType;
+  icon: string; // image path
   human: {
     title: string;
     story: string;
@@ -27,8 +27,15 @@ interface ProfessionCardProps {
   onClose: () => void;
 }
 
-export const ProfessionCard = forwardRef<HTMLDivElement, ProfessionCardProps>(
+// Preload images for better performance
+const preloadImage = (src: string) => {
+  const img = new window.Image();
+  img.src = src;
+};
+
+export const ProfessionCard = memo(forwardRef<HTMLDivElement, ProfessionCardProps>(
   ({ profession, onClose }, ref) => {
+    console.log('[ProfessionCard] Rendered. Profession:', profession);
     const [choice, setChoice] = useState<"human" | "ai" | null>(null);
     const [isFlipping, setIsFlipping] = useState(false);
     const cardContentRef = useRef<HTMLDivElement>(null);
@@ -36,6 +43,12 @@ export const ProfessionCard = forwardRef<HTMLDivElement, ProfessionCardProps>(
     const humanButtonRef = useRef<HTMLButtonElement>(null);
     const aiButtonRef = useRef<HTMLButtonElement>(null);
     const backButtonRef = useRef<HTMLButtonElement>(null);
+
+    // Preload both images when component mounts
+    useEffect(() => {
+      preloadImage(profession.human.image);
+      preloadImage(profession.ai.image);
+    }, [profession]);
 
     // Focus management
     useEffect(() => {
@@ -113,7 +126,7 @@ export const ProfessionCard = forwardRef<HTMLDivElement, ProfessionCardProps>(
           &times;
         </button>
         <div className={s.cardHeader}>
-          <profession.icon className={s.professionIcon} aria-hidden="true" />
+          <img src={profession.icon} className={s.professionIcon} alt="" aria-hidden="true" />
           <h3 className={s.professionName} id="profession-title">{profession.name}</h3>
         </div>
 
@@ -169,7 +182,7 @@ export const ProfessionCard = forwardRef<HTMLDivElement, ProfessionCardProps>(
                 disabled={isFlipping}
                 aria-label="Go back to choice selection"
               >
-                &larr; Back
+                Choose Again
               </button>
               {selectedOption && (
                 <div className={s.singleOption}>
@@ -180,6 +193,7 @@ export const ProfessionCard = forwardRef<HTMLDivElement, ProfessionCardProps>(
                     height={400}
                     className={s.image}
                     priority
+                    loading="eager"
                   />
                   <div className={s.text}>
                     <h4 className={s.optionTitle}>{selectedOption.title}</h4>
@@ -193,6 +207,6 @@ export const ProfessionCard = forwardRef<HTMLDivElement, ProfessionCardProps>(
       </div>
     );
   }
-);
+));
 
 ProfessionCard.displayName = "ProfessionCard";

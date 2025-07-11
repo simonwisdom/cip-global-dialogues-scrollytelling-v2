@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import * as d3 from "d3";
 import s from "./uncomfortable-responses-modal.module.scss";
 
@@ -17,6 +17,25 @@ interface UncomfortableResponsesModalProps {
 
 export const UncomfortableResponsesModal = ({ isOpen, onClose }: UncomfortableResponsesModalProps) => {
   const [responses, setResponses] = useState<Response[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedTheme, setSelectedTheme] = useState<string>("ALL");
+
+  // Get unique themes from responses
+  const themes = useMemo(() => {
+    const uniqueThemes = Array.from(new Set(responses.map(r => r.theme))).filter(Boolean);
+    return uniqueThemes.sort();
+  }, [responses]);
+
+  // Filter responses based on search term and selected theme
+  const filteredResponses = useMemo(() => {
+    return responses.filter(response => {
+      const matchesSearch = searchTerm === "" || 
+        response.response.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        response.theme.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesTheme = selectedTheme === "ALL" || response.theme === selectedTheme;
+      return matchesSearch && matchesTheme;
+    });
+  }, [responses, searchTerm, selectedTheme]);
 
   useEffect(() => {
     const loadResponses = async () => {
@@ -64,6 +83,33 @@ export const UncomfortableResponsesModal = ({ isOpen, onClose }: UncomfortableRe
             Question: &quot;Describe a concrete scenario where you would feel uncomfortable with an AI making a decision instead of a human. What specific aspects make you uneasy?&quot;
           </p>
           <p className={s.subtitle}>Full, unedited responses from the survey.</p>
+
+          {/* Search and Theme Filter Row */}
+          <div className={s.searchFilterRow}>
+            <input
+              type="text"
+              placeholder="Search responses or themes..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className={s.searchInput}
+            />
+            <select
+              className={s.themeDropdown}
+              value={selectedTheme}
+              onChange={e => setSelectedTheme(e.target.value)}
+            >
+              <option value="ALL">All Themes</option>
+              {themes.map(theme => (
+                <option key={theme} value={theme}>{theme}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Results Count */}
+          <div className={s.resultsCount}>
+            Showing {filteredResponses.length} of {responses.length} responses
+          </div>
+
           <div className={s.tableContainer}>
             <table className={s.table}>
               <thead>
@@ -73,7 +119,7 @@ export const UncomfortableResponsesModal = ({ isOpen, onClose }: UncomfortableRe
                 </tr>
               </thead>
               <tbody>
-                {responses.map((response) => (
+                {filteredResponses.map((response) => (
                   <tr key={response.id}>
                     <td>{response.response}</td>
                     <td>{response.theme}</td>

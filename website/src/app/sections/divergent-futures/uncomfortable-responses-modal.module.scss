@@ -17,9 +17,9 @@
   background: #1a1a1a;
   border: 1px solid #333;
   border-radius: 8px;
-  width: 90%;
-  max-width: 1200px;
-  height: 80vh;
+  width: 95%;
+  max-width: 1100px;
+  height: 85vh;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -29,17 +29,19 @@
 
 .closeButton {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 6px;
+  right: 10px;
   background: none;
   border: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #fff;
   cursor: pointer;
+  padding: 0;
+  line-height: 1;
 }
 
 .content {
-  padding: 2rem;
+  padding: 1rem 1rem 0.5rem 1rem;
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
@@ -47,55 +49,109 @@
 }
 
 .title {
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+  font-size: 1.15rem;
 }
 
 .subtitle {
-  margin-bottom: 1rem;
-  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
   color: #aaa;
 }
 
 .question {
   font-style: italic;
-  color: #ccc;
-  margin-bottom: 1rem;
+  color: #b0c4e7;
+  margin-bottom: 0.5rem;
   border-left: 2px solid #3868b2;
-  padding-left: 1rem;
+  padding-left: 0.75rem;
+  font-size: 0.95rem;
+}
+
+// Search Container
+.searchContainer {
+  margin-bottom: 0.5rem;
+}
+
+.searchFilterRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.searchInput {
+  flex: 1 1 60%;
+  min-width: 0;
+  padding: 0.4rem 0.75rem;
+  background: #232323;
+  border: 1px solid #444;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 0.95rem;
+  height: 2rem;
+  &::placeholder {
+    color: #888;
+    font-size: 0.95rem;
+  }
+  &:focus {
+    outline: none;
+    border-color: #3868b2;
+  }
+}
+
+.themeDropdown {
+  flex: 0 0 220px;
+  max-width: 220px;
+  min-width: 120px;
+  height: 2rem;
+  background: #232323;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 3px;
+  font-size: 0.95rem;
+  padding: 0.25rem 0.75rem;
+  margin-left: 0.5rem;
+}
+
+// Results Count
+.resultsCount {
+  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+  color: #888;
+  font-style: italic;
 }
 
 .tableContainer {
   flex-grow: 1;
   overflow-y: auto;
   border: 1px solid #333;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-
   th, td {
-    padding: 0.75rem 1rem;
+    padding: 0.4rem 0.6rem;
     text-align: left;
     border-bottom: 1px solid #333;
     vertical-align: top;
   }
-
   th {
-    background-color: #252525;
+    background-color: #232323;
     position: sticky;
     top: 0;
     z-index: 1;
+    font-size: 0.95rem;
+    font-weight: 500;
   }
-
   tr:last-child td {
     border-bottom: none;
   }
-
   td {
-    font-size: 0.9rem;
-    line-height: 1.4;
+    font-size: 0.88rem;
+    line-height: 1.3;
   }
 } 

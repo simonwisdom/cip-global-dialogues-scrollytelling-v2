@@ -24,7 +24,7 @@
 
 .intro-section {
   @include content-container;
-  padding-bottom: var(--space-4xl);
+  padding-bottom: var(--space-lg);
   text-align: center;
 }
 
@@ -38,6 +38,22 @@
   @include intro-text;
 }
 
+.section-title {
+  text-align: center;
+  margin: var(--space-2xl) auto;
+  max-width: 800px;
+
+  h3 {
+    font-size: 1.8rem;
+    line-height: 1.4;
+    font-weight: 400;
+
+    b {
+      font-weight: 700;
+    }
+  }
+}
+
 .question {
   @include question-text;
   color: var(--light-accent);
@@ -45,11 +61,11 @@
 
 .professions-grid-container {
   @include content-container(1200px);
-  padding-bottom: var(--space-5xl);
+  padding-bottom: var(--space-xl);
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 60vh;
+  min-height: 40vh;
   position: relative;
   overflow: hidden;
 }
@@ -79,7 +95,7 @@
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
   min-height: 120px;
 
@@ -91,6 +107,14 @@
 
   &:active {
     transform: translateY(-2px) scale(1.01);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  &.clicked {
+    transform: scale(0.95);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
   }
 }
 
@@ -118,7 +142,12 @@
   z-index: 10;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 50vh;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
   &.visible {
     opacity: 1;
@@ -131,10 +160,10 @@
 }
 
 .data-source-card {
-  border: 1px solid var(--dark-border-primary);
-  background-color: var(--dark-bg-secondary);
+  border: 1px solid var(--light-border);
+  background-color: var(--light-bg-tertiary);
   padding: var(--space-lg);
-  margin: var(--space-xl) auto;
+  margin: var(--space-xl) auto 0 auto;
   max-width: 800px;
   text-align: center;
   border-radius: var(--radius-md);
@@ -147,22 +176,29 @@
 }
 
 .ctaButton {
-  background-color: #3868b2;
-  color: white;
-  border: none;
+  background-color: var(--light-bg-tertiary);
+  color: var(--light-text-primary);
+  border: 1px solid var(--light-border);
   padding: 0.75rem 1.5rem;
-  border-radius: 20px;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  font-weight: bold;
-  transition: all 0.2s ease-in-out;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: background 0.2s, color 0.2s, border 0.2s, transform 0.15s;
+  box-shadow: none;
+  margin: 0 auto;
+  display: inline-block;
 
   &:hover {
-    background-color: #4a8aee;
-    transform: translateY(-1px);
+    background-color: var(--light-bg-secondary);
+    color: var(--light-accent);
+    border-color: var(--light-accent);
+    transform: translateY(-2px) scale(1.02);
   }
 
   &:active {
-    transform: translateY(0);
+    transform: translateY(0) scale(0.98);
+    background-color: var(--light-bg-secondary);
   }
 }
 
@@ -199,11 +235,21 @@
   }
 
   .intro-section {
-    padding-bottom: var(--space-xl);
+    padding-bottom: var(--space-md);
+  }
+
+  .section-title {
+    margin: var(--space-md) auto;
+  }
+
+  .professions-grid-container {
+    padding-bottom: var(--space-md);
+    min-height: 20vh;
   }
 
   .cardWrapper {
-    max-width: 95vw;
+    max-width: 98vw;
+    height: 50vh;
     padding: 0 var(--space-md);
   }
 }

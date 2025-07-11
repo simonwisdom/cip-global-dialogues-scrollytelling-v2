@@ -13,15 +13,42 @@ import {
   TransportationIcon,
 } from "./professions-icons";
 import { useIsoLayoutEffect } from "../../hooks/use-iso-layout-effect";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { gsap } from "gsap";
 import { UncomfortableResponsesModal } from "./uncomfortable-responses-modal";
+
+// Preload all profession images for instant loading
+const preloadAllImages = () => {
+  const allImages = [
+    '/images/section2/journalism_strong_human_presence.webp',
+    '/images/section2/journalism_full_ai_automation.webp',
+    '/images/section2/politics_strong_human_presence.webp',
+    '/images/section2/politics_full_ai_automation.webp',
+    '/images/section2/therapy_strong_human_presence.webp',
+    '/images/section2/therapy_full_ai_automation.webp',
+    '/images/section2/food service_strong_human_presence.webp',
+    '/images/section2/food service_full_ai_automation.webp',
+    '/images/section2/transportation_strong_human_presence.webp',
+    '/images/section2/transportation_full_ai_automation.webp',
+    '/images/section2/education_strong_human_presence.webp',
+    '/images/section2/education_full_ai_automation.webp',
+    '/images/section2/healthcare_strong_human_presence.webp',
+    '/images/section2/healthcare_full_ai_automation.webp',
+    '/images/section2/religion_strong_human_presence.webp',
+    '/images/section2/religion_full_ai_automation.webp',
+  ];
+  
+  allImages.forEach(src => {
+    const img = new window.Image();
+    img.src = src;
+  });
+};
 
 const professions = [
   {
     id: 'journalism',
     name: 'Journalism',
-    icon: JournalismIcon,
+    icon: '/icons/journalism.png',
     human: {
       title: 'Human-Led Reporting',
       story: 'Reporters focus on deep, investigative work, building trust through on-the-ground presence and nuanced storytelling.',
@@ -36,7 +63,7 @@ const professions = [
   {
     id: 'politics',
     name: 'Politics',
-    icon: PoliticsIcon,
+    icon: '/icons/politics.png',
     human: {
       title: 'Community Governance',
       story: 'Politicians engage in local town halls, making decisions based on direct constituent feedback and personal charisma.',
@@ -51,7 +78,7 @@ const professions = [
   {
     id: 'therapy',
     name: 'Therapy',
-    icon: TherapyIcon,
+    icon: '/icons/therapy.png',
     human: {
       title: 'Empathetic Counsel',
       story: 'Therapists provide a human connection, using intuition and shared experience to guide patients through complex emotions.',
@@ -66,7 +93,7 @@ const professions = [
   {
     id: 'food-service',
     name: 'Food Service',
-    icon: FoodServiceIcon,
+    icon: '/icons/food-service.png',
     human: {
       title: 'Artisanal Dining',
       story: 'Chefs and servers create unique, personal dining experiences where hospitality and craft are the main ingredients.',
@@ -81,7 +108,7 @@ const professions = [
   {
     id: 'transportation',
     name: 'Transportation',
-    icon: TransportationIcon,
+    icon: '/icons/transportation.png',
     human: {
       title: 'The Open Road',
       story: 'Human drivers navigate the world, offering personal service and the flexibility to go off the beaten path.',
@@ -96,7 +123,7 @@ const professions = [
   {
     id: 'education',
     name: 'Education',
-    icon: EducationIcon,
+    icon: '/icons/education.png',
     human: {
       title: 'Mentorship & Discovery',
       story: 'Teachers inspire curiosity and critical thinking, mentoring students through collaborative, in-person discovery.',
@@ -111,7 +138,7 @@ const professions = [
   {
     id: 'healthcare',
     name: 'Healthcare',
-    icon: HealthcareIcon,
+    icon: '/icons/healthcare.png',
     human: {
       title: 'The Healing Touch',
       story: 'Doctors and nurses provide compassionate bedside care, making complex diagnoses based on experience and human intuition.',
@@ -126,7 +153,7 @@ const professions = [
   {
     id: 'religion',
     name: 'Religion',
-    icon: ReligionIcon,
+    icon: '/icons/religion.png',
     human: {
       title: 'Human-Led Worship',
       story: 'Religious leaders remain central, guiding through lived tradition. AI may assist with scripture research or translation, but worship, confession, and meaning-making are communal, embodied, and relational.',
@@ -147,72 +174,47 @@ export const DivergentFutures = () => {
   const [selectedProfession, setSelectedProfession] = useState<typeof professions[0] | null>(null);
   const [activeProfession, setActiveProfession] = useState<typeof professions[0] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [clickedProfessionId, setClickedProfessionId] = useState<string | null>(null);
+
+  // Preload all images on component mount
+  useEffect(() => {
+    preloadAllImages();
+  }, []);
 
   // Memoized callback for better performance
   const handleProfessionSelect = useCallback((profession: typeof professions[0]) => {
+    // Set both states immediately for instant response
     setSelectedProfession(profession);
+    setActiveProfession(profession);
+    setClickedProfessionId(profession.id);
+    
+    // Clear clicked state after animation
+    setTimeout(() => setClickedProfessionId(null), 300);
   }, []);
 
   const handleClose = useCallback(() => {
     setSelectedProfession(null);
+    setActiveProfession(null);
   }, []);
 
-  useIsoLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      if (selectedProfession && !activeProfession) {
-        // Animate grid out with new CSS classes
-        gsap.to(gridRef.current, {
-          autoAlpha: 0,
-          scale: 0.95,
-          y: 20,
-          duration: 0.4,
-          ease: "power2.out",
-          onComplete: () => {
-            setActiveProfession(selectedProfession);
-          },
-        });
-      } else if (!selectedProfession && activeProfession) {
-        // Animate card out, then reset
-        gsap.to(cardWrapperRef.current, {
-          autoAlpha: 0,
-          y: 50,
-          scale: 0.95,
-          duration: 0.4,
-          ease: "power2.in",
-          onComplete: () => {
-            setActiveProfession(null);
-            // Animate grid back in
-            gsap.to(gridRef.current, {
-              autoAlpha: 1,
-              scale: 1,
-              y: 0,
-              duration: 0.4,
-              ease: "power2.out",
-            });
-          },
-        });
-      }
-    }, containerRef);
-    return () => ctx.revert();
-  }, [selectedProfession, activeProfession]);
-
-  // Card fade-in animation with improved timing
+  // Simplified animation - only animate card appearance
   useIsoLayoutEffect(() => {
     if (!activeProfession) return;
+    
     const ctx = gsap.context(() => {
+      // Quick fade-in animation for the card
       gsap.fromTo(cardWrapperRef.current, 
         {
           autoAlpha: 0,
-          y: 50,
-          scale: 0.95,
+          y: 20,
+          scale: 0.98,
         },
         {
           autoAlpha: 1,
           y: 0,
           scale: 1,
-          duration: 0.5,
+          duration: 0.3,
           ease: "power2.out",
-          delay: 0.1,
         }
       );
     }, containerRef);
@@ -227,22 +229,35 @@ export const DivergentFutures = () => {
           <div>
             <div className={s["scenario-number"]}>2</div>
             <h2 className={s["scenario-title"]}>Divergent Futures</h2>
-            <p className={s["scenario-subtitle"]}>
-              Human-Centric or AI-Automated? You decide.
-            </p>
+    
           </div>
         </div>
 
         {/* Introduction */}
         <div className={s["intro-section"]}>
           <div className={s["intro-content"]}>
-            <p className={s["intro-text"]}>
-              Conscious or not, AI is set to take on a much larger share of
-              human tasks - though people disagree on where they would and
-              would not like to see AI. What do you think?
-            </p>
-
+            <div className={s["section-title"]}>
+              <h3>
+                Conscious or not, AI is set to take on a much larger share of
+                human tasks - though people disagree on where they would and
+                would not like to see AI.
+              </h3>
+            </div>
           </div>
+        </div>
+
+        <div className={s["data-source-card"]}>
+          <button 
+            className={s.ctaButton} 
+            onClick={() => setIsModalOpen(true)}
+            aria-label="Read uncomfortable AI responses"
+          >
+            Read what people are uncomfortable with AI deciding
+          </button>
+        </div>
+
+        <div className={s["section-title"]}>
+          <h3>What do you think?</h3>
         </div>
 
         <div className={s['professions-grid-container']}>
@@ -250,7 +265,7 @@ export const DivergentFutures = () => {
             {professions.map((p) => (
               <div
                 key={p.id}
-                className={s['profession-icon-container']}
+                className={`${s['profession-icon-container']} ${clickedProfessionId === p.id ? s.clicked : ''}`}
                 onClick={() => handleProfessionSelect(p)}
                 role="button"
                 tabIndex={0}
@@ -262,7 +277,7 @@ export const DivergentFutures = () => {
                   }
                 }}
               >
-                <p.icon className={s['profession-icon']} aria-hidden="true" />
+                <img src={p.icon} className={s['profession-icon']} alt="" aria-hidden="true" />
                 <span className={s['profession-name']}>{p.name}</span>
               </div>
             ))}
@@ -279,15 +294,6 @@ export const DivergentFutures = () => {
               />
             )}
           </div>
-        </div>
-        <div className={s["data-source-card"]}>
-          <button 
-            className={s.ctaButton} 
-            onClick={() => setIsModalOpen(true)}
-            aria-label="Read uncomfortable AI responses"
-          >
-            Read what people are uncomfortable with AI deciding
-          </button>
         </div>
       </section>
       <UncomfortableResponsesModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
