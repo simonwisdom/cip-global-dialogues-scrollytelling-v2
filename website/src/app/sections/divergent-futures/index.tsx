@@ -1,13 +1,27 @@
 "use client";
 
-import { Root, Animation } from "~/lib/scrollytelling-client";
 import s from "./divergent-futures.module.scss";
 import { ProfessionCard } from "./profession-card";
+import {
+  EducationIcon,
+  FoodServiceIcon,
+  HealthcareIcon,
+  JournalismIcon,
+  PoliticsIcon,
+  ReligionIcon,
+  TherapyIcon,
+  TransportationIcon,
+} from "./professions-icons";
+import { useIsoLayoutEffect } from "../../hooks/use-iso-layout-effect";
+import { useRef, useState } from "react";
+import { gsap } from "gsap";
+import { UncomfortableResponsesModal } from "./uncomfortable-responses-modal";
 
 const professions = [
   {
     id: 'journalism',
     name: 'Journalism',
+    icon: JournalismIcon,
     human: {
       title: 'Human-Led Reporting',
       story: 'Reporters focus on deep, investigative work, building trust through on-the-ground presence and nuanced storytelling.',
@@ -22,6 +36,7 @@ const professions = [
   {
     id: 'politics',
     name: 'Politics',
+    icon: PoliticsIcon,
     human: {
       title: 'Community Governance',
       story: 'Politicians engage in local town halls, making decisions based on direct constituent feedback and personal charisma.',
@@ -36,6 +51,7 @@ const professions = [
   {
     id: 'therapy',
     name: 'Therapy',
+    icon: TherapyIcon,
     human: {
       title: 'Empathetic Counsel',
       story: 'Therapists provide a human connection, using intuition and shared experience to guide patients through complex emotions.',
@@ -50,6 +66,7 @@ const professions = [
   {
     id: 'food-service',
     name: 'Food Service',
+    icon: FoodServiceIcon,
     human: {
       title: 'Artisanal Dining',
       story: 'Chefs and servers create unique, personal dining experiences where hospitality and craft are the main ingredients.',
@@ -64,6 +81,7 @@ const professions = [
   {
     id: 'transportation',
     name: 'Transportation',
+    icon: TransportationIcon,
     human: {
       title: 'The Open Road',
       story: 'Human drivers navigate the world, offering personal service and the flexibility to go off the beaten path.',
@@ -78,6 +96,7 @@ const professions = [
   {
     id: 'education',
     name: 'Education',
+    icon: EducationIcon,
     human: {
       title: 'Mentorship & Discovery',
       story: 'Teachers inspire curiosity and critical thinking, mentoring students through collaborative, in-person discovery.',
@@ -92,6 +111,7 @@ const professions = [
   {
     id: 'healthcare',
     name: 'Healthcare',
+    icon: HealthcareIcon,
     human: {
       title: 'The Healing Touch',
       story: 'Doctors and nurses provide compassionate bedside care, making complex diagnoses based on experience and human intuition.',
@@ -102,145 +122,143 @@ const professions = [
       story: 'AI analyzes genetic and lifestyle data to predict illnesses and prescribe treatments with superhuman accuracy.',
       image: '/images/section2/healthcare_full_ai_automation.webp'
     }
+  },
+  {
+    id: 'religion',
+    name: 'Religion',
+    icon: ReligionIcon,
+    human: {
+      title: 'Human-Led Worship',
+      story: 'Religious leaders remain central, guiding through lived tradition. AI may assist with scripture research or translation, but worship, confession, and meaning-making are communal, embodied, and relational.',
+      image: '/images/section2/religion_strong_human_presence.webp'
+    },
+    ai: {
+      title: 'AI-Automated Spirituality',
+      story: 'Spiritual guidance is delivered via AI avatars trained on sacred texts, offering personalized sermons, rituals, and meditative practices. Temples and churches become immersive centers of automated reflection.',
+      image: '/images/section2/religion_full_ai_automation.webp'
+    }
   }
 ];
 
 export const DivergentFutures = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const cardWrapperRef = useRef<HTMLDivElement>(null);
+  const [selectedProfession, setSelectedProfession] = useState<typeof professions[0] | null>(null);
+  const [activeProfession, setActiveProfession] = useState<typeof professions[0] | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useIsoLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      if (selectedProfession && !activeProfession) {
+        // Animate grid out, then set active profession to trigger card render + animation
+        gsap.to(gridRef.current, {
+          autoAlpha: 0,
+          duration: 0.4,
+          ease: "power2.out",
+          onComplete: () => {
+            setActiveProfession(selectedProfession);
+          },
+        });
+      } else if (!selectedProfession && activeProfession) {
+        // Animate card out, then set active profession to null
+        gsap.to(cardWrapperRef.current, {
+          autoAlpha: 0,
+          y: 50,
+          scale: 0.95,
+          duration: 0.4,
+          ease: "power2.in",
+          onComplete: () => {
+            setActiveProfession(null);
+            // Animate grid back in
+            gsap.to(gridRef.current, {
+              autoAlpha: 1,
+              duration: 0.4,
+              ease: "power2.out",
+            });
+          },
+        });
+      }
+    }, containerRef);
+    return () => ctx.revert();
+  }, [selectedProfession, activeProfession]);
+
+  // Card fade-in animation
+  useIsoLayoutEffect(() => {
+    if (!activeProfession) return;
+    const ctx = gsap.context(() => {
+      gsap.from(cardWrapperRef.current, {
+        autoAlpha: 0,
+        y: 50,
+        scale: 0.95,
+        duration: 0.4,
+        ease: "power2.out",
+      });
+    }, containerRef);
+    return () => ctx.revert();
+  }, [activeProfession]);
+  
   return (
-    <Root
-      defaults={{
-        ease: "power1.inOut",
-      }}
-      start="top 80%"
-      end="bottom 20%"
-      // debug={
-      //   process.env.NODE_ENV === 'development'
-      //     ? { markers: true, label: 'DivergentFutures' }
-      //     : false
-      // }
-    >
-      <section className={s["scenario"]}>
+    <>
+      <section className={s["scenario"]} ref={containerRef}>
         {/* Scenario Header */}
         <div className={s["scenario-header"]}>
-          <Animation
-            tween={{
-              start: 0,
-              end: 20,
-              fromTo: [
-                { opacity: 0, y: 30 },
-                { opacity: 1, y: 0, ease: "power2.out" }
-              ]
-            }}
-          >
-            <div>
-              <div className={s["scenario-number"]}>2</div>
-              <h2 className={s["scenario-title"]}>Divergent Futures</h2>
-              <p className={s["scenario-subtitle"]}>Human-Centric or AI-Automated? You decide.</p>
-            </div>
-          </Animation>
+          <div>
+            <div className={s["scenario-number"]}>2</div>
+            <h2 className={s["scenario-title"]}>Divergent Futures</h2>
+            <p className={s["scenario-subtitle"]}>
+              Human-Centric or AI-Automated? You decide.
+            </p>
+          </div>
         </div>
 
         {/* Introduction */}
         <div className={s["intro-section"]}>
           <div className={s["intro-content"]}>
-            <Animation
-              tween={{
-                start: 10,
-                end: 30,
-                fromTo: [
-                  { opacity: 0, y: 30 },
-                  { opacity: 1, y: 0, ease: 'power2.out' },
-                ],
-              }}
-            >
-              <p className={s['intro-text']}>
-                Conscious or not, AI is set to take on a much larger share of
-                human tasks - though people disagree on where they would and
-                would not like to see AI. What do you think?
-              </p>
-            </Animation>
-            <Animation
-              tween={{
-                start: 15,
-                end: 35,
-                fromTo: [
-                  { opacity: 0, y: 30 },
-                  { opacity: 1, y: 0, ease: "power2.out" }
-                ]
-              }}
-            >
-              <p className={s["intro-text"]}>
-                As AI capabilities grow, society faces a choice. Will we double down on human skills, or embrace automation?
-              </p>
-            </Animation>
-            
-            <Animation
-              tween={{
-                start: 25,
-                end: 45,
-                fromTo: [
-                  { opacity: 0, y: 20 },
-                  { opacity: 1, y: 0, ease: "power2.out" }
-                ]
-              }}
-            >
-              <p className={s["intro-text"]}>
-                Survey results show that people have different opinions about where AI is appropriate.
-              </p>
-            </Animation>
-
-            <Animation
-              tween={{
-                start: 35,
-                end: 55,
-                fromTo: [
-                  { opacity: 0, y: 20 },
-                  { opacity: 1, y: 0, ease: "power2.out" }
-                ]
-              }}
-            >
-              <h3 className={s["question"]}>Which future do you want?</h3>
-            </Animation>
+            <p className={s["intro-text"]}>
+              Conscious or not, AI is set to take on a much larger share of
+              human tasks - though people disagree on where they would and
+              would not like to see AI. What do you think?
+            </p>
+            <p className={s["intro-text"]}>
+              As AI capabilities grow, society faces a choice. Will we double
+              down on human skills, or embrace automation?
+            </p>
           </div>
         </div>
 
-        {/* Professions Grid */}
-        <div className={s["professions-container"]}>
-          <div className={s["professions-grid"]}>
-            {professions.map((profession, index) => (
-              <Animation
-                key={profession.id}
-                tween={{
-                  start: 10 + (index * 5),
-                  end: 80 + (index * 3),
-                  fromTo: [
-                    { opacity: 0, y: 40, scale: 0.9 },
-                    { opacity: 1, y: 0, scale: 1, ease: "power2.out" }
-                  ]
-                }}
-              >
-                <ProfessionCard profession={profession} />
-              </Animation>
-            ))}
+        <div className={s['professions-grid-container']}>
+          <div ref={gridRef}>
+            <div className={s['professions-grid']}>
+              {professions.map((p) => (
+                <div
+                  key={p.id}
+                  className={s['profession-icon-container']}
+                  onClick={() => setSelectedProfession(p)}
+                >
+                  <p.icon className={s['profession-icon']} />
+                  <span className={s['profession-name']}>{p.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div ref={cardWrapperRef} className={s.cardWrapper}>
+            {activeProfession && (
+              <ProfessionCard
+                profession={activeProfession}
+                onClose={() => setSelectedProfession(null)}
+              />
+            )}
           </div>
         </div>
-
-        {/* Transition Element */}
-        <div className={s["transition"]}>
-          <Animation
-            tween={{
-              start: 95,
-              end: 100,
-              fromTo: [
-                { opacity: 0, y: 20 },
-                { opacity: 1, y: 0, ease: "power2.out" }
-              ]
-            }}
-          >
-            <p className={s["transition-text"]}>Performance becomes the new authenticity...</p>
-          </Animation>
+        <div className={s["data-source-card"]}>
+          <button className={s.ctaButton} onClick={() => setIsModalOpen(true)}>
+            Read what people are uncomfortable with AI deciding
+          </button>
         </div>
       </section>
-    </Root>
+      <UncomfortableResponsesModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </>
   );
 };

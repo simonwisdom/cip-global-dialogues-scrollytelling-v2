@@ -1,6 +1,7 @@
-@import "../../css/themes";
+@import "../../css/themes.scss";
 
 .scenario {
+  min-height: 100vh;
   @include scenario-wrapper(150vh);
   @include light-theme;
 }
@@ -42,22 +43,96 @@
   color: var(--light-accent);
 }
 
-.professions-container {
-  @include content-container(1400px);
+.professions-grid-container {
+  @include content-container(1200px);
   padding-bottom: var(--space-5xl);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
 }
 
 .professions-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--space-xl);
-  
-  @include tablet-up {
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  width: 100%;
+}
+
+.profession-icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
   }
-  
-  @include desktop-up {
-    grid-template-columns: repeat(3, 1fr);
+}
+
+.profession-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--light-accent);
+}
+
+.profession-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-light);
+}
+
+.cardWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+  > * {
+    pointer-events: all;
+  }
+}
+
+.data-source-card {
+  border: 1px solid var(--dark-border-primary);
+  background-color: var(--dark-bg-secondary);
+  padding: var(--space-lg);
+  margin: var(--space-xl) auto;
+  max-width: 800px;
+  text-align: center;
+  border-radius: var(--radius-md);
+}
+
+.data-source-note {
+  @include meta-text;
+  color: var(--dark-text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.ctaButton {
+  background-color: #3868b2;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #4a8aee;
   }
 }
 
@@ -75,9 +150,10 @@
   }
   
   .professions-grid {
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
   }
-  
+
   .intro-section {
     padding-bottom: var(--space-xl);
   }

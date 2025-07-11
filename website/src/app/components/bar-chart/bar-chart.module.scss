@@ -1,0 +1,84 @@
+.chart-wrapper {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chart-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+}
+
+.chart-title {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #34495e;
+  line-height: 1.4;
+  min-height: 60px;
+}
+
+.chart {
+  position: relative;
+}
+
+.chart :global(.bar) {
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.chart :global(.bar:hover) {
+  opacity: 0.8;
+}
+
+.chart :global(.bar-label) {
+  font-size: 12px;
+  fill: #2c3e50;
+  pointer-events: none;
+}
+
+.chart :global(.axis) {
+  font-size: 12px;
+}
+
+.chart :global(.axis-label) {
+  font-size: 14px;
+  font-weight: 500;
+  fill: #34495e;
+}
+
+.chart :global(.y-axis .tick line) {
+  stroke: #e0e0e0;
+  stroke-dasharray: 2, 2;
+}
+
+.tooltip {
+  position: absolute;
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.chart-colors-1 :global(.bar) {
+  fill: #3498db;
+}
+.chart-colors-2 :global(.bar) {
+  fill: #e74c3c;
+}
+.chart-colors-3 :global(.bar) {
+  fill: #2ecc71;
+}
+.chart-colors-4 :global(.bar) {
+  fill: #f39c12;
+}
+.chart-colors-5 :global(.bar) {
+  fill: #9b59b6;
+} 

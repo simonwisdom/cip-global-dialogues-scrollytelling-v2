@@ -1,12 +1,15 @@
 "use client";
 
-import { forwardRef, useState, useMemo } from "react";
+import { forwardRef, useRef, useState } from "react";
 import Image from "next/image";
 import s from "./profession-card.module.scss";
+import { useIsoLayoutEffect } from "../../hooks/use-iso-layout-effect";
+import { gsap } from "gsap";
 
 interface Profession {
   id: string;
   name: string;
+  icon: React.ElementType;
   human: {
     title: string;
     story: string;
@@ -21,95 +24,114 @@ interface Profession {
 
 interface ProfessionCardProps {
   profession: Profession;
+  onClose: () => void;
 }
 
 export const ProfessionCard = forwardRef<HTMLDivElement, ProfessionCardProps>(
-  ({ profession }, ref) => {
-    const [selectedMode, setSelectedMode] = useState<'human' | 'ai' | 'neutral'>('neutral');
-    const [isFlipped, setIsFlipped] = useState(false);
+  ({ profession, onClose }, ref) => {
+    const [choice, setChoice] = useState<"human" | "ai" | null>(null);
+    const [isFlipping, setIsFlipping] = useState(false);
+    const cardContentRef = useRef<HTMLDivElement>(null);
 
-    const handleSelect = (mode: 'human' | 'ai') => {
-      setSelectedMode(mode);
-      setIsFlipped(true);
+    const handleChoice = (c: "human" | "ai") => {
+      if (isFlipping) return;
+      setChoice(c);
     };
 
-    const handleChooseAgain = () => {
-      setIsFlipped(false);
-      // We wait for the flip back animation to complete before resetting the content
-      setTimeout(() => {
-        setSelectedMode('neutral');
-      }, 300); // This should match the transition duration in CSS
+    const handleBack = () => {
+      if (isFlipping) return;
+      setChoice(null);
     };
 
-    const cardContent = useMemo(() => {
-      if (selectedMode === 'neutral') {
-        return null;
+    useIsoLayoutEffect(() => {
+      if (choice === null) {
+        // We are on the front, do nothing initially
+        return;
       }
-      return (
-        <>
-          <div className={s["header"]}>
-            <h4 className={s["profession-name"]}>{profession[selectedMode].title}</h4>
-          </div>
-          <div className={s["content"]}>
-            <div className={s["image-container"]}>
-              <Image
-                src={profession.human.image}
-                alt={profession.human.title}
-                width={300}
-                height={200}
-                className={`${s.image} ${selectedMode === 'human' ? s.active : ''}`}
-              />
-              <Image
-                src={profession.ai.image}
-                alt={profession.ai.title}
-                width={300}
-                height={200}
-                className={`${s.image} ${selectedMode === 'ai' ? s.active : ''}`}
-              />
-            </div>
-            <div className={s["text-content"]}>
-              <p className={s["mode-story"]}>{profession[selectedMode].story}</p>
-            </div>
-          </div>
-          <div className={s["choose-again-container"]}>
-            <button className={s["choose-again-button"]} onClick={handleChooseAgain}>
-              Choose Again
-            </button>
-          </div>
-        </>
-      );
-    }, [selectedMode, profession]);
+      // We are on the back, set it instantly
+      gsap.set(cardContentRef.current, { rotationY: 180 });
+    }, []);
 
+    useIsoLayoutEffect(() => {
+      const ctx = gsap.context(() => {
+        setIsFlipping(true);
+        gsap.to(cardContentRef.current, {
+          rotationY: choice ? 180 : 0,
+          duration: 0.7,
+          ease: "power2.inOut",
+          onComplete: () => {
+            setIsFlipping(false);
+          },
+        });
+      }, cardContentRef);
+      return () => ctx.revert();
+    }, [choice]);
+
+    const selectedOption = choice ? profession[choice] : null;
 
     return (
-      <div className={s["card-perspective-container"]} ref={ref}>
-        <div className={`${s["card-flipper"]} ${isFlipped ? s["flipped"] : ""}`}>
-          <div className={s["card-front"]}>
-            <div className={s["card"]}>
-              <div className={s["header"]}>
-                <h4 className={s["profession-name"]}>{profession.name}</h4>
-              </div>
-              <div className={s["neutral-content"]}>
-                <div className={s["choice-buttons"]}>
+      <div className={s.card} ref={ref}>
+        <button className={s.closeButton} onClick={onClose}>
+          &times;
+        </button>
+        <div className={s.cardHeader}>
+          <profession.icon className={s.professionIcon} />
+          <h3 className={s.professionName}>{profession.name}</h3>
+        </div>
+
+        <div className={s.cardContent}>
+          <div ref={cardContentRef} className={s.flipContainer}>
+            {/* Front of the card */}
+            <div className={s.flippableContent}>
+              <div className={s.choiceContainer}>
+                <h4 className={s.choiceQuestion}>
+                  What does the future of {profession.name.toLowerCase()} look
+                  like?
+                </h4>
+                <p className={s.choiceSubtitle}>
+                  Will we embrace AI automation, or double down on human
+                  skills?
+                </p>
+                <div className={s.choiceButtons}>
                   <button
-                    className={`${s["choice-button"]} ${s["human-button"]}`}
-                    onClick={() => handleSelect('human')}
+                    className={`${s.choiceButton} ${s.humanChoice}`}
+                    onClick={() => handleChoice("human")}
                   >
-                    Human-Centric
+                    Human
                   </button>
                   <button
-                    className={`${s["choice-button"]} ${s["ai-button"]}`}
-                    onClick={() => handleSelect('ai')}
+                    className={`${s.choiceButton} ${s.aiChoice}`}
+                    onClick={() => handleChoice("ai")}
                   >
-                    AI-Automated
+                    AI
                   </button>
                 </div>
               </div>
             </div>
-          </div>
-          <div className={s["card-back"]}>
-            <div className={s["card"]}>
-              {cardContent}
+
+            {/* Back of the card */}
+            <div
+              className={s.flippableContent}
+              style={{ transform: "rotateY(180deg)" }}
+            >
+              <button className={s.backButton} onClick={handleBack}>
+                &larr; Back
+              </button>
+              {selectedOption && (
+                <div className={s.singleOption}>
+                  <Image
+                    src={selectedOption.image}
+                    alt={selectedOption.title}
+                    width={600}
+                    height={400}
+                    className={s.image}
+                  />
+                  <div className={s.text}>
+                    <h4 className={s.optionTitle}>{selectedOption.title}</h4>
+                    <p className={s.optionStory}>{selectedOption.story}</p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

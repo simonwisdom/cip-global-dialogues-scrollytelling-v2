@@ -2,7 +2,18 @@
 
 .scenario {
   @include scenario-wrapper(200vh);
-  @include dark-theme;
+  // a dark theme inspired by the user's HTML file
+  --dark-bg-primary: #0a0a0a;
+  --dark-bg-secondary: #1a1a1a;
+  --dark-text-primary: #e0e0e0;
+  --dark-text-muted: #b0b0b0;
+  --dark-accent: #ff6b6b;
+  --dark-border: #ff6b6b;
+
+  background-color: var(--dark-bg-primary);
+  color: var(--dark-text-primary);
+  font-family: 'GeistMono', monospace;
+  cursor: crosshair;
 }
 
 .scenario-header {
@@ -71,12 +82,11 @@
 }
 
 .story-intro {
-  @include story-intro;
-  color: var(--dark-text-secondary);
-  
-  p {
-    background: var(--theme-accent-light);
-  }
+  @include story-paragraph;
+  padding: var(--space-lg);
+  border-left: 3px solid var(--dark-accent);
+  background-color: rgba(255, 107, 107, 0.05);
+  color: var(--dark-text-primary);
 }
 
 .story-paragraph {
@@ -85,10 +95,16 @@
 }
 
 .story-callout {
-  @include story-callout;
+  @include story-paragraph;
+  margin-top: var(--space-2xl);
+  padding: var(--space-lg);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  background-color: rgba(255, 255, 255, 0.05);
   
   p {
     color: var(--dark-text-muted);
+    font-style: italic;
   }
 }
 
@@ -123,7 +139,7 @@
     padding: var(--space-lg);
   }
   
-  .story-intro p,
+  .story-intro,
   .story-callout {
     padding: var(--space-md);
   }
