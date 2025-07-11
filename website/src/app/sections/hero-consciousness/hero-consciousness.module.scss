@@ -1,0 +1,171 @@
+.pin-spacer {
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+}
+
+.header {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%23206095" width="1920" height="1080"/><circle cx="960" cy="540" r="300" fill="rgba(255,204,204,0.1)"/><circle cx="300" cy="200" r="100" fill="rgba(255,255,255,0.05)"/><circle cx="1600" cy="800" r="150" fill="rgba(255,255,255,0.03)"/></svg>');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(32, 96, 149, 0.7) 0%,
+      rgba(10, 10, 10, 0.8) 100%
+    );
+  }
+}
+
+.content-overlay {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.title-container {
+  margin-bottom: 120px;
+}
+
+.main-title {
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-weight: 900;
+  line-height: 0.9;
+  margin: 0 0 20px 0;
+  color: white;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+  color: rgba(255, 204, 204, 0.9);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  animation: bounce 2s infinite;
+}
+
+.arrow {
+  width: 24px;
+  height: 12px;
+  
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.scroll-text {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.consciousness-visual {
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 300px;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.neural-network {
+  width: 100%;
+  height: 100%;
+}
+
+.network-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.nodes circle {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.connections line {
+  animation: flow 4s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.4;
+    r: 6;
+  }
+  50% {
+    opacity: 0.8;
+    r: 8;
+  }
+}
+
+@keyframes flow {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@media (max-width: 768px) {
+  .consciousness-visual {
+    display: none;
+  }
+  
+  .title-container {
+    margin-bottom: 80px;
+  }
+  
+  .content-overlay {
+    padding: 0 16px;
+  }
+}

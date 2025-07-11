@@ -1,0 +1,38 @@
+yarn run v1.22.22
+$ turbo run dev --parallel
+• Packages in scope: @bsmnt/scrollytelling, docs, eslint-config-custom, tsconfig, website
+• Running dev in 5 packages
+• Remote caching disabled
+@bsmnt/scrollytelling:dev: cache bypass, force executing a19a1b861af1a46c
+website:dev: cache bypass, force executing 777070f2f826650c
+docs:dev: cache bypass, force executing 9baec61984dfee1d
+@bsmnt/scrollytelling:dev: warning package.json: No license field
+docs:dev: $ next dev
+@bsmnt/scrollytelling:dev: $ yarn build --watch
+website:dev: $ next dev
+@bsmnt/scrollytelling:dev: warning package.json: No license field
+@bsmnt/scrollytelling:dev: $ tsup --config tsup.config.ts --watch
+docs:dev: /Users/wisdom/Documents/2025/CIP/scrollytelling/basement-scrollytelling/docs/next.config.js:64
+docs:dev: undefined
+docs:dev:                            ^
+docs:dev: 
+docs:dev: Error [ERR_REQUIRE_ESM]: require() of ES Module /Users/wisdom/Documents/2025/CIP/scrollytelling/basement-scrollytelling/node_modules/nextra/dist/server/index.js from /Users/wisdom/Documents/2025/CIP/scrollytelling/basement-scrollytelling/docs/next.config.js not supported.
+docs:dev: Instead change the require of index.js in /Users/wisdom/Documents/2025/CIP/scrollytelling/basement-scrollytelling/docs/next.config.js to a dynamic import() which is available in all CommonJS modules.
+docs:dev:     at mod.require (/Users/wisdom/Documents/2025/CIP/scrollytelling/basement-scrollytelling/node_modules/next/dist/server/require-hook.js:64:28)
+docs:dev:     at Object.<anonymous> (/Users/wisdom/Documents/2025/CIP/scrollytelling/basement-scrollytelling/docs/next.config.js:1:20) {
+docs:dev:   code: 'ERR_REQUIRE_ESM'
+docs:dev: }
+docs:dev: 
+docs:dev: Node.js v20.11.1
+docs:dev: error Command failed with exit code 1.
+docs:dev: info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+docs:dev: ERROR: command finished with error: command (/Users/wisdom/Documents/2025/CIP/scrollytelling/basement-scrollytelling/docs) yarn run dev exited (1)
+command (/Users/wisdom/Documents/2025/CIP/scrollytelling/basement-scrollytelling/docs) yarn run dev exited (1)
+
+ Tasks:    0 successful, 3 total
+Cached:    0 cached, 3 total
+  Time:    1.053s 
+
+ ERROR  run failed: command  exited (1)
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.

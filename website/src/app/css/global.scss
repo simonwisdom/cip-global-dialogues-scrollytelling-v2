@@ -1,0 +1,222 @@
+@import "./helpers";
+@import "./reset.css";
+
+/* Google Fonts imports */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+
+/* Adobe Fonts (requires Adobe Fonts account) */
+/* @import url('https://use.typekit.net/your-kit-id.css'); */
+
+:root {
+  --font-system: -apple-system, blinkmacsystemfont, segoe ui, roboto, oxygen,
+    ubuntu, cantarell, fira sans, droid sans, helvetica neue, sans-serif;
+  --inspect-color: #f00;
+
+  // colors
+  --color-black: #000;
+  --color-white: #efefef;
+  --color-orange: #ff4d00;
+
+  // easings
+  --custom-ease-out: cubic-bezier(0, 1, 0.5, 1.02);
+
+  // Layout
+  --header-height: #{tovw(152px, "desktop-large")};
+
+  /* Base font settings */
+  --base-font-size: 16px;
+
+  /* Heading font variables */
+  --heading-primary-font-family: "Optima", "Segoe UI", -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  --heading-secondary-font-family: "Crimson Text", "Times New Roman", Georgia,
+    serif;
+  --heading-font-weight: 600;
+  --heading-line-height: 1.4em;
+
+  /* Body font variables */
+  --body-font-family: "aktiv-grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body-font-weight: 400;
+  --body-line-height: 2em;
+
+  /* Meta font variables */
+  --meta-font-family: "adobe-garamond-pro", "Times New Roman", Georgia, serif;
+  --meta-font-weight: 600;
+  --meta-line-height: 1.6em;
+
+  /* Font sizes */
+  --h1-size: 3.7rem;
+  --h2-size: 2.9rem;
+  --h3-size: 2.3rem;
+  --h4-size: 1.4rem;
+  --large-text-size: 1.4rem;
+  --normal-text-size: 1.2rem;
+  --small-text-size: 1rem;
+  --meta-text-size: 1.3rem;
+}
+
+html {
+  line-height: 1.5;
+  box-sizing: border-box;
+  text-rendering: geometricprecision;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // tweak if site is light mode.
+  color-scheme: dark;
+  background-color: black;
+  font-size: var(--base-font-size);
+}
+
+body {
+  font-family: var(--body-font-family);
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  -webkit-font-smoothing: antialiased;
+  word-wrap: break-word;
+  transition: opacity #{$duration / 3 + "s"} ease-in;
+}
+
+body.inspect * {
+  outline: 1px solid var(--inspect-color) !important;
+}
+
+body:not(.user-is-tabbing) button:focus,
+body:not(.user-is-tabbing) input:focus,
+body:not(.user-is-tabbing) select:focus,
+body:not(.user-is-tabbing) textarea:focus {
+  outline: none;
+}
+
+.wrapper {
+  width: 100%;
+  padding: 0 tovw(32px, "desktop-large", 16px);
+}
+
+.canvas {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 10;
+}
+
+.link {
+  position: relative;
+  white-space: nowrap;
+  color: theme("colors.white");
+  transition: color 250ms ease-in-out;
+  text-decoration: none;
+  pointer-events: all;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: currentcolor;
+    width: 100%;
+    height: tovw(1px);
+    pointer-events: none;
+  }
+
+  &::before {
+    content: "";
+    transform: scale3d(0, 1, 1);
+    transform-origin: 100% 50%;
+    transition: transform 250ms ease-in-out;
+  }
+}
+
+@media (hover: hover) {
+  .link {
+    &:hover::before,
+    &:focus::before {
+      transform: scale3d(1, 1, 1);
+      transform-origin: 0 50%;
+    }
+  }
+}
+
+/* Primary headings (Optima) */
+h1,
+h2 {
+  font-family: var(--heading-primary-font-family);
+  font-weight: var(--heading-font-weight);
+  line-height: var(--heading-line-height);
+  letter-spacing: 0em;
+}
+
+h1 {
+  font-size: var(--h1-size);
+}
+
+h2 {
+  font-size: var(--h2-size);
+}
+
+/* Secondary headings (Crimson Text) */
+h3,
+h4 {
+  font-family: var(--heading-secondary-font-family);
+  font-weight: var(--heading-font-weight);
+  line-height: var(--heading-line-height);
+  letter-spacing: 0em;
+}
+
+h3 {
+  font-size: var(--h3-size);
+}
+
+h4 {
+  font-size: var(--h4-size);
+}
+
+/* Body text */
+p {
+  font-family: var(--body-font-family);
+  font-size: var(--normal-text-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  margin: 1rem 0;
+}
+
+/* Large text variant */
+.large-text {
+  font-size: var(--large-text-size);
+}
+
+/* Small text variant */
+.small-text {
+  font-size: var(--small-text-size);
+}
+
+/* Meta/caption text */
+.meta-text,
+.caption {
+  font-family: var(--meta-font-family);
+  font-size: var(--meta-text-size);
+  font-weight: var(--meta-font-weight);
+  font-style: italic;
+  line-height: var(--meta-line-height);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  :root {
+    --h1-size: 2.8rem;
+    --h2-size: 2.2rem;
+    --h3-size: 1.8rem;
+    --h4-size: 1.3rem;
+    --normal-text-size: 1.1rem;
+  }
+}
+
+::selection {
+  color: #000;
+  background-color: #ff4d00;
+}

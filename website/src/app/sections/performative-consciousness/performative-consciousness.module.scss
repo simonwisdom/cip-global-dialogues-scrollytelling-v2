@@ -1,0 +1,167 @@
+.scenario {
+  background: linear-gradient(180deg, #e8f0f7 0%, #cce7f0 100%);
+  color: #333;
+  min-height: 150vh;
+  position: relative;
+}
+
+.scenario-header {
+  padding: 120px 20px 60px;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    rgba(32, 96, 149, 0.1) 0%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+}
+
+.scenario-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #206095;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: bold;
+  color: #206095;
+  margin: 0 auto 20px;
+}
+
+.scenario-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 0 0 16px 0;
+  color: #206095;
+}
+
+.scenario-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: #666;
+  margin: 0;
+  font-weight: 300;
+}
+
+.split-screen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+  max-width: 1400px;
+  margin: 0 auto;
+  
+  @media (max-width: 968px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.chart-section {
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  border-right: 1px solid rgba(32, 96, 149, 0.1);
+  
+  @media (max-width: 968px) {
+    border-right: none;
+    border-bottom: 1px solid rgba(32, 96, 149, 0.1);
+  }
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.text-section {
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.step-container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  width: 100%;
+  max-width: 450px;
+}
+
+.step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #206095;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.step-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  margin-top: 8px;
+}
+
+.transition {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(32, 96, 149, 0.1) 100%
+  );
+}
+
+.transition-text {
+  font-size: 1.3rem;
+  color: #666;
+  margin: 0;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .scenario-header {
+    padding: 80px 20px 40px;
+  }
+  
+  .chart-section,
+  .text-section {
+    padding: 20px;
+  }
+  
+  .step-container {
+    gap: 40px;
+  }
+  
+  .step {
+    gap: 16px;
+  }
+  
+  .step-number {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+  
+  .step-text {
+    font-size: 1rem;
+    margin-top: 6px;
+  }
+}

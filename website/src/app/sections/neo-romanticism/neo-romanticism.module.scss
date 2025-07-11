@@ -1,0 +1,155 @@
+.scenario {
+  min-height: 150vh;
+  position: relative;
+  color: white;
+  overflow: hidden;
+}
+
+.background-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, #1a0000 0%, #4a0000 50%, #2a0000 100%);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(255, 204, 204, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(255, 204, 204, 0.05) 0%, transparent 50%);
+  }
+}
+
+.scenario-header {
+  position: relative;
+  z-index: 2;
+  padding: 120px 20px 80px;
+  text-align: center;
+}
+
+.scenario-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #ffcccc;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffcccc;
+  margin: 0 auto 20px;
+}
+
+.scenario-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 0 0 16px 0;
+  color: #ffcccc;
+}
+
+.scenario-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: rgba(255, 204, 204, 0.8);
+  margin: 0;
+  font-weight: 300;
+}
+
+.content-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.text-section {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.intro-text {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: rgba(255, 204, 204, 0.9);
+  margin: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.gallery-section {
+  margin-bottom: 80px;
+}
+
+.quote-section {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.quote {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  padding: 40px;
+  background: rgba(255, 204, 204, 0.1);
+  border-left: 4px solid #ffcccc;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: 0 auto;
+  
+  cite {
+    display: block;
+    margin-top: 20px;
+    font-size: 1rem;
+    font-style: normal;
+    color: rgba(255, 204, 204, 0.8);
+    font-weight: 300;
+  }
+}
+
+.transition {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(32, 96, 149, 0.2) 100%
+  );
+}
+
+.transition-text {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .scenario-header {
+    padding: 80px 20px 60px;
+  }
+  
+  .intro-text {
+    font-size: 1.1rem;
+  }
+  
+  .quote {
+    font-size: 1.2rem;
+    padding: 24px;
+  }
+  
+  .content-container {
+    padding: 0 16px;
+  }
+}
