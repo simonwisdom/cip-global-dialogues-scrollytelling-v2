@@ -53,11 +53,31 @@
 
 .concluding-text {
   max-width: 600px;
-  margin: 4rem auto;
+  margin: 6rem auto;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  
+  p:first-child {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  
+  p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 3rem auto 0;
+    max-width: 800px;
+    font-size: 1.3rem;
+    line-height: 1.7;
+  }
+
+  li {
+    margin-bottom: 1.5rem;
+  }
 }
 
 .word-cloud-container {
@@ -112,14 +132,15 @@
   background-color: #3868b2;
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.2s ease-in-out;
+  margin-top: 1rem;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #4a8aee;
+    background-color: #4a8dcf;
   }
 }
 
@@ -139,4 +160,44 @@
   .intro-section {
     padding-bottom: var(--space-xl);
   }
+} 
+
+.explanation-container {
+  margin: 4rem auto;
+  max-width: var(--max-width);
+}
+
+.explanation-intro {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.explanation-split {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.explanation-side {
+  flex: 1;
+  max-width: 450px;
+  
+  h4 {
+    font-size: 1.2rem;
+    min-height: 4em;
+    font-weight: normal;
+  }
+}
+
+.highlight-feeling {
+  color: rgb(224, 84, 126);
+}
+
+.highlight-thinking {
+  color: rgb(56, 104, 178);
 } 

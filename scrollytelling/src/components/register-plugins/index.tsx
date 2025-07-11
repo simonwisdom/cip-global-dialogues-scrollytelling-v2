@@ -1,3 +1,5 @@
+"use client";
+
 import { gsap } from "gsap";
 // ---- Hooks ----
 import { useIsoLayoutEffect } from "../../hooks/use-iso-layout-effect";
@@ -25,7 +27,7 @@ export const RegisterGsapPlugins = ({ plugins }: RegisterGsapPluginsProps) => {
   // This needs to run before ScrollTrigger does any animations
   useIsoLayoutEffect(() => {
     gsap.registerPlugin(...plugins);
-  }, []);
+  }, [plugins]);
 
   return null;
 };

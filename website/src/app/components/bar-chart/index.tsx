@@ -14,10 +14,11 @@ type BarChartProps = {
   data: DataPoint[];
   title?: string;
   sortBy?: "percentage" | "response";
+  barColors?: { [key: string]: string };
 };
 
 export const BarChart = forwardRef(
-  ({ chartId, data, title, sortBy = "percentage" }: BarChartProps, ref) => {
+  ({ chartId, data, title, sortBy = "percentage", barColors }: BarChartProps, ref) => {
     const chartContainerRef = useRef<HTMLDivElement>(null);
     const tooltipRef = useRef<HTMLDivElement>(null);
 
@@ -51,6 +52,40 @@ export const BarChart = forwardRef(
       },
     }));
 
+    const wrap = (text: any, width: number) => {
+      text.each(function (this: any) {
+        const text = d3.select(this);
+        const words = text.text().split(/\s+/).reverse();
+        let word;
+        let line: string[] = [];
+        let lineNumber = 0;
+        const lineHeight = 1.1; // ems
+        const y = text.attr("y");
+        const dy = parseFloat(text.attr("dy"));
+        let tspan = text
+          .text(null)
+          .append("tspan")
+          .attr("x", -10)
+          .attr("y", y)
+          .attr("dy", dy + "em");
+
+        while ((word = words.pop())) {
+          line.push(word);
+          tspan.text(line.join(" "));
+          if (tspan.node()!.getComputedTextLength() > width) {
+            line.pop();
+            tspan.text(line.join(" "));
+            line = [word];
+            tspan = text
+              .append("tspan")
+              .attr("x", -10)
+              .attr("y", y)
+              .attr("dy", ++lineNumber * lineHeight + dy + "em")
+              .text(word);
+          }
+        }
+      });
+    };
 
     const drawChart = () => {
       if (!chartContainerRef.current) return;
@@ -63,15 +98,31 @@ export const BarChart = forwardRef(
       if (!containerNode) return;
 
       const containerRect = containerNode.getBoundingClientRect();
-      const margin = { top: 20, right: 40, bottom: 40, left: 150 };
-      const width = containerRect.width - margin.left - margin.right;
-      heightRef.current = 400 - margin.top - margin.bottom;
-      const height = heightRef.current;
-
+      // Dynamically calculate left margin based on longest label
+      const labelFont = "14.4px Arial, sans-serif";
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      let maxLabelWidth = 0;
       const sortedData =
         sortBy === "percentage"
           ? [...data].sort((a, b) => b.percentage - a.percentage)
           : [...data];
+      if (ctx) {
+        ctx.font = labelFont;
+        maxLabelWidth = Math.max(
+          ...sortedData.map((d) => ctx.measureText(d.response).width)
+        );
+      }
+      const margin = {
+        top: 10,
+        right: 20,
+        bottom: 10,
+        left: Math.max(60, Math.ceil(maxLabelWidth) + 40), // 40px generous padding
+      };
+      const barHeight = 36; // Minimum height per bar for readability
+      const height = barHeight * data.length;
+      heightRef.current = height;
+      const width = containerRect.width - margin.left - margin.right;
 
       const svg = container
         .append("svg")
@@ -96,44 +147,55 @@ export const BarChart = forwardRef(
         .scaleBand()
         .domain(sortedData.map((d) => d.response))
         .range([0, height])
-        .padding(0.2);
-
-      g.append("g")
-        .attr("class", "axis x-axis")
-        .attr("transform", `translate(0,${height})`)
-        .call(d3.axisBottom(x).ticks(5).tickFormat((d) => d + "%"));
+        .padding(0.2); // Slightly less padding for more bars
 
       g.append("g")
         .attr("class", "axis y-axis")
-        .call(d3.axisLeft(y));
-
-      g.append("text")
-        .attr("class", "axis-label")
-        .attr("x", width / 2)
-        .attr("y", height + margin.bottom - 5)
-        .style("text-anchor", "middle")
-        .text("Percentage");
+        .call(d3.axisLeft(y).tickSize(0))
+        .select(".domain")
+        .remove();
 
       const bars = g
         .selectAll(".bar")
         .data(sortedData)
         .enter()
         .append("rect")
-        .attr("class", "bar")
+        .attr("class", (d) => {
+          const baseClass = "bar";
+          if (barColors) {
+            return baseClass;
+          }
+          const responseClass = s[`bar-${d.response.toLowerCase()}`];
+          return `${baseClass} ${responseClass || ""}`;
+        })
         .attr("y", (d) => y(d.response)!)
         .attr("height", y.bandwidth())
         .attr("x", 0)
         .attr("width", 0);
 
+      if (barColors) {
+        bars.attr("fill", (d) => barColors[d.response.toLowerCase()] || null);
+      }
+
       g.selectAll(".bar-label")
         .data(sortedData)
         .enter()
         .append("text")
-        .attr("class", "bar-label")
-        .attr("x", (d) => x(d.percentage) + 5)
+        .attr("class", (d) => {
+          const base = `bar-label bar-label-${d.response.toLowerCase()}`;
+          // Will add 'outside' class if label is outside the bar
+          return base;
+        })
+        .attr("x", (d) => {
+          const barEnd = x(d.percentage);
+          return barEnd < 40 ? barEnd + 6 : barEnd - 10;
+        })
         .attr("y", (d) => y(d.response)! + y.bandwidth() / 2)
         .attr("dy", "0.35em")
-        .attr("text-anchor", "start")
+        .attr("text-anchor", (d) => {
+          const barEnd = x(d.percentage);
+          return barEnd < 40 ? "start" : "end";
+        })
         .text((d) => d.percentage.toFixed(0) + "%")
         .style("opacity", 0);
 

@@ -13,6 +13,22 @@
   }
 }
 
+.section-title {
+  text-align: center;
+  margin: 5vh auto;
+  max-width: 800px;
+
+  h3 {
+    font-size: 1.8rem;
+    line-height: 1.4;
+    font-weight: 400;
+
+    b {
+      font-weight: 700;
+    }
+  }
+}
+
 .content-container {
   display: flex;
   flex-direction: column;

@@ -1,20 +1,33 @@
 "use client";
 
 import Image from "next/image";
+import { useRef, useState, useEffect } from "react";
 import { Root, Animation, Stagger } from "~/lib/scrollytelling-client";
 import { BackgroundParticles } from '~/app/components/background-particles';
 import { GlitchText } from '~/app/components/glitch-text';
 import { useCustomCursor } from '~/app/hooks/use-custom-cursor';
+import { ExpandingBubble, ExpandingBubbleRef } from '~/app/components/expanding-bubble';
 import s from "./solipsism-scenario.module.scss";
 
 export const SolipsismScenario = () => {
   useCustomCursor(`.${s.glitch}`);
+  const [progress, setProgress] = useState(0);
+  const bubbleRef = useRef<ExpandingBubbleRef>(null);
+  const hasBurst = useRef(false);
+
+  useEffect(() => {
+    if (progress > 0.95 && !hasBurst.current) {
+      bubbleRef.current?.burst();
+      hasBurst.current = true;
+    }
+  }, [progress]);
   
   return (
     <Root
       end="bottom bottom"
       defaults={{ ease: 'linear' }}
       scrub={1}
+      callbacks={{ onUpdate: (self) => setProgress(self.progress) }}
       // debug={
       //   process.env.NODE_ENV === 'development'
       //     ? { markers: true, label: 'SolipsismScenario' }
@@ -174,27 +187,15 @@ export const SolipsismScenario = () => {
               <div className={s["chart-section"]}>
                 <Animation
                   tween={{
-                    start: 94,
-                    end: 100,
+                    start: 0,
+                    end: 94,
                     fromTo: [
-                      { opacity: 0, scale: 0.9 },
+                      { opacity: 0, scale: 0 },
                       { opacity: 1, scale: 1, ease: 'power2.out' },
                     ],
                   }}
                 >
-                  <div className={s['chart-item']}>
-                    <Image
-                      src="/images/section1/man-with-sunflowers.webp"
-                      width={400}
-                      height={600}
-                      alt="A man with sunglasses and a hat stands in a field of sunflowers"
-                      style={{
-                        objectFit: 'cover',
-                        borderRadius: '16px',
-                        boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
-                      }}
-                    />
-                  </div>
+                  <ExpandingBubble ref={bubbleRef} />
                 </Animation>
               </div>
             </div>

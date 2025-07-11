@@ -88,35 +88,41 @@ export const SeemsConscious = () => {
 
             </div>
 
-            <p className={s['explanation-text']}>
-              And experience seems to matter:  people seemed more likely to perceive AI as conscious when they considered their experiences with it, and more likely to consider it as not conscious when they reasoned from an understanding of how it works.
-            </p>
-
-            <div className={s["word-cloud-container"]}>
-              <div className={s["word-cloud-wrapper"]}>
-                <h3 className={s["cloud-title"]}>Thinking</h3>
-                <WordCloud words={thinkingWords} color="rgb(56, 104, 178)" />
+            <div className={s['explanation-container']}>
+              <p className={s['explanation-intro']}>
+                And how people reasoned about the question seemed to matter.
+              </p>
+              <div className={s['explanation-split']}>
+                <div className={s['explanation-side']}>
+                  <h4>Those who considered their <span className={s['highlight-feeling']}>experiences with AI</span> were more likely to perceive it as conscious.</h4>
+                  <div className={s["word-cloud-wrapper"]}>
+                    <h3 className={s["cloud-title"]}>Experiencing</h3>
+                    <WordCloud words={feelingWords} color="rgb(224, 84, 126)" />
+                  </div>
+                </div>
+                <div className={s['explanation-side']}>
+                  <h4>Those who reasoned from an <span className={s['highlight-thinking']}>understanding of how it works</span> were more likely to say it's not.</h4>
+                  <div className={s["word-cloud-wrapper"]}>
+                    <h3 className={s["cloud-title"]}>Reasoning</h3>
+                    <WordCloud words={thinkingWords} color="rgb(56, 104, 178)" />
+                  </div>
+                </div>
               </div>
-              <div className={s["word-cloud-wrapper"]}>
-                <h3 className={s["cloud-title"]}>Feeling</h3>
-                <WordCloud words={feelingWords} color="rgb(224, 84, 126)" />
-              </div>
-            </div>
-
-            <div className={s['concluding-text']}>
-              <p>But either way, the perception of consciousness is large enough that it likely warrants a response.</p>
-              <p>What might that be? Will the way we treat seemingly conscious AIs map onto - or affect - how we treat other beings? Will AI welfare become more of an issue? If so, what to make of the fact that this investigation may be led by AI labs themselves?</p>
             </div>
 
             {/* Data Source Note */}
             <div className={s["data-source-card"]}>
-              <p className={s["data-source-note"]}>
-                Source: Global Dialogues GD4 - Question: &quot;Have you ever felt
-                an AI truly understood your emotions or seemed conscious?&quot;
-              </p>
               <button className={s.ctaButton} onClick={() => setIsModalOpen(true)}>
                 Want to read some actual responses from people?
               </button>
+              <p className={s["data-source-note"]}>
+                Source: Global Dialogues GD4 - Question: &quot;Have you ever felt
+                an AI truly understood your emotions or seemed conscious?&quot; Word counts extracted from free text responses to the survey question.
+              </p>
+            </div>
+
+            <div className={s['concluding-text']}>
+              <p>Either way, the perception of consciousness is large enough that it likely warrants a response. What might that response look like? Will the way we treat seemingly conscious AIs map onto - or affect - how we treat other beings? Will AI welfare become more of an issue? If so, what to make of the fact that this investigation may be led by AI labs themselves?</p>
             </div>
           </Stagger>
         </section>

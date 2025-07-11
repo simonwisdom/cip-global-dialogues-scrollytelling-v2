@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, createRef } from "react";
+import React, { useRef, createRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useIsoLayoutEffect } from "../../hooks/use-iso-layout-effect";
@@ -39,17 +39,9 @@ export const HumanConcerns = () => {
             gsap.to(chartWrapper, { autoAlpha: 1, duration: 0.5 });
             if (chartRef && chartRef.current) chartRef.current.animate();
           },
-          onLeave: () => {
-            gsap.to(chartWrapper, { autoAlpha: 0, duration: 0.2 });
-            if (chartRef && chartRef.current) chartRef.current.reset();
-          },
           onEnterBack: () => {
             gsap.to(chartWrapper, { autoAlpha: 1, duration: 0.5 });
             if (chartRef && chartRef.current) chartRef.current.animate();
-          },
-          onLeaveBack: () => {
-            gsap.to(chartWrapper, { autoAlpha: 0, duration: 0.2 });
-            if (chartRef && chartRef.current) chartRef.current.reset();
           },
         });
       });
@@ -77,11 +69,15 @@ export const HumanConcerns = () => {
           People seem to care about consciousness as it relates to empathy and
           connection.
         </p>
-        <p>
-          In fact - without a human sense of ‘care’ or ‘understanding’ - people
-          reported being reluctant to use an AI for emotional support over the
-          long term. Even if it had helped them feel better beforehand.
-        </p>
+      </div>
+
+      <div className={s["section-title"]}>
+        <h3>
+          In fact - without a human sense of <b>‘care’ or ‘understanding’</b> -
+          people reported being <b>reluctant to use an AI</b> for{" "}
+          <b>emotional support</b> over the <b>long term</b>. Even if it had{" "}
+          <b>helped them feel better</b> beforehand.
+        </h3>
       </div>
 
       <div className={s["content-container"]}>
@@ -95,38 +91,59 @@ export const HumanConcerns = () => {
             );
           }
           return (
-            <div
-              key={chart.id}
-              className={`${s["content-row"]} ${
-                i % 2 !== 0 ? s["row-reversed"] : ""
-              }`}
-            >
-              <div className={s["text-wrapper"]}>
-                <div
-                  className={`${s["text-section"]} ${s["speech-bubble"]} ${
-                    i % 2 === 0 ? s.right : s.left
-                  }`}
-                >
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: chart.title,
-                    }}
+            <React.Fragment key={chart.id}>
+              {chart.id === "chart2" && (
+                <div className={s["section-title"]}>
+                  <h3>
+                    People believe <b>empathy</b> to be{" "}
+                    <b>profoundly human</b>, something that{" "}
+                    <b>cannot be properly performed</b> even by the{" "}
+                    <b>most advanced AI</b>.
+                  </h3>
+                </div>
+              )}
+              {chart.id === "chart4" && (
+                <div className={s["section-title"]}>
+                  <h3>
+                    Yet - despite some <b>optimism</b> about{" "}
+                    <b>AI assisted connection</b> - they were particularly
+                    concerned about a <b>decline in empathy</b> and{" "}
+                    <b>human connection</b> due to AI.
+                  </h3>
+                </div>
+              )}
+              <div
+                className={`${s["content-row"]} ${
+                  i % 2 !== 0 ? s["row-reversed"] : ""
+                }`}
+              >
+                <div className={s["text-wrapper"]}>
+                  <div
+                    className={`${s["text-section"]} ${s["speech-bubble"]} ${
+                      i % 2 === 0 ? s.right : s.left
+                    }`}
+                  >
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: chart.title,
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className={s["chart-wrapper"]}>
+                  <BarChart
+                    ref={chartRefs.current[i]}
+                    chartId={chart.id}
+                    data={chartData}
+                    sortBy={
+                      chart.id === "chart1" || chart.id === "chart3"
+                        ? "response"
+                        : "percentage"
+                    }
                   />
                 </div>
               </div>
-              <div className={s["chart-wrapper"]}>
-                <BarChart
-                  ref={chartRefs.current[i]}
-                  chartId={chart.id}
-                  data={chartData}
-                  sortBy={
-                    chart.id === "chart1" || chart.id === "chart3"
-                      ? "response"
-                      : "percentage"
-                  }
-                />
-              </div>
-            </div>
+            </React.Fragment>
           );
         })}
       </div>

@@ -36,6 +36,7 @@
 
 .content-container {
   @include content-container(var(--container-max-width));
+  @include content-grid;
 }
 
 .content-grid {
@@ -50,6 +51,7 @@
   align-items: center;
   height: 100%;
   position: relative;
+  border: 2px solid red;
 }
 
 .chart-item {

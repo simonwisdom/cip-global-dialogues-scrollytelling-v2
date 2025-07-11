@@ -13,7 +13,7 @@ import {
   TransportationIcon,
 } from "./professions-icons";
 import { useIsoLayoutEffect } from "../../hooks/use-iso-layout-effect";
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { UncomfortableResponsesModal } from "./uncomfortable-responses-modal";
 
@@ -148,12 +148,23 @@ export const DivergentFutures = () => {
   const [activeProfession, setActiveProfession] = useState<typeof professions[0] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Memoized callback for better performance
+  const handleProfessionSelect = useCallback((profession: typeof professions[0]) => {
+    setSelectedProfession(profession);
+  }, []);
+
+  const handleClose = useCallback(() => {
+    setSelectedProfession(null);
+  }, []);
+
   useIsoLayoutEffect(() => {
     const ctx = gsap.context(() => {
       if (selectedProfession && !activeProfession) {
-        // Animate grid out, then set active profession to trigger card render + animation
+        // Animate grid out with new CSS classes
         gsap.to(gridRef.current, {
           autoAlpha: 0,
+          scale: 0.95,
+          y: 20,
           duration: 0.4,
           ease: "power2.out",
           onComplete: () => {
@@ -161,7 +172,7 @@ export const DivergentFutures = () => {
           },
         });
       } else if (!selectedProfession && activeProfession) {
-        // Animate card out, then set active profession to null
+        // Animate card out, then reset
         gsap.to(cardWrapperRef.current, {
           autoAlpha: 0,
           y: 50,
@@ -173,6 +184,8 @@ export const DivergentFutures = () => {
             // Animate grid back in
             gsap.to(gridRef.current, {
               autoAlpha: 1,
+              scale: 1,
+              y: 0,
               duration: 0.4,
               ease: "power2.out",
             });
@@ -183,17 +196,25 @@ export const DivergentFutures = () => {
     return () => ctx.revert();
   }, [selectedProfession, activeProfession]);
 
-  // Card fade-in animation
+  // Card fade-in animation with improved timing
   useIsoLayoutEffect(() => {
     if (!activeProfession) return;
     const ctx = gsap.context(() => {
-      gsap.from(cardWrapperRef.current, {
-        autoAlpha: 0,
-        y: 50,
-        scale: 0.95,
-        duration: 0.4,
-        ease: "power2.out",
-      });
+      gsap.fromTo(cardWrapperRef.current, 
+        {
+          autoAlpha: 0,
+          y: 50,
+          scale: 0.95,
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.5,
+          ease: "power2.out",
+          delay: 0.1,
+        }
+      );
     }, containerRef);
     return () => ctx.revert();
   }, [activeProfession]);
@@ -225,32 +246,46 @@ export const DivergentFutures = () => {
         </div>
 
         <div className={s['professions-grid-container']}>
-          <div ref={gridRef}>
-            <div className={s['professions-grid']}>
-              {professions.map((p) => (
-                <div
-                  key={p.id}
-                  className={s['profession-icon-container']}
-                  onClick={() => setSelectedProfession(p)}
-                >
-                  <p.icon className={s['profession-icon']} />
-                  <span className={s['profession-name']}>{p.name}</span>
-                </div>
-              ))}
-            </div>
+          <div ref={gridRef} className={s['professions-grid']}>
+            {professions.map((p) => (
+              <div
+                key={p.id}
+                className={s['profession-icon-container']}
+                onClick={() => handleProfessionSelect(p)}
+                role="button"
+                tabIndex={0}
+                aria-label={`Select ${p.name} profession`}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleProfessionSelect(p);
+                  }
+                }}
+              >
+                <p.icon className={s['profession-icon']} aria-hidden="true" />
+                <span className={s['profession-name']}>{p.name}</span>
+              </div>
+            ))}
           </div>
 
-          <div ref={cardWrapperRef} className={s.cardWrapper}>
+          <div 
+            ref={cardWrapperRef} 
+            className={`${s.cardWrapper} ${activeProfession ? s.visible : ''}`}
+          >
             {activeProfession && (
               <ProfessionCard
                 profession={activeProfession}
-                onClose={() => setSelectedProfession(null)}
+                onClose={handleClose}
               />
             )}
           </div>
         </div>
         <div className={s["data-source-card"]}>
-          <button className={s.ctaButton} onClick={() => setIsModalOpen(true)}>
+          <button 
+            className={s.ctaButton} 
+            onClick={() => setIsModalOpen(true)}
+            aria-label="Read uncomfortable AI responses"
+          >
             Read what people are uncomfortable with AI deciding
           </button>
         </div>

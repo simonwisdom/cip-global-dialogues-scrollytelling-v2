@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useRef, useState } from "react";
+import { forwardRef, useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import s from "./profession-card.module.scss";
 import { useIsoLayoutEffect } from "../../hooks/use-iso-layout-effect";
@@ -32,6 +32,32 @@ export const ProfessionCard = forwardRef<HTMLDivElement, ProfessionCardProps>(
     const [choice, setChoice] = useState<"human" | "ai" | null>(null);
     const [isFlipping, setIsFlipping] = useState(false);
     const cardContentRef = useRef<HTMLDivElement>(null);
+    const closeButtonRef = useRef<HTMLButtonElement>(null);
+    const humanButtonRef = useRef<HTMLButtonElement>(null);
+    const aiButtonRef = useRef<HTMLButtonElement>(null);
+    const backButtonRef = useRef<HTMLButtonElement>(null);
+
+    // Focus management
+    useEffect(() => {
+      if (choice === null) {
+        // Focus the first choice button when card opens
+        humanButtonRef.current?.focus();
+      } else {
+        // Focus the back button when flipped
+        backButtonRef.current?.focus();
+      }
+    }, [choice]);
+
+    // Keyboard navigation
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (choice !== null) {
+          handleBack();
+        } else {
+          onClose();
+        }
+      }
+    };
 
     const handleChoice = (c: "human" | "ai") => {
       if (isFlipping) return;
@@ -70,13 +96,25 @@ export const ProfessionCard = forwardRef<HTMLDivElement, ProfessionCardProps>(
     const selectedOption = choice ? profession[choice] : null;
 
     return (
-      <div className={s.card} ref={ref}>
-        <button className={s.closeButton} onClick={onClose}>
+      <div 
+        className={s.card} 
+        ref={ref}
+        onKeyDown={handleKeyDown}
+        role="dialog"
+        aria-labelledby="profession-title"
+        aria-describedby="profession-description"
+      >
+        <button 
+          className={s.closeButton} 
+          onClick={onClose}
+          ref={closeButtonRef}
+          aria-label="Close profession card"
+        >
           &times;
         </button>
         <div className={s.cardHeader}>
-          <profession.icon className={s.professionIcon} />
-          <h3 className={s.professionName}>{profession.name}</h3>
+          <profession.icon className={s.professionIcon} aria-hidden="true" />
+          <h3 className={s.professionName} id="profession-title">{profession.name}</h3>
         </div>
 
         <div className={s.cardContent}>
@@ -84,7 +122,7 @@ export const ProfessionCard = forwardRef<HTMLDivElement, ProfessionCardProps>(
             {/* Front of the card */}
             <div className={s.flippableContent}>
               <div className={s.choiceContainer}>
-                <h4 className={s.choiceQuestion}>
+                <h4 className={s.choiceQuestion} id="profession-description">
                   What does the future of {profession.name.toLowerCase()} look
                   like?
                 </h4>
@@ -92,19 +130,29 @@ export const ProfessionCard = forwardRef<HTMLDivElement, ProfessionCardProps>(
                   Will we embrace AI automation, or double down on human
                   skills?
                 </p>
-                <div className={s.choiceButtons}>
+                <div className={s.choiceButtons} role="group" aria-label="Choose future direction">
                   <button
+                    ref={humanButtonRef}
                     className={`${s.choiceButton} ${s.humanChoice}`}
                     onClick={() => handleChoice("human")}
+                    disabled={isFlipping}
+                    aria-describedby="human-description"
                   >
                     Human
                   </button>
                   <button
+                    ref={aiButtonRef}
                     className={`${s.choiceButton} ${s.aiChoice}`}
                     onClick={() => handleChoice("ai")}
+                    disabled={isFlipping}
+                    aria-describedby="ai-description"
                   >
                     AI
                   </button>
+                </div>
+                <div className="sr-only">
+                  <div id="human-description">Choose human-led future for {profession.name.toLowerCase()}</div>
+                  <div id="ai-description">Choose AI-automated future for {profession.name.toLowerCase()}</div>
                 </div>
               </div>
             </div>
@@ -114,7 +162,13 @@ export const ProfessionCard = forwardRef<HTMLDivElement, ProfessionCardProps>(
               className={s.flippableContent}
               style={{ transform: "rotateY(180deg)" }}
             >
-              <button className={s.backButton} onClick={handleBack}>
+              <button 
+                className={s.backButton} 
+                onClick={handleBack}
+                ref={backButtonRef}
+                disabled={isFlipping}
+                aria-label="Go back to choice selection"
+              >
                 &larr; Back
               </button>
               {selectedOption && (
@@ -125,6 +179,7 @@ export const ProfessionCard = forwardRef<HTMLDivElement, ProfessionCardProps>(
                     width={600}
                     height={400}
                     className={s.image}
+                    priority
                   />
                   <div className={s.text}>
                     <h4 className={s.optionTitle}>{selectedOption.title}</h4>

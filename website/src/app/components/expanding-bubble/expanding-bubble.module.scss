@@ -1,0 +1,17 @@
+.container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  border: 2px solid blue;
+}
+
+.bubbleSvg {
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+  max-height: 400px;
+  overflow: visible;
+} 

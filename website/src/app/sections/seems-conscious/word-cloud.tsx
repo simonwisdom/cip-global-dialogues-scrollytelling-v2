@@ -84,8 +84,8 @@ export const WordCloud = ({ words, color }: Props) => {
         gsap.timeline({
           scrollTrigger: {
             trigger: svg,
-            start: "top 80%",
-            end: "bottom 20%",
+            start: "top 90%",
+            end: "bottom 60%",
             scrub: true,
           },
         }).fromTo(

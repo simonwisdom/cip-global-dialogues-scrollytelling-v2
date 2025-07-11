@@ -5,6 +5,9 @@ import { JetBrains_Mono } from "next/font/google";
 import { siteOrigin } from "~/lib/constants";
 import { Analytics } from "@vercel/analytics/react";
 import { CustomCursor } from "~/app/components/custom-cursor";
+import { Root, RegisterGsapPlugins } from "~/lib/scrollytelling-client";
+import { CSSPlugin } from "gsap/CSSPlugin";
+import { ScrollytellingRegistrar } from '~/lib/scrollytelling-registrar';
 
 const jetBrainsMono = JetBrains_Mono({
   weight: "400",
@@ -33,9 +36,7 @@ export const metadata: Metadata = {
     initialScale: 1,
     width: "device-width",
   },
-  icons: {
-    icon: "/favicon.ico",
-  },
+  icons: [{ rel: 'icon', url: '/favicon.ico' }],
   manifest: "/manifest.webmanifest",
   twitter: {
     card: "summary_large_image",
@@ -69,6 +70,7 @@ export default function RootLayout({
         ["--font-jetbrains-mono" as string]: `${jetBrainsMono.style.fontFamily}, var(--font-system), sans-serif`,
       }}
     >
+      <ScrollytellingRegistrar />
       <body>
         <CustomCursor />
         {children}

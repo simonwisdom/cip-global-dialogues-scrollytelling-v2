@@ -161,6 +161,19 @@ body:not(.user-is-tabbing) textarea:focus {
   outline: none;
 }
 
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .wrapper {
   width: 100%;
   padding: 0 tovw(32px, "desktop-large", 16px);
