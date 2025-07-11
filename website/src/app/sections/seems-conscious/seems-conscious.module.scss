@@ -1,104 +1,63 @@
+@import "../../css/themes";
+
 .scenario {
-  background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
-  color: #333;
-  min-height: 100vh;
-  position: relative;
+  @include scenario-wrapper;
+  @include light-theme;
 }
 
 .scenario-header {
-  padding: 120px 20px 60px;
-  text-align: center;
-  background: linear-gradient(
-    135deg,
-    rgba(32, 96, 149, 0.05) 0%,
-    rgba(0, 0, 0, 0.02) 100%
-  );
+  @include scenario-header;
 }
 
 .scenario-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  border: 2px solid #206095;
-  border-radius: 50%;
-  font-size: 24px;
-  font-weight: bold;
-  color: #206095;
-  margin: 0 auto 20px;
+  @include scenario-number;
 }
 
 .scenario-title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 900;
-  line-height: 1.1;
-  margin: 0 0 16px 0;
-  color: #333;
+  @include scenario-title;
 }
 
 .scenario-subtitle {
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
-  color: #666;
-  margin: 0;
-  font-weight: 300;
+  @include scenario-subtitle;
 }
 
 .intro-section {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 20px 60px;
+  @include content-container;
+  padding-bottom: var(--space-4xl);
   text-align: center;
 }
 
 .intro-content {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: var(--space-xl);
 }
 
 .intro-text {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #555;
-  margin: 0;
+  @include intro-text;
 }
 
 .question {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #206095;
-  margin: 40px 0 0 0;
+  @include question-text;
+  color: var(--light-accent);
 }
 
 .chart-container {
-  max-width: 1200px;
-  min-height: 60vh;
-  margin: 0 auto;
-  padding: 0 20px 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
+  @include chart-container;
 }
 
 .explanation-text {
+  @include explanation-text;
   max-width: 600px;
-  text-align: center;
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #333;
-  margin: 40px 0;
 }
 
 .concluding-text {
-  max-width: 600px;
-  margin: 40px auto;
+  @include content-container(600px);
+  @include body-text;
+  font-size: var(--normal-text-size);
   text-align: left;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #495057;
+  color: var(--light-text-secondary);
+  margin: var(--space-xl) auto;
 
   p {
     margin: 0;
@@ -114,8 +73,8 @@
   width: 100%;
   justify-content: center;
   align-items: stretch;
-  gap: 40px;
-  margin-top: 40px;
+  gap: var(--space-xl);
+  margin-top: var(--space-xl);
 }
 
 .word-cloud-wrapper {
@@ -123,67 +82,55 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  border-radius: 8px;
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
 }
 
 .cloud-title {
+  @include heading-secondary;
   font-size: 1.8rem;
   font-weight: bold;
-  color: #333;
-  margin-bottom: 20px;
+  color: var(--light-text-primary);
+  margin-bottom: var(--space-lg);
   text-align: center;
 }
 
 .chart-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #206095;
-  text-align: center;
-  margin-bottom: 20px;
-  max-width: 600px;
+  @include chart-title;
+  color: var(--light-accent);
 }
 
 .data-source-card {
-  max-width: 800px;
-  margin: -20px auto 60px;
-  padding: 20px 30px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  @include content-container;
+  margin: calc(-1 * var(--space-lg)) auto var(--space-4xl);
+  padding: var(--space-lg) var(--space-xl);
+  background-color: var(--light-bg-tertiary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
   text-align: center;
 }
 
 .data-source-note {
+  @include meta-text;
   font-size: 0.9rem;
-  color: #555;
-  font-style: italic;
+  color: var(--light-text-secondary);
   margin: 0;
 }
 
 .transition {
-  text-align: center;
-  padding: 80px 20px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(32, 96, 149, 0.1) 100%
-  );
+  @include transition-section;
 }
 
 .transition-text {
-  font-size: 1.3rem;
-  color: #666;
-  margin: 0;
-  font-style: italic;
+  @include transition-text;
 }
 
 @media (max-width: 768px) {
   .scenario-header {
-    padding: 80px 20px 40px;
+    padding: var(--space-5xl) var(--space-lg) var(--space-xl);
   }
   
   .intro-section {
-    padding: 0 20px 40px;
+    padding-bottom: var(--space-xl);
   }
 } 

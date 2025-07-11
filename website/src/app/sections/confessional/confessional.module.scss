@@ -1,48 +1,25 @@
+@import "../../css/themes";
+
 .scenario {
-  background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
-  color: white;
-  min-height: 200vh;
-  position: relative;
+  @include scenario-wrapper(200vh);
+  @include dark-theme;
 }
 
 .scenario-header {
-  padding: 120px 20px 80px;
-  text-align: center;
-  background: linear-gradient(
-    135deg,
-    rgba(32, 96, 149, 0.1) 0%,
-    rgba(255, 204, 204, 0.05) 100%
-  );
+  @include scenario-header;
+  padding: var(--section-padding-y) var(--section-padding-x) var(--space-5xl);
 }
 
 .scenario-number {
-  display: inline-block;
-  width: 60px;
-  height: 60px;
-  border: 2px solid #ffcccc;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: #ffcccc;
-  margin: 0 auto 20px;
+  @include scenario-number;
 }
 
 .scenario-title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 900;
-  line-height: 1.1;
-  margin: 0 0 16px 0;
-  color: white;
+  @include scenario-title;
 }
 
 .scenario-subtitle {
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
-  color: #ffcccc;
-  margin: 0;
-  font-weight: 300;
+  @include scenario-subtitle;
 }
 
 .background-pattern {
@@ -58,102 +35,68 @@
 }
 
 .content-container {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 80px 20px;
+  @include content-container;
+  padding: var(--space-5xl) var(--section-padding-x);
 }
 
 .narrative-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 20px;
+  gap: var(--space-lg);
   max-width: 650px;
-  margin: 0 auto 80px;
-  // padding-top: 10vh;
+  margin: 0 auto var(--space-5xl);
 }
 
 .image-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 0;
+  padding: var(--space-xl) 0;
 }
 
 .story-container {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: var(--space-xl);
 }
 
 .story-intro {
-  margin-bottom: 2rem;
-  font-size: 1.25rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
+  @include story-intro;
+  color: var(--dark-text-secondary);
   
   p {
-    margin: 0;
-    padding: 20px;
-    background: rgba(255, 204, 204, 0.1);
-    border-left: 4px solid #ffcccc;
-    border-radius: 8px;
+    background: var(--theme-accent-light);
   }
 }
 
 .story-paragraph {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.8);
-  
-  p {
-    margin: 0;
-    padding: 20px 0;
-  }
+  @include story-paragraph;
+  color: var(--dark-text-muted);
 }
 
 .story-callout {
-  background: rgba(32, 32, 32, 0.8);
-  border: 1px solid rgba(255, 204, 204, 0.3);
-  border-radius: 12px;
-  padding: 24px;
+  @include story-callout;
   
   p {
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.8);
-  }
-  
-  strong {
-    color: #ffcccc;
+    color: var(--dark-text-muted);
   }
 }
 
 .transition {
-  text-align: center;
-  padding: 80px 20px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(32, 96, 149, 0.1) 100%
-  );
+  @include transition-section;
 }
 
 .transition-text {
-  font-size: 1.3rem;
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0 0 30px 0;
-  font-style: italic;
+  @include transition-text;
 }
 
 .continue-arrow {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  color: #ffcccc;
+  gap: var(--space-sm);
+  color: var(--dark-accent);
   font-weight: 500;
   
   svg {
@@ -162,17 +105,17 @@
   }
 }
 
-@media (max-width: 768px) {
+@include mobile-only {
   .content-container {
-    padding: 60px 20px;
+    padding: var(--space-4xl) var(--space-lg);
   }
 
   .scenario-header {
-    padding: 80px 20px 60px;
+    padding: var(--space-5xl) var(--space-lg) var(--space-4xl);
   }
   
   .story-intro p,
   .story-callout {
-    padding: 16px;
+    padding: var(--space-md);
   }
 }

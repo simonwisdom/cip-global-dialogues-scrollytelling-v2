@@ -19,6 +19,7 @@ const WIDTH = 1000;
 const HEIGHT = 500;
 const COUNTRIES_URL = "/data/countries-with-agreement.json";
 const LAND_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json";
+const M49_URL = "/data/2022-09-24__JSON_UNSD_M49.json";
 
 export const WorldMap = forwardRef<HTMLDivElement>((_p, ref) => {
   const host = useRef<HTMLDivElement>(null);
@@ -38,7 +39,7 @@ export const WorldMap = forwardRef<HTMLDivElement>((_p, ref) => {
     const layer = svg.append("g");
     const projection = d3.geoNaturalEarth1().fitSize([WIDTH, HEIGHT], { type: "Sphere" });
     const path = d3.geoPath(projection);
-    const color = d3.scaleSequential<string>([0, 100], d3.interpolateYlGnBu);
+    const color = d3.scaleSequential(d3.interpolateRgb("#923bad", "#37a157")).domain([0, 100]);
 
     const tooltip = d3
       .select(el)
@@ -53,9 +54,22 @@ export const WorldMap = forwardRef<HTMLDivElement>((_p, ref) => {
       .style("border-radius", "4px")
       .style("opacity", 0);
 
-    Promise.all([d3.json<Topology>(LAND_URL), d3.json<Topology>(COUNTRIES_URL)])
-      .then(([landTopo, countryTopo]) => {
+    Promise.all([
+      d3.json<Topology>(LAND_URL),
+      d3.json<Topology>(COUNTRIES_URL),
+      d3.json(M49_URL),
+    ])
+      .then(([landTopo, countryTopo, m49Data]) => {
         if (!countryTopo) throw new Error("country topo missing");
+        if (!m49Data) throw new Error("m49 data missing");
+
+        const countryIdToRegion = new Map<string, string>();
+        for (const d of m49Data as any[]) {
+          const region = d["Intermediate Region Name"] || d["Sub-region Name"] || d["Region Name"];
+          if (d["M49 Code"] && region) {
+            countryIdToRegion.set(String(d["M49 Code"]), region);
+          }
+        }
 
         if (landTopo) {
           layer
@@ -86,12 +100,20 @@ export const WorldMap = forwardRef<HTMLDivElement>((_p, ref) => {
           .attr("vector-effect", "non-scaling-stroke")
           .on("mousemove", (ev, d) => {
             const [x, y] = d3.pointer(ev, el);
+            const countryName =
+              d.properties.name ||
+              d.properties.NAME ||
+              d.properties.admin ||
+              d.properties.ADMIN ||
+              "Unknown";
+            const regionName = countryIdToRegion.get(d.id as string);
+
             tooltip
               .style("left", `${x + 12}px`)
               .style("top", `${y + 12}px`)
               .style("opacity", 1)
               .html(
-                `${d.properties.name || d.properties.NAME || d.properties.admin || d.properties.ADMIN || "Unknown"}<br>${
+                `Country: ${countryName}<br>Region: ${regionName || "N/A"}<br>Region Agreement: ${
                   d.properties.agreement_pct != null
                     ? `${Math.round(d.properties.agreement_pct)}%`
                     : "—"

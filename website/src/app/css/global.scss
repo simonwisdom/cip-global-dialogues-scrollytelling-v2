@@ -1,5 +1,6 @@
 @import "./helpers";
 @import "./reset.css";
+@import "./themes";
 
 /* Google Fonts imports */
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap');
@@ -12,10 +13,78 @@
     ubuntu, cantarell, fira sans, droid sans, helvetica neue, sans-serif;
   --inspect-color: #f00;
 
-  // colors
+  // Base colors
   --color-black: #000;
   --color-white: #efefef;
   --color-orange: #ff4d00;
+
+  // Theme colors
+  --theme-primary: #206095;
+  --theme-primary-light: rgba(32, 96, 149, 0.1);
+  --theme-accent: #ffcccc;
+  --theme-accent-light: rgba(255, 204, 204, 0.1);
+  
+  // Light theme (data-driven sections)
+  --light-bg-primary: #f8f9fa;
+  --light-bg-secondary: #e9ecef;
+  --light-bg-tertiary: #ffffff;
+  --light-text-primary: #333;
+  --light-text-secondary: #555;
+  --light-text-muted: #666;
+  --light-border: #206095;
+  --light-accent: #206095;
+  
+  // Dark theme (speculative fiction sections)
+  --dark-bg-primary: #1a1a1a;
+  --dark-bg-secondary: #0f0f0f;
+  --dark-bg-tertiary: rgba(32, 32, 32, 0.8);
+  --dark-text-primary: #ffffff;
+  --dark-text-secondary: rgba(255, 255, 255, 0.9);
+  --dark-text-muted: rgba(255, 255, 255, 0.7);
+  --dark-border: #ffcccc;
+  --dark-accent: #ffcccc;
+  
+  // Semantic colors
+  --success: #28a745;
+  --warning: #ffc107;
+  --error: #dc3545;
+  --info: --theme-primary;
+
+  // Spacing scale (based on golden ratio)
+  --space-xs: 0.5rem;    // 8px
+  --space-sm: 0.75rem;   // 12px
+  --space-md: 1rem;      // 16px
+  --space-lg: 1.5rem;    // 24px
+  --space-xl: 2rem;      // 32px
+  --space-2xl: 3rem;     // 48px
+  --space-3xl: 4rem;     // 64px
+  --space-4xl: 6rem;     // 96px
+  --space-5xl: 8rem;     // 128px
+
+  // Component spacing
+  --section-padding-y: var(--space-5xl);
+  --section-padding-x: var(--space-lg);
+  --container-max-width: 1200px;
+  --content-max-width: 800px;
+  --grid-gap: var(--space-xl);
+
+  // Border radius scale
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 50%;
+
+  // Shadow system
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.15);
+
+  // Transitions
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.2s ease-in-out;
+  --transition-slow: 0.3s ease-in-out;
 
   // easings
   --custom-ease-out: cubic-bezier(0, 1, 0.5, 1.02);
@@ -203,6 +272,35 @@ p {
   font-weight: var(--meta-font-weight);
   font-style: italic;
   line-height: var(--meta-line-height);
+}
+
+/* Enhanced global styles for smooth interactions */
+* {
+  box-sizing: border-box;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Mobile adjustments */
