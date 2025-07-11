@@ -14,6 +14,7 @@ import {
 // ---- Utils ----
 import { buildDeclarativeTween, getTweenTarget } from "../../util";
 import { useDispatcher, useScrollytelling } from "../../context";
+import { useMergeRefs } from "../../hooks/use-merge-refs";
 
 /* -------------------------------------------------------------------------------------------------
  * Animation
@@ -26,28 +27,12 @@ import { useDispatcher, useScrollytelling } from "../../context";
  * @returns {null | React.ReactElement} Animation component
  * @link https://github.com/basementstudio/scrollytelling/blob/main/docs/api.md#animation
  */
-
-export function Animation(props: {
-  tween: DataOrDataArray<TweenWithTargetDef>;
-  disabled?: boolean;
-}): null;
-
-export function Animation(props: {
-  children: React.ReactNode;
-  tween: DataOrDataArray<TweenWithChildrenDef>;
-  disabled?: boolean;
-}): React.ReactElement;
-
-export function Animation({
-  tween,
-  children,
-  disabled = false,
-}: AnimationProps): React.ReactElement | null {
-  const ref = React.useRef<HTMLElement>(null);
-  const id = React.useId();
-
+export function Animation(props: AnimationProps): React.ReactElement {
+  const { tween, disabled } = props;
   const { timeline } = useScrollytelling();
   const { getTimelineSpace } = useDispatcher();
+  const id = React.useId();
+  const internalRef = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
     if (!timeline || !tween || disabled) return;
@@ -57,14 +42,17 @@ export function Animation({
     ) => {
       const tweenTarget = getTweenTarget({
         targetContainer: "target" in tween ? tween : {},
-        ref,
+        ref: internalRef,
       });
+
       if (tweenTarget) {
         const timelineSpace = getTimelineSpace({
           start: tween.start,
           end: tween.end,
         });
+
         if (!timelineSpace) return; // root is probably disabled.
+
         const cleanup = buildDeclarativeTween({
           id,
           timeline,
@@ -95,10 +83,17 @@ export function Animation({
         cleanup?.();
       };
     }
-  }, [getTimelineSpace, id, tween, timeline, disabled]);
+  }, [getTimelineSpace, id, tween, timeline, disabled, internalRef]);
 
-  if (children) {
+  if ("children" in props) {
+    const { children } = props;
+    const ref = useMergeRefs([
+      internalRef,
+      (children as any).ref,
+    ]) as React.Ref<any>;
+
     return <Slot ref={ref}>{children}</Slot>;
   }
-  return null;
+
+  return <></>;
 }

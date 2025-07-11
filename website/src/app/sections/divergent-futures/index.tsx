@@ -11,12 +11,12 @@ const professions = [
     human: {
       title: 'Human-Led Reporting',
       story: 'Reporters focus on deep, investigative work, building trust through on-the-ground presence and nuanced storytelling.',
-      image: '🗞️'
+      image: '/images/section2/journalism_strong_human_presence.webp'
     },
     ai: {
       title: 'AI-Generated News',
       story: 'Algorithms generate news reports instantly, covering vast amounts of data with unparalleled speed and breadth.',
-      image: '🤖'
+      image: '/images/section2/journalism_full_ai_automation.webp'
     }
   },
   {
@@ -25,12 +25,12 @@ const professions = [
     human: {
       title: 'Community Governance',
       story: 'Politicians engage in local town halls, making decisions based on direct constituent feedback and personal charisma.',
-      image: '🏛️'
+      image: '/images/section2/politics_strong_human_presence.webp'
     },
     ai: {
       title: 'Algorithmic Policy',
       story: 'AI analyzes societal data to propose optimal policies, removing human bias and emotional rhetoric from governance.',
-      image: '⚙️'
+      image: '/images/section2/politics_full_ai_automation.webp'
     }
   },
   {
@@ -39,12 +39,12 @@ const professions = [
     human: {
       title: 'Empathetic Counsel',
       story: 'Therapists provide a human connection, using intuition and shared experience to guide patients through complex emotions.',
-      image: '💙'
+      image: '/images/section2/therapy_strong_human_presence.webp'
     },
     ai: {
       title: 'Data-Driven Support',
       story: 'AI counselors offer 24/7 access, using data from millions of sessions to provide evidence-based cognitive support.',
-      image: '📊'
+      image: '/images/section2/therapy_full_ai_automation.webp'
     }
   },
   {
@@ -53,12 +53,12 @@ const professions = [
     human: {
       title: 'Artisanal Dining',
       story: 'Chefs and servers create unique, personal dining experiences where hospitality and craft are the main ingredients.',
-      image: '👨‍🍳'
+      image: '/images/section2/food service_strong_human_presence.webp'
     },
     ai: {
       title: 'Automated Sustenance',
       story: 'Robotic kitchens prepare nutritionally optimized meals delivered with maximum efficiency, freeing humans from culinary labor.',
-      image: '🤖'
+      image: '/images/section2/food service_full_ai_automation.webp'
     }
   },
   {
@@ -67,12 +67,12 @@ const professions = [
     human: {
       title: 'The Open Road',
       story: 'Human drivers navigate the world, offering personal service and the flexibility to go off the beaten path.',
-      image: '🚗'
+      image: '/images/section2/transportation_strong_human_presence.webp'
     },
     ai: {
       title: 'Seamless Transit Networks',
       story: 'AI-controlled vehicles optimize traffic flow, eliminating accidents and making commutes faster and more predictable.',
-      image: '🚗'
+      image: '/images/section2/transportation_full_ai_automation.webp'
     }
   },
   {
@@ -81,12 +81,12 @@ const professions = [
     human: {
       title: 'Mentorship & Discovery',
       story: 'Teachers inspire curiosity and critical thinking, mentoring students through collaborative, in-person discovery.',
-      image: '👩‍🏫'
+      image: '/images/section2/education_strong_human_presence.webp'
     },
     ai: {
       title: 'Personalized Learning',
       story: 'AI tutors adapt to each student\'s pace and style, delivering a perfectly customized curriculum for optimal knowledge retention.',
-      image: '📚'
+      image: '/images/section2/education_full_ai_automation.webp'
     }
   },
   {
@@ -95,12 +95,12 @@ const professions = [
     human: {
       title: 'The Healing Touch',
       story: 'Doctors and nurses provide compassionate bedside care, making complex diagnoses based on experience and human intuition.',
-      image: '🏥'
+      image: '/images/section2/healthcare_strong_human_presence.webp'
     },
     ai: {
       title: 'Precision Medicine',
       story: 'AI analyzes genetic and lifestyle data to predict illnesses and prescribe treatments with superhuman accuracy.',
-      image: '⚕️'
+      image: '/images/section2/healthcare_full_ai_automation.webp'
     }
   }
 ];
@@ -111,6 +111,13 @@ export const DivergentFutures = () => {
       defaults={{
         ease: "power1.inOut",
       }}
+      start="top 80%"
+      end="bottom 20%"
+      debug={
+        process.env.NODE_ENV === 'development'
+          ? { markers: true, label: 'DivergentFutures' }
+          : false
+      }
     >
       <section className={s["scenario"]}>
         {/* Scenario Header */}
@@ -188,8 +195,8 @@ export const DivergentFutures = () => {
               <Animation
                 key={profession.id}
                 tween={{
-                  start: 50 + (index * 5),
-                  end: 70 + (index * 5),
+                  start: 10 + (index * 5),
+                  end: 80 + (index * 3),
                   fromTo: [
                     { opacity: 0, y: 40, scale: 0.9 },
                     { opacity: 1, y: 0, scale: 1, ease: "power2.out" }
@@ -206,7 +213,7 @@ export const DivergentFutures = () => {
         <div className={s["transition"]}>
           <Animation
             tween={{
-              start: 90,
+              start: 95,
               end: 100,
               fromTo: [
                 { opacity: 0, y: 20 },

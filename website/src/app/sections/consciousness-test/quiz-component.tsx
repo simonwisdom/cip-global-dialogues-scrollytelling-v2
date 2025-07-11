@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import s from "./quiz-component.module.scss";
+import React from "react";
 
 interface Question {
   id: number;
@@ -79,7 +80,7 @@ const questions: Question[] = [
   }
 ];
 
-export const QuizComponent = () => {
+export const QuizComponent = React.forwardRef<HTMLDivElement>((props, ref) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [showResults, setShowResults] = useState(false);
@@ -99,7 +100,8 @@ export const QuizComponent = () => {
   const calculateScore = () => {
     let score = 0;
     answers.forEach((answer, index) => {
-      if (answer === questions[index].consciousAnswer) {
+      const question = questions[index];
+      if (question && answer === question.consciousAnswer) {
         score++;
       }
     });
@@ -141,7 +143,7 @@ export const QuizComponent = () => {
     const result = getScoreMessage(score);
     
     return (
-      <div className={s["quiz-container"]}>
+      <div className={s["quiz-container"]} ref={ref} {...props}>
         <div className={s["results"]}>
           <h3 className={s["results-title"]}>Your Consciousness Score</h3>
           <div 
@@ -178,10 +180,13 @@ export const QuizComponent = () => {
   }
 
   const question = questions[currentQuestion];
+
+  if (!question) return null;
+
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
-    <div className={s["quiz-container"]}>
+    <div className={s["quiz-container"]} ref={ref} {...props}>
       <div className={s["quiz-header"]}>
         <h3 className={s["quiz-title"]}>Consciousness Assessment</h3>
         <div className={s["progress-bar"]}>
@@ -218,7 +223,12 @@ export const QuizComponent = () => {
         <div className={s["navigation"]}>
           <button
             className={s["next-button"]}
-            onClick={() => handleAnswer(answers[currentQuestion])}
+            onClick={() => {
+              const answer = answers[currentQuestion];
+              if (answer !== undefined) {
+                handleAnswer(answer);
+              }
+            }}
           >
             {currentQuestion < questions.length - 1 ? "Next Question" : "See Results"}
           </button>
@@ -226,4 +236,6 @@ export const QuizComponent = () => {
       )}
     </div>
   );
-};
+});
+
+QuizComponent.displayName = "QuizComponent";

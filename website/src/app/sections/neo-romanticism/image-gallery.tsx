@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import s from "./image-gallery.module.scss";
+import React from "react";
 
 const images = [
   {
@@ -48,7 +49,7 @@ const images = [
   }
 ];
 
-export const ImageGallery = () => {
+export const ImageGallery = React.forwardRef<HTMLDivElement>((props, ref) => {
   const [activeImage, setActiveImage] = useState(0);
 
   const nextImage = () => {
@@ -61,8 +62,10 @@ export const ImageGallery = () => {
 
   const currentImage = images[activeImage];
 
+  if (!currentImage) return null;
+
   return (
-    <div className={s["gallery-container"]}>
+    <div className={s["gallery-container"]} ref={ref} {...props}>
       <h3 className={s["gallery-title"]}>The Ineffable Human Experience</h3>
       
       {/* Main Display */}
@@ -127,4 +130,6 @@ export const ImageGallery = () => {
       </p>
     </div>
   );
-};
+});
+
+ImageGallery.displayName = "ImageGallery";

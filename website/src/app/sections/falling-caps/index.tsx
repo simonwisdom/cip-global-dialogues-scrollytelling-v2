@@ -47,7 +47,9 @@ export const FallingCaps = () => {
   return (
     <section className={s.section}>
       <Scrollytelling.Root end="bottom bottom">
-        <CapsModel />
+        <Canvas className={s.canvas}>
+          <CapsModel />
+        </Canvas>
       </Scrollytelling.Root>
     </section>
   );

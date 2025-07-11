@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import s from "./cip-footer.module.scss";
 
 export const CipFooter = () => {
@@ -7,35 +8,37 @@ export const CipFooter = () => {
     <>
       {/* CIP Challenge Section */}
       <section className={s["cip-section"]}>
-        <div className={s["cip-background"]} />
         <div className={s["cip-content"]}>
-          <div className={s["cip-logo-container"]}>
-            <div className={s["cip-logo"]}>
-              {/* Placeholder for CIP logo */}
-              <div className={s["logo-placeholder"]}>CIP</div>
-            </div>
-          </div>
-          
-          <div className={s["cip-text"]}>
-            <p className={s["cip-description"]}>
-              This scrollytelling experience is an entry for the{" "}
-              <a 
-                href="https://www.cip.org/challenge" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className={s["cip-link"]}
-              >
-                Global Dialogues Challenge
-              </a>{" "}
-              by the Collective Intelligence Project.
-            </p>
-            
-            <p className={s["cip-contributors"]}>
-              <strong>Contributions:</strong> Simon Wisdom, Bridget Harris, and Christopher Ackerman.
-            </p>
-            
-            <p className={s["cip-date"]}>July 2025</p>
-          </div>
+          <a
+            href="https://www.cip.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={s["cip-logo-link"]}
+          >
+            <Image
+              src="/images/cip/cip-logo-white.png"
+              alt="Collective Intelligence Project Logo"
+              width={200}
+              height={55}
+              className={s["cip-logo"]}
+            />
+          </a>
+          <p className={s["cip-description"]}>
+            This scrollytelling experience is an entry for the{" "}
+            <a
+              href="https://www.cip.org/challenge"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={s["cip-link"]}
+            >
+              Global Dialogues Challenge
+            </a>{" "}
+            by the Collective Intelligence Project.
+          </p>
+          <p className={s["cip-contributors"]}>
+            <strong>Contributions:</strong> Simon Wisdom, Bridget Harris, and Christopher Ackerman.
+          </p>
+          <p className={s["cip-date"]}>July 2025</p>
         </div>
       </section>
 

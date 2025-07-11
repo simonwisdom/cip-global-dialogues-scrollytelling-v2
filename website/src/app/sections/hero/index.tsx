@@ -1,7 +1,7 @@
 "use client";
 
 import { Root, Pin, Animation } from "~/lib/scrollytelling-client";
-
+import Image from "next/image";
 import s from "./hero.module.scss";
 import Link from "next/link";
 import { LogoBasement } from "../../logos/logo";
@@ -22,6 +22,14 @@ export const Hero = () => {
         pinSpacerClassName={s["pin-spacer"]}
       >
         <header className={s["header"]}>
+          <div className={s["header-background"]}>
+            <Image
+              src="/images/header.webp"
+              alt="Header background"
+              fill
+              style={{ objectFit: "cover" }}
+            />
+          </div>
           <Link title="basement scrollytelling" href="/">
             <LogoBasement className={s["logo"]} />
           </Link>

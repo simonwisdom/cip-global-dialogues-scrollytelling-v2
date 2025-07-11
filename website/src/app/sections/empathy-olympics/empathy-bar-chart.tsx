@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import s from "./empathy-bar-chart.module.scss";
 
 interface Contestant {
@@ -22,7 +22,10 @@ interface EmpathyBarChartProps {
   scenario: 'start' | 'scenario1' | 'scenario2';
 }
 
-export const EmpathyBarChart = ({ scenario }: EmpathyBarChartProps) => {
+export const EmpathyBarChart = forwardRef<
+  HTMLDivElement,
+  EmpathyBarChartProps
+>(({ scenario }, ref) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [contestants, setContestants] = useState<Contestant[]>([]);
   const [animationProgress, setAnimationProgress] = useState(0);
@@ -181,7 +184,7 @@ export const EmpathyBarChart = ({ scenario }: EmpathyBarChartProps) => {
   };
 
   return (
-    <div className={s["chart-container"]}>
+    <div className={s["chart-container"]} ref={ref}>
       <h3 className={s["chart-title"]}>
         Empathy Competition Results
       </h3>
@@ -206,4 +209,6 @@ export const EmpathyBarChart = ({ scenario }: EmpathyBarChartProps) => {
       </div>
     </div>
   );
-};
+});
+
+EmpathyBarChart.displayName = "EmpathyBarChart";

@@ -187,6 +187,7 @@ const Scrollytelling = ({
         if (disabled) return null;
         if (!timeline) throw new Error("timeline not initialized");
         const duration = end - start;
+
         if (start < 0) {
           throw new Error("start time must be greater than 0");
         }
