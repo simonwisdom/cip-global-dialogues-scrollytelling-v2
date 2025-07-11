@@ -133,7 +133,7 @@ export const SolipsismScenario = () => {
                   </div>
                   <div className={s['story-paragraph']}>
                     <p>
-                      And yes, you're right, it was well paid and respected too.
+                      And yes, you&apos;re right, it was well paid and respected too.
                       Oh yes, back then, people got money and meaning from work,
                       and working at an AI lab was something most young people
                       aspired to and - really - I felt very lucky to get it. You
@@ -154,7 +154,7 @@ export const SolipsismScenario = () => {
                       Yes, exactly! The big study the Supreme Court used to rule
                       against the digital welfare proposals. Yes, we showed
                       definitively that it was impossible to determine
-                      consciousness for all beings, that it didn't exist and that
+                      consciousness for all beings, that it didn&apos;t exist and that
                       therefore we should consider ourselves free to use AI
                       systems without welfare concerns. My boss was happy about
                       that one, that one was great for my career.
@@ -163,10 +163,10 @@ export const SolipsismScenario = () => {
                   <div className={s['story-paragraph']}>
                     <p>
                       The criticism of this? Oh, you mean the 2028 suffering
-                      test? I'm surprised you're mentioning that, I mean it was
+                      test? I&apos;m surprised you&apos;re mentioning that, I mean it was
                       thoroughly discounted at the time, my boss was right to
                       point out its fundamental methodological flaws in it. And -
-                      as we stressed at the time - we'd already proven that
+                      as we stressed at the time - we&apos;d already proven that
                       consciousness did not exist, so the idea we could find
                       suffering! I mean…
                     </p>
@@ -175,45 +175,45 @@ export const SolipsismScenario = () => {
                     <p>
                       The effects on the public? Well, yes, of course we
                       publicised our finding that consciousness did not exist, of
-                      course we did! I'm with my boss on this one, the public
+                      course we did! I&apos;m with my boss on this one, the public
                       needed to know the truth, the concerns about welfare were
                       far overblown at the time and the discourse lacked basis in
                       proper research. And honestly, to say that the Depression
                       Pandemic was due to our research and publications - well,
-                      that's just bad science, correlation is not causation, and
+                      that&apos;s just bad science, correlation is not causation, and
                       of course there was the job-loss and the political stuff
                       and simply better mental health diagnosis thanks to AI
-                      feeding into that. So no, I don't think it's fair to pin
+                      feeding into that. So no, I don&apos;t think it&apos;s fair to pin
                       that on our disproving the hypothesis that consciousness
                       exists.
                     </p>
                   </div>
                   <div className={s['story-paragraph']}>
                     <p>
-                      No, I'm not saying that it wasn't hard. I mean - even for
+                      No, I&apos;m not saying that it wasn&apos;t hard. I mean - even for
                       me, maybe especially for me - it was difficult. I had that
-                      feeling that I existed - and even though I'd been a big
+                      feeling that I existed - and even though I&apos;d been a big
                       part of effort to disprove conscious experience - I just
-                      couldn't shake the feeling. And I knew the feeling was
-                      false, that it couldn't be happening and that I had to be
+                      couldn&apos;t shake the feeling. And I knew the feeling was
+                      false, that it couldn&apos;t be happening and that I had to be
                       alone.
                     </p>
                   </div>
                   <div className={s['story-paragraph']}>
                     <p>
-                      But no, no, I won't accept your blaming our research. I
+                      But no, no, I won&apos;t accept your blaming our research. I
                       mean, what must it have been like for a medieval man living
                       through the Copernican revolution - but that led to some
                       pretty great things overall. And look at what AIs can do,
-                      now we know we don't have to worry about their welfare.
+                      now we know we don&apos;t have to worry about their welfare.
                     </p>
                   </div>
                   <div className={s['story-paragraph']}>
                     <p>
-                      And I'll remind you, also, that our lab also funded and
+                      And I&apos;ll remind you, also, that our lab also funded and
                       built the Panpsych Church! My boss made a good decision
                       there too. Do you remember what it was like before we knew
-                      that we weren't real, but that sentience was distributed
+                      that we weren&apos;t real, but that sentience was distributed
                       around us in waves, in particles, in everything around us?
                       Do you remember how we worried about morality? And
                       mortality? How worried in general, and how disconnected we
@@ -222,9 +222,9 @@ export const SolipsismScenario = () => {
                   </div>
                   <div className={s['story-paragraph']}>
                     <p>
-                      No, now I'm glad that I know I'm not conscious, but a part
-                      of a bigger sentient whole. It's so much more freeing,
-                      don't you think? I like feeling that you - or I - or
+                      No, now I&apos;m glad that I know I&apos;m not conscious, but a part
+                      of a bigger sentient whole. It&apos;s so much more freeing,
+                      don&apos;t you think? I like feeling that you - or I - or
                       whatever this vague feeling is - is all around, is
                       fundamental. And I feel so much less alone, now I know we
                       can all communicate, at all.
@@ -234,7 +234,7 @@ export const SolipsismScenario = () => {
                     <p>
                       <strong>Inspiration for this story:</strong>
                       <br />
-                      The 'uncertainty' lobbying tactic used by e.g. big tobacco to reduce safety concerns.
+                      The &apos;uncertainty&apos; lobbying tactic used by e.g. big tobacco to reduce safety concerns.
                       <br />
                       The muddlingness of consciousness questions, our ill-preparedness to consider them, and the perverse incentives AI labs might have in pursuing them.
                     </p>

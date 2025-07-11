@@ -47,7 +47,7 @@ export const NeoRomanticism = () => {
               }}
             >
               <p className={s["intro-text"]}>
-                In response to AI's encroachment, humanity embraces what can't be quantified: raw emotion, spontaneous beauty, irrational love. We become more romantic than ever, cherishing the messy, unpredictable aspects of being human.
+                In response to AI&apos;s encroachment, humanity embraces what can&apos;t be quantified: raw emotion, spontaneous beauty, irrational love. We become more romantic than ever, cherishing the messy, unpredictable aspects of being human.
               </p>
             </Animation>
           </div>
@@ -81,7 +81,7 @@ export const NeoRomanticism = () => {
               }}
             >
               <blockquote className={s["quote"]}>
-                "The most beautiful things in the world cannot be seen or touched, they are felt with the heart."
+                &quot;The most beautiful things in the world cannot be seen or touched, they are felt with the heart.&quot;
                 <cite>— A reminder of what makes us irreplaceably human</cite>
               </blockquote>
             </Animation>

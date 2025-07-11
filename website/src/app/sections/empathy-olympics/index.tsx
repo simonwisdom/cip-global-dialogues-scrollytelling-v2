@@ -100,7 +100,7 @@ export const EmpathyOlympics = () => {
                   <div className={s["step-content"]}>
                     <h4 className={s["step-title"]}>Performance Pressure</h4>
                     <p className={s["step-text"]}>
-                      It's common for people to feign empathy in order to be seen as more human. The pressure to perform compassion becomes overwhelming.
+                      It&apos;s common for people to feign empathy in order to be seen as more human. The pressure to perform compassion becomes overwhelming.
                     </p>
                   </div>
                 </div>
@@ -146,7 +146,7 @@ export const EmpathyOlympics = () => {
               ]
             }}
           >
-            <p className={s["transition-text"]}>Perhaps we'll find meaning in what can't be measured...</p>
+            <p className={s["transition-text"]}>Perhaps we&apos;ll find meaning in what can&apos;t be measured...</p>
           </Animation>
         </div>
       </section>

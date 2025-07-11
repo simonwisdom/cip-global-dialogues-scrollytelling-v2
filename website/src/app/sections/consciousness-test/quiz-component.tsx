@@ -165,7 +165,7 @@ export const QuizComponent = React.forwardRef<HTMLDivElement>((props, ref) => {
           <div className={s["reflection"]}>
             <h5 className={s["reflection-title"]}>Reflection</h5>
             <p className={s["reflection-text"]}>
-              This quiz demonstrates how arbitrary consciousness tests can be. The very fact that you're questioning these results might be the most human response of all.
+              This quiz demonstrates how arbitrary consciousness tests can be. The very fact that you&apos;re questioning these results might be the most human response of all.
             </p>
           </div>
           <button 

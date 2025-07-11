@@ -44,7 +44,7 @@ export const ConsciousnessTest = () => {
               }}
             >
               <p className={s["intro-text"]}>
-                Research reveals six criteria people use to determine AI consciousness. But here's the twist: when humans take these same tests, many fail to meet their own standards.
+                Research reveals six criteria people use to determine AI consciousness. But here&apos;s the twist: when humans take these same tests, many fail to meet their own standards.
               </p>
             </Animation>
             
@@ -59,7 +59,7 @@ export const ConsciousnessTest = () => {
               }}
             >
               <p className={s["intro-question"]}>
-                Have we set the bar so high that we've excluded ourselves?
+                Have we set the bar so high that we&apos;ve excluded ourselves?
               </p>
             </Animation>
           </div>
@@ -96,10 +96,10 @@ export const ConsciousnessTest = () => {
             <div className={s["conclusion-content"]}>
               <h3 className={s["conclusion-title"]}>What Makes Us Human?</h3>
               <p className={s["conclusion-text"]}>
-                In our quest to distinguish ourselves from artificial intelligence, we've discovered something profound: humanity isn't found in perfection or performance, but in our contradictions, our doubts, and our capacity to question what consciousness truly means.
+                In our quest to distinguish ourselves from artificial intelligence, we&apos;ve discovered something profound: humanity isn&apos;t found in perfection or performance, but in our contradictions, our doubts, and our capacity to question what consciousness truly means.
               </p>
               <p className={s["conclusion-final"]}>
-                Perhaps the most human thing of all is wondering whether we're human enough.
+                Perhaps the most human thing of all is wondering whether we&apos;re human enough.
               </p>
             </div>
           </Animation>
