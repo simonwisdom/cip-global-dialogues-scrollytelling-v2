@@ -211,18 +211,7 @@ export const SolipsismScenario = () => {
                 ]
               }}
             >
-              <div>
-                <p className={s["transition-text"]}>But doubt breeds strange behaviors...</p>
-                <div className={s["continue-arrow"]}>
-                  <svg viewBox="0 0 24 12" fill="none">
-                    <path
-                      d="M14 0.226562L24 6.00007L14 11.7736L14 7.00006L0 7.00006V5.00006L14 5.00007L14 0.226562Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <span>Continue</span>
-                </div>
-              </div>
+  
             </Animation>
           </div>
         </section>

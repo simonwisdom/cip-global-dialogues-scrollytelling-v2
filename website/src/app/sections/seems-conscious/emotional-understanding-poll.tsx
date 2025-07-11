@@ -6,7 +6,7 @@ import s from "./emotional-understanding-poll.module.scss";
 export const EmotionalUnderstandingPoll = forwardRef<HTMLDivElement, {}>(
   (props, ref) => {
     const pollData = {
-      question: "Have you ever felt an AI truly understood your emotions?",
+      question: "Have you ever felt an AI truly understood your emotions or seemed conscious?",
       options: [
         { text: "Yes", percentage: 36 },
         { text: "No", percentage: 64 },

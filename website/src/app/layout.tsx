@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { JetBrains_Mono } from "next/font/google";
 import { siteOrigin } from "~/lib/constants";
 import { Analytics } from "@vercel/analytics/react";
+import { CustomCursor } from "~/app/components/custom-cursor";
 
 const jetBrainsMono = JetBrains_Mono({
   weight: "400",
@@ -68,7 +69,10 @@ export default function RootLayout({
         ["--font-jetbrains-mono" as string]: `${jetBrainsMono.style.fontFamily}, var(--font-system), sans-serif`,
       }}
     >
-      <body>{children}</body>
+      <body>
+        <CustomCursor />
+        {children}
+      </body>
 
       <Analytics />
     </html>

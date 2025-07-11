@@ -39,7 +39,7 @@ export const WorldMap = forwardRef<HTMLDivElement>((_p, ref) => {
     const layer = svg.append("g");
     const projection = d3.geoNaturalEarth1().fitSize([WIDTH, HEIGHT], { type: "Sphere" });
     const path = d3.geoPath(projection);
-    const color = d3.scaleSequential(d3.interpolateRgb("#923bad", "#37a157")).domain([0, 100]);
+    const color = d3.scaleSequential(d3.interpolateRgb("white", "#60D29D")).domain([0, 100]);
 
     const tooltip = d3
       .select(el)
@@ -102,7 +102,7 @@ export const WorldMap = forwardRef<HTMLDivElement>((_p, ref) => {
           .attr("fill", (d) =>
             d.properties.agreement_pct == null ? "#d9d9d9" : color(d.properties.agreement_pct)
           )
-          .attr("stroke", "#111")
+          .attr("stroke", "none")
           .attr("vector-effect", "non-scaling-stroke")
           .on("mousemove", (ev, d) => {
             const [x, y] = d3.pointer(ev, el);
@@ -125,11 +125,9 @@ export const WorldMap = forwardRef<HTMLDivElement>((_p, ref) => {
                     : "—"
                 } (n=${d.properties.n ?? "N/A"})`
               );
-            d3.select(ev.currentTarget).attr("stroke-width", 2);
           })
           .on("mouseleave", (ev) => {
             tooltip.style("opacity", 0);
-            d3.select(ev.currentTarget).attr("stroke-width", 1);
           });
 
         layer
@@ -143,7 +141,7 @@ export const WorldMap = forwardRef<HTMLDivElement>((_p, ref) => {
           )
           .attr("d", path)
           .attr("fill", "none")
-          .attr("stroke", "#fff")
+          .attr("stroke", "none")
           .attr("stroke-linejoin", "round")
           .attr("vector-effect", "non-scaling-stroke");
 

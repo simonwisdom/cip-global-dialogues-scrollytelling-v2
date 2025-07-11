@@ -220,10 +220,7 @@ export const DivergentFutures = () => {
               human tasks - though people disagree on where they would and
               would not like to see AI. What do you think?
             </p>
-            <p className={s["intro-text"]}>
-              As AI capabilities grow, society faces a choice. Will we double
-              down on human skills, or embrace automation?
-            </p>
+
           </div>
         </div>
 

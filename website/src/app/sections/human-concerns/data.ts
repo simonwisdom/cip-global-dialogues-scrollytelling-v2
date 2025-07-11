@@ -2,7 +2,7 @@ export const surveyData = [
   {
     id: "chart1",
     title:
-      "If an AI's emotional support made you feel better (effective support), but you didn't believe the AI genuinely 'cared' or 'understood' in a human sense, how likely would you be to regularly rely on that AI for emotional support in the long term?",
+      "If an AI's <b>emotional support</b> made you <b>feel better</b> (effective support), but you didn't believe the AI <b>genuinely 'cared' or 'understood'</b> in a human sense, how likely would you be to <b>regularly rely</b> on that AI for emotional support in the long term?",
     data: [
       { response: "Very likely", percentage: 4.7 },
       { response: "Somewhat likely", percentage: 22.9 },
@@ -14,7 +14,7 @@ export const surveyData = [
   {
     id: "chart2",
     title:
-      "Which of the following aspects of relationships, if any, do you believe can only be genuinely fulfilled by humans and cannot be substituted by AI, no matter how advanced it becomes?",
+      "Which of the following aspects of relationships, if any, do you believe can <b>only be genuinely fulfilled by humans</b> and <b>cannot be substituted by AI</b>, no matter how advanced it becomes?",
     data: [
       { response: "True empathy", percentage: 73.9 },
       { response: "Physical comfort", percentage: 70.8 },
@@ -30,19 +30,19 @@ export const surveyData = [
   {
     id: "chart3",
     title:
-      "Thinking about the future, do you believe that AI becoming deeply involved in people's personal relationships will ultimately:",
+      "Thinking about the future, do you believe that AI becoming <b>deeply involved</b> in people's <b>personal relationships</b> will ultimately:",
     data: [
-      { response: "Weaken connection", percentage: 47.8 },
-      { response: "Mixed effects", percentage: 41.2 },
       { response: "Strengthen connection", percentage: 5.2 },
       { response: "No significant impact", percentage: 4.1 },
+      { response: "Mixed effects", percentage: 41.2 },
+      { response: "Weaken connection", percentage: 47.8 },
       { response: "Not sure", percentage: 1.7 },
     ],
   },
   {
     id: "chart4",
     title:
-      "Looking 10-20 years into the future, if AI becomes deeply involved in people's personal relationships, what are your greatest fears for its negative impact on society? Select up to three options that best represent your fears. (If you select 'I don't have strong fears of negative impact,' please do not select other options.)",
+      "Looking 10-20 years into the future, if AI becomes deeply involved in people's personal relationships, what are your <b>greatest fears</b> for its <b>negative impact</b> on society? Select up to three options that best represent your fears. (If you select 'I don't have strong fears of negative impact,' please do not select other options.)",
     data: [
       { response: "Loss of genuine connection", percentage: 59.2 },
       { response: "Over-dependence on AI", percentage: 52.9 },
@@ -57,7 +57,7 @@ export const surveyData = [
   {
     id: "chart5",
     title:
-      "Looking 10-20 years into the future, if AI becomes deeply involved in people's personal relationships, what are your greatest hopes for its positive impact on society?",
+      "Looking 10-20 years into the future, if AI becomes deeply involved in people's personal relationships, what are your <b>greatest hopes</b> for its <b>positive impact</b> on society?",
     data: [
       { response: "Enhanced learning/growth", percentage: 70.7 },
       { response: "Accessible mental health", percentage: 51.3 },

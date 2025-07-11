@@ -64,8 +64,16 @@ export const ResponsesModal = ({ isOpen, onClose }: ResponsesModalProps) => {
             <table className={s.table}>
               <thead>
                 <tr>
-                  <th>Impression: AI is conscious</th>
-                  <th>Impression: AI is not conscious</th>
+                  <th>
+                    <span className={s.headerText}>Yes ↓</span>
+                    <br/>
+                    What specific thing(s) did the AI say or do that gave you the impression that it understood your emotions or seemed conscious?
+                  </th>
+                  <th>
+                    <span className={s.headerText}>No ↓</span>
+                    <br/>
+                    What specific thing(s) would the AI need to say or do to give you the impression that it understood your emotions or seemed conscious?
+                  </th>
                 </tr>
               </thead>
               <tbody>

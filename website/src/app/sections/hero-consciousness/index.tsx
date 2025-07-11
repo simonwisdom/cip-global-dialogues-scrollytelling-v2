@@ -27,7 +27,7 @@ const HeroConsciousnessContent = forwardRef(
       gsap.registerPlugin(SplitText);
 
       const ctx = gsap.context(() => {
-        const split = new SplitText(titleRef.current, { type: "chars" });
+        const split = new SplitText(titleRef.current, { type: "words,chars" });
         const chars = split.chars;
         gsap.set(titleRef.current, { opacity: 1 });
 

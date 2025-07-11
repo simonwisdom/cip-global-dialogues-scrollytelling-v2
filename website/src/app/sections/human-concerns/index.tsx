@@ -58,6 +58,14 @@ export const HumanConcerns = () => {
     return () => ctx.revert();
   }, []);
 
+  const chart3OrdinalOrder = [
+    "Strengthen connection",
+    "Mixed effects",
+    "Weaken connection",
+    "No significant impact",
+    "Not sure",
+  ];
+
   return (
     <section className={s["human-concerns"]} ref={containerRef}>
       <div className={s.narrative}>
@@ -77,22 +85,50 @@ export const HumanConcerns = () => {
       </div>
 
       <div className={s["content-container"]}>
-        {surveyData.map((chart, i) => (
-          <div key={chart.id} className={s["content-row"]}>
-            <div className={s["text-wrapper"]}>
-              <div className={s["text-section"]}>
-                <p>{chart.title}</p>
+        {surveyData.map((chart, i) => {
+          let chartData = chart.data;
+          if (chart.id === "chart3") {
+            chartData = [...chart.data].sort(
+              (a, b) =>
+                chart3OrdinalOrder.indexOf(a.response) -
+                chart3OrdinalOrder.indexOf(b.response)
+            );
+          }
+          return (
+            <div
+              key={chart.id}
+              className={`${s["content-row"]} ${
+                i % 2 !== 0 ? s["row-reversed"] : ""
+              }`}
+            >
+              <div className={s["text-wrapper"]}>
+                <div
+                  className={`${s["text-section"]} ${s["speech-bubble"]} ${
+                    i % 2 === 0 ? s.right : s.left
+                  }`}
+                >
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: chart.title,
+                    }}
+                  />
+                </div>
+              </div>
+              <div className={s["chart-wrapper"]}>
+                <BarChart
+                  ref={chartRefs.current[i]}
+                  chartId={chart.id}
+                  data={chartData}
+                  sortBy={
+                    chart.id === "chart1" || chart.id === "chart3"
+                      ? "response"
+                      : "percentage"
+                  }
+                />
               </div>
             </div>
-            <div className={s["chart-wrapper"]}>
-              <BarChart
-                ref={chartRefs.current[i]}
-                chartId={chart.id}
-                data={chart.data}
-              />
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className={s.narrative}>
