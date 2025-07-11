@@ -15,10 +15,10 @@ export default function HomePage() {
       <SolipsismScenario />
       <DivergentFutures />
       <Confessional />
-      <PerformativeConsciousness />
+      {/* <PerformativeConsciousness />
       <EmpathyOlympics />
       <NeoRomanticism />
-      <ConsciousnessTest />
+      <ConsciousnessTest /> */}
       <CipFooter />
     </main>
   );

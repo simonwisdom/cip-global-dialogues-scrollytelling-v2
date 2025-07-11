@@ -25,9 +25,9 @@ const basementGrotesque = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "BSMNT @ Scrollytelling",
+  title: "What makes us human? An Exploration of Consciousness in the Age of AI",
   description:
-    "A demo website made exclusively to showcase a couple of cool animations powered by our new library, @bsmnt/scrollytelling.",
+    "This scrollytelling experience, created for the Collective Intelligence Project's Global Dialogues Challenge, explores the nature of consciousness as artificial intelligence becomes increasingly sophisticated.",
   viewport: {
     height: "device-height",
     initialScale: 1,
@@ -40,18 +40,18 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   twitter: {
     card: "summary_large_image",
-    creator: "@basementstudio",
-    description: "BSMNT @ Scrollytelling",
+    creator: "@cip_org",
+    description: "An interactive exploration of consciousness in the age of AI.",
     images: [{ width: 1200, height: 630, url: `${siteOrigin}/og.jpg` }],
-    site: "@basementstudio",
-    title: "BSMNT @ Scrollytelling",
+    site: "@cip_org",
+    title: "What makes us human?",
   },
   openGraph: {
-    description: "BSMNT @ Scrollytelling",
+    description: "An interactive exploration of consciousness in the age of AI.",
     images: [{ width: 1200, height: 630, url: `${siteOrigin}/og.jpg` }],
     locale: "en-US",
-    siteName: "BSMNT @ Scrollytelling",
-    title: "BSMNT @ Scrollytelling",
+    siteName: "Collective Intelligence Project",
+    title: "What makes us human?",
     type: "website",
     url: siteOrigin,
   },
