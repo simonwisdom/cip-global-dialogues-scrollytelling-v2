@@ -14,6 +14,7 @@
     "build:packages": "turbo run build --filter=@bsmnt/scrollytelling",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
+    "start": "yarn workspace website start",
     "generate": "turbo run generate",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "version:packages": "yarn changeset version",
