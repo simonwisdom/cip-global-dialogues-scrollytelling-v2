@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { gsap } from 'gsap';
 import * as React from 'react';
-import mergeRefs from 'react-merge-refs';
+import { mergeRefs } from 'react-merge-refs';
 
 import { useMouseTracker } from '../../hooks/use-mouse-tracker';
 

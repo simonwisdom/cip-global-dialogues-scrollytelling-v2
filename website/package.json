@@ -27,6 +27,7 @@
     "next": "^13.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-merge-refs": "^3.0.2",
     "sharp": "^0.32.0",
     "three": "^0.151.3",
     "topojson-client": "^3.1.0",

@@ -1,15 +1,8 @@
 import nextra from 'nextra'
 
 const withNextra = nextra({
-  latex: true,
-  search: {
-    codeblocks: false
-  }
+  theme: 'nextra-theme-docs',
+  themeConfig: './theme.config.tsx',
 })
 
-export default withNextra({
-  images: {
-    domains: ["user-images.githubusercontent.com"],
-  },
-  basePath: '/docs',
-})
+export default withNextra()
