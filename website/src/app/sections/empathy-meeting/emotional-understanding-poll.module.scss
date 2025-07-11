@@ -1,0 +1,82 @@
+.poll-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: sans-serif;
+  border: 1px solid #e0e0e0;
+}
+
+.question {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.option-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.option-label {
+  width: 40px;
+  font-weight: 500;
+  color: #555;
+}
+
+.bar-container {
+  flex-grow: 1;
+  background-color: transparent;
+  border-radius: 4px;
+  height: 28px;
+}
+
+.bar_yes,
+.bar_no {
+  height: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  font-weight: bold;
+}
+
+.bar_yes {
+  background-color: #4a4de6;
+  color: white;
+}
+
+.bar_no {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.percentage {
+  font-size: 14px;
+}
+
+.insight-container {
+  background-color: #f7f7f9;
+  border-left: 4px solid #4a4de6;
+  padding: 16px;
+  border-radius: 4px;
+}
+
+.insight-text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+} 
