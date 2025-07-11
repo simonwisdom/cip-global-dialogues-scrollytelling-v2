@@ -99,7 +99,7 @@ export const ThinkingFeeling = () => {
           >
           <div className={s["data-source-card"]}>
             <p className={s["data-source-note"]}>
-              Source: Global Dialogues GD4 - Question: "Have you ever felt an AI truly understood your emotions or seemed conscious?"
+              Source: Global Dialogues GD4 - Question: &quot;Have you ever felt an AI truly understood your emotions or seemed conscious?&quot;
             </p>
           </div>
         </Animation>

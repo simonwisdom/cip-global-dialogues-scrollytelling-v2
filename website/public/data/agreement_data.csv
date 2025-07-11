@@ -1,0 +1,17 @@
+region,parent,n,agreement_pct,level,note
+Northern Africa,Africa,37,29.4,subregion,Direct data (n=37)
+Eastern Africa,Africa,123,71.2,subregion,Direct data (n=123)
+Other Africa,Africa,15,61.8,continent_partial,"Includes: Middle Africa, Southern Africa, Western Africa (using continent average)"
+Eastern Asia,Asia,143,23.9,subregion,Direct data (n=143)
+South Eastern Asia,Asia,83,31.7,subregion,Direct data (n=83)
+Souther Asia,Asia,235,34.1,subregion,Direct data (n=235)
+Western Asia,Asia,44,27.3,subregion,Direct data (n=44)
+Other Asia,Asia,15,30.3,continent_partial,Includes: Central Asia (using continent average)
+Eastern Europe,Europe,36,26.5,subregion,Direct data (n=36)
+Norther Europe,Europe,39,23.7,subregion,Direct data (n=39)
+Southern Europe,Europe,35,20.599999999999998,subregion,Direct data (n=35)
+Western Europe,Europe,35,18.2,subregion,Direct data (n=35)
+Northern America,North America,120,42.6,subregion,Direct data (n=120)
+Other North America,North America,16,42.0,continent_partial,"Includes: Caribbean, Central America (using continent average)"
+South America,,68,40.300000000000004,continent,No subregional breakdown available
+Oceania,,13,15.4,continent,No subregional breakdown available

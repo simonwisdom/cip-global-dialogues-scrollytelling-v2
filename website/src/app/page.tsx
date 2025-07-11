@@ -1,4 +1,5 @@
 import { HeroConsciousness } from "./sections/hero-consciousness";
+import { SeemsConscious } from "./sections/seems-conscious";
 import { SolipsismScenario } from "./sections/solipsism-scenario";
 import { DivergentFutures } from "./sections/divergent-futures";
 import { Confessional } from "./sections/confessional";
@@ -14,6 +15,7 @@ export default function HomePage() {
   return (
     <main>
       <HeroConsciousness />
+      <SeemsConscious />
       <SolipsismScenario />
       <DivergentFutures />
       <Confessional />

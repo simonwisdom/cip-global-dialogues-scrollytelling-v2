@@ -3,8 +3,6 @@
 import s from "./emotional-understanding-poll.module.scss";
 
 export const EmotionalUnderstandingPoll = (props: {}) => {
-  console.log("EmotionalUnderstandingPoll props:", props);
-
   const pollData = {
     question: "Have you ever felt an AI truly understood your emotions?",
     options: [

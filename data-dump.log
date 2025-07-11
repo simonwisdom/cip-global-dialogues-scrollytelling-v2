@@ -1,0 +1,440 @@
+Starting data processing...
+Data loaded.
+Agreement data processed.
+Country to region map created.
+
+--- DEBUG: FULL DATA DUMP ---
+
+TopoJSON Countries (normalized):
+afghanistan
+albania
+algeria
+angola
+antarctica
+argentina
+armenia
+australia
+austria
+azerbaijan
+bahamas
+bangladesh
+belarus
+belgium
+belize
+benin
+bhutan
+bolivia
+bosniaandherz.
+botswana
+brazil
+brunei
+bulgaria
+burkinafaso
+burundi
+cambodia
+cameroon
+canada
+centralafricanrep.
+chad
+chile
+china
+colombia
+congo
+costarica
+croatia
+cuba
+cyprus
+czechia
+côted'ivoire
+dem.rep.congo
+denmark
+djibouti
+dominicanrep.
+ecuador
+egypt
+elsalvador
+eq.guinea
+eritrea
+estonia
+eswatini
+ethiopia
+falklandis.
+fiji
+finland
+fr.s.antarcticlands
+france
+gabon
+gambia
+georgia
+germany
+ghana
+greece
+greenland
+guatemala
+guinea
+guineabissau
+guyana
+haiti
+honduras
+hungary
+iceland
+india
+indonesia
+iran
+iraq
+ireland
+israel
+italy
+jamaica
+japan
+jordan
+kazakhstan
+kenya
+kosovo
+kuwait
+kyrgyzstan
+laos
+latvia
+lebanon
+lesotho
+liberia
+libya
+lithuania
+luxembourg
+macedonia
+madagascar
+malawi
+malaysia
+mali
+mauritania
+mexico
+moldova
+mongolia
+montenegro
+morocco
+mozambique
+myanmar
+n.cyprus
+namibia
+nepal
+netherlands
+newcaledonia
+newzealand
+nicaragua
+niger
+nigeria
+northkorea
+norway
+oman
+pakistan
+palestine
+panama
+papuanewguinea
+paraguay
+peru
+philippines
+poland
+portugal
+puertorico
+qatar
+romania
+russia
+rwanda
+s.sudan
+saudiarabia
+senegal
+serbia
+sierraleone
+slovakia
+slovenia
+solomonis.
+somalia
+somaliland
+southafrica
+southkorea
+spain
+srilanka
+sudan
+suriname
+sweden
+switzerland
+syria
+taiwan
+tajikistan
+tanzania
+thailand
+timorleste
+togo
+trinidadandtobago
+tunisia
+turkey
+turkmenistan
+uganda
+ukraine
+unitedarabemirates
+unitedkingdom
+unitedstatesofamerica
+uruguay
+uzbekistan
+vanuatu
+venezuela
+vietnam
+w.sahara
+yemen
+zambia
+zimbabwe
+
+Country to Region Map (normalized):
+afghanistan -> southernasia
+ålandislands -> northerneurope
+albania -> southerneurope
+algeria -> northernafrica
+americansamoa -> polynesia
+andorra -> southerneurope
+angola -> middleafrica
+anguilla -> caribbean
+antiguaandbarbuda -> caribbean
+argentina -> southamerica
+armenia -> westernasia
+aruba -> caribbean
+australia -> australiaandnewzealand
+austria -> westerneurope
+azerbaijan -> westernasia
+bahamas -> caribbean
+bahrain -> westernasia
+bangladesh -> southernasia
+barbados -> caribbean
+belarus -> easterneurope
+belgium -> westerneurope
+belize -> centralamerica
+benin -> westernafrica
+bermuda -> northernamerica
+bhutan -> southernasia
+bolivia(plurinationalstateof) -> southamerica
+bonaire -> caribbean
+bosniaandherzegovina -> southerneurope
+botswana -> southernafrica
+bouvetisland -> southamerica
+brazil -> southamerica
+britishindianoceanterritory -> easternafrica
+britishvirginislands -> caribbean
+bruneidarussalam -> southeasternasia
+bulgaria -> easterneurope
+burkinafaso -> westernafrica
+burundi -> easternafrica
+caboverde -> westernafrica
+cambodia -> southeasternasia
+cameroon -> middleafrica
+canada -> northernamerica
+caymanislands -> caribbean
+centralafricanrepublic -> middleafrica
+chad -> middleafrica
+chile -> southamerica
+china -> easternasia
+christmasisland -> australiaandnewzealand
+cocos(keeling)islands -> australiaandnewzealand
+colombia -> southamerica
+comoros -> easternafrica
+congo -> middleafrica
+cookislands -> polynesia
+costarica -> centralamerica
+côted’ivoire -> westernafrica
+croatia -> southerneurope
+cuba -> caribbean
+curaçao -> caribbean
+cyprus -> westernasia
+czechia -> easterneurope
+democraticpeople'srepublicofkorea -> easternasia
+democraticrepublicofthecongo -> middleafrica
+denmark -> northerneurope
+djibouti -> easternafrica
+dominica -> caribbean
+dominicanrepublic -> caribbean
+ecuador -> southamerica
+egypt -> northernafrica
+elsalvador -> centralamerica
+equatorialguinea -> middleafrica
+eritrea -> easternafrica
+estonia -> northerneurope
+eswatini -> southernafrica
+ethiopia -> easternafrica
+falklandislands(malvinas) -> southamerica
+faroeislands -> northerneurope
+fiji -> melanesia
+finland -> northerneurope
+france -> westerneurope
+frenchguiana -> southamerica
+frenchpolynesia -> polynesia
+frenchsouthernterritories -> easternafrica
+gabon -> middleafrica
+gambia -> westernafrica
+georgia -> westernasia
+germany -> westerneurope
+ghana -> westernafrica
+gibraltar -> southerneurope
+greece -> southerneurope
+greenland -> northernamerica
+grenada -> caribbean
+guadeloupe -> caribbean
+guam -> micronesia
+guatemala -> centralamerica
+guernsey -> channelislands
+guinea -> westernafrica
+guineabissau -> westernafrica
+guyana -> southamerica
+haiti -> caribbean
+heardislandandmcdonaldislands -> australiaandnewzealand
+holysee -> southerneurope
+honduras -> centralamerica
+hungary -> easterneurope
+iceland -> northerneurope
+india -> southernasia
+indonesia -> southeasternasia
+iran(islamicrepublicof) -> southernasia
+iraq -> westernasia
+ireland -> northerneurope
+isleofman -> northerneurope
+israel -> westernasia
+italy -> southerneurope
+jamaica -> caribbean
+japan -> easternasia
+jersey -> channelislands
+jordan -> westernasia
+kazakhstan -> centralasia
+kenya -> easternafrica
+kiribati -> micronesia
+kuwait -> westernasia
+kyrgyzstan -> centralasia
+laopeople'sdemocraticrepublic -> southeasternasia
+latvia -> northerneurope
+lebanon -> westernasia
+lesotho -> southernafrica
+liberia -> westernafrica
+libya -> northernafrica
+liechtenstein -> westerneurope
+lithuania -> northerneurope
+luxembourg -> westerneurope
+madagascar -> easternafrica
+malawi -> easternafrica
+malaysia -> southeasternasia
+maldives -> southernasia
+mali -> westernafrica
+malta -> southerneurope
+marshallislands -> micronesia
+martinique -> caribbean
+mauritania -> westernafrica
+mauritius -> easternafrica
+mayotte -> easternafrica
+mexico -> centralamerica
+micronesia(federatedstatesof) -> micronesia
+monaco -> westerneurope
+mongolia -> easternasia
+montenegro -> southerneurope
+montserrat -> caribbean
+morocco -> northernafrica
+mozambique -> easternafrica
+myanmar -> southeasternasia
+namibia -> southernafrica
+nauru -> micronesia
+nepal -> southernasia
+netherlands -> westerneurope
+newcaledonia -> melanesia
+newzealand -> australiaandnewzealand
+nicaragua -> centralamerica
+niger -> westernafrica
+nigeria -> westernafrica
+niue -> polynesia
+norfolkisland -> australiaandnewzealand
+northernmarianaislands -> micronesia
+northmacedonia -> southerneurope
+norway -> northerneurope
+oman -> westernasia
+pakistan -> southernasia
+palau -> micronesia
+panama -> centralamerica
+papuanewguinea -> melanesia
+paraguay -> southamerica
+peru -> southamerica
+philippines -> southeasternasia
+pitcairn -> polynesia
+poland -> easterneurope
+portugal -> southerneurope
+puertorico -> caribbean
+qatar -> westernasia
+republicofkorea -> easternasia
+republicofmoldova -> easterneurope
+réunion -> easternafrica
+romania -> easterneurope
+russianfederation -> easterneurope
+rwanda -> easternafrica
+saintbarthélemy -> caribbean
+sainthelena -> westernafrica
+saintkittsandnevis -> caribbean
+saintlucia -> caribbean
+saintmartin(frenchpart) -> caribbean
+saintpierreandmiquelon -> northernamerica
+saintvincentandthegrenadines -> caribbean
+samoa -> polynesia
+sanmarino -> southerneurope
+saotomeandprincipe -> middleafrica
+sark -> channelislands
+saudiarabia -> westernasia
+senegal -> westernafrica
+serbia -> southerneurope
+seychelles -> easternafrica
+sierraleone -> westernafrica
+singapore -> southeasternasia
+sintmaarten(dutchpart) -> caribbean
+slovakia -> easterneurope
+slovenia -> southerneurope
+solomonislands -> melanesia
+somalia -> easternafrica
+southafrica -> southernafrica
+southgeorgiaandthesouthsandwichislands -> southamerica
+southsudan -> easternafrica
+spain -> southerneurope
+srilanka -> southernasia
+stateofpalestine -> westernasia
+sudan -> northernafrica
+suriname -> southamerica
+svalbardandjanmayenislands -> northerneurope
+sweden -> northerneurope
+switzerland -> westerneurope
+syrianarabrepublic -> westernasia
+tajikistan -> centralasia
+thailand -> southeasternasia
+timorleste -> southeasternasia
+togo -> westernafrica
+tokelau -> polynesia
+tonga -> polynesia
+trinidadandtobago -> caribbean
+tunisia -> northernafrica
+türkiye -> westernasia
+turkmenistan -> centralasia
+turksandcaicosislands -> caribbean
+tuvalu -> polynesia
+uganda -> easternafrica
+ukraine -> easterneurope
+unitedarabemirates -> westernasia
+unitedkingdomofgreatbritainandnorthernireland -> northerneurope
+unitedrepublicoftanzania -> easternafrica
+unitedstatesminoroutlyingislands -> micronesia
+unitedstatesofamerica -> northernamerica
+unitedstatesvirginislands -> caribbean
+uruguay -> southamerica
+uzbekistan -> centralasia
+vanuatu -> melanesia
+venezuela(bolivarianrepublicof) -> southamerica
+vietnam -> southeasternasia
+wallisandfutunaislands -> polynesia
+westernsahara -> northernafrica
+yemen -> westernasia
+zambia -> easternafrica
+zimbabwe -> easternafrica
+
+--- END DEBUG ---
+
+Data joined.
+Could not find agreement data for 36 countries:
+Fiji (region: melanesia, no agreement value), Tanzania, Papua New Guinea (region: melanesia, no agreement value), Russia, Norway (region: northerneurope, no agreement value), Bolivia, Venezuela, Côte d'Ivoire, Central African Rep., Eq. Guinea, Palestine, Vanuatu (region: melanesia, no agreement value), Laos, North Korea, South Korea, Iran, Syria, Sweden (region: northerneurope, no agreement value), Moldova, Lithuania (region: northerneurope, no agreement value), Latvia (region: northerneurope, no agreement value), Estonia (region: northerneurope, no agreement value), Turkey, Ireland (region: northerneurope, no agreement value), New Caledonia (region: melanesia, no agreement value), Solomon Is. (region: melanesia, no agreement value), New Zealand (region: australiaandnewzealand, no agreement value), Australia (region: australiaandnewzealand, no agreement value), Taiwan, Denmark (region: northerneurope, no agreement value), United Kingdom, Iceland (region: northerneurope, no agreement value), Brunei, Finland (region: northerneurope, no agreement value), Antarctica, Macedonia
+Processing complete. Output written to: /Users/wisdom/Documents/2025/CIP/scrollytelling/basement-scrollytelling/website/public/data/countries-with-agreement.json

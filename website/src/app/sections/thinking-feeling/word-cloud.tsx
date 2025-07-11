@@ -56,10 +56,10 @@ export const WordCloud = ({ words, color }: Props) => {
           rx: 0, ry: 0
         }));
 
-        if (!svgRef.current) return;
+        if (!svg) return;
         
         const g = d3
-          .select(svgRef.current)
+          .select(svg)
           .attr("viewBox", "-400 -300 800 600")
           .append("g")
           .attr("text-anchor", "middle");
@@ -75,7 +75,10 @@ export const WordCloud = ({ words, color }: Props) => {
           .nodes() as SVGTextElement[];
 
         texts.forEach((el, i) => {
-          gsap.set(el, { x: layoutWords[i].x, y: layoutWords[i].y });
+          const word = layoutWords[i];
+          if (word) {
+            gsap.set(el, { x: word.x, y: word.y });
+          }
         });
 
         gsap.timeline({
@@ -102,7 +105,9 @@ export const WordCloud = ({ words, color }: Props) => {
     return () => {
       layout.stop();
       ScrollTrigger.getAll().forEach(t => t.kill());
-      d3.select(svgRef.current).selectAll("*").remove();
+      if (svg) {
+        d3.select(svg).selectAll("*").remove();
+      }
     };
   }, [words, color]);
 
@@ -181,10 +186,11 @@ export const WordCloud = ({ words, color }: Props) => {
 
     const updatePositions = () => {
       wordDataRef.current.forEach((wordData, i) => {
-        if (texts[i]) {
-          gsap.set(texts[i], {
-              x: wordData.ox! + wordData.jx! + wordData.rx!,
-              y: wordData.oy! + wordData.jy! + wordData.ry!,
+        const textElement = texts[i];
+        if (textElement) {
+          gsap.set(textElement, {
+            x: wordData.ox! + wordData.jx! + wordData.rx!,
+            y: wordData.oy! + wordData.jy! + wordData.ry!,
           });
         }
       });
@@ -198,7 +204,7 @@ export const WordCloud = ({ words, color }: Props) => {
       svg.removeEventListener('mouseenter', handleMouseEnter);
       svg.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [words, color]);
+  }, [words, color, mousePos]);
 
   return <svg ref={svgRef} style={{ width: "100%", height: "100%" }} />;
 }; 
