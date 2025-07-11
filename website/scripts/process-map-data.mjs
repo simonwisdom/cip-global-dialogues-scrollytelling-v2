@@ -83,21 +83,24 @@ function createAgreementMap(data) {
 
   data.forEach((row) => {
     const regionKey = norm(row.region);
-    const percentage = parseFloat(row.agreement_pct);
+    const value = {
+      agreement_pct: parseFloat(row.agreement_pct),
+      n: parseInt(row.n, 10),
+    };
 
     if (otherRegionMappings[regionKey]) {
       otherRegionMappings[regionKey].forEach((subRegionKey) => {
-        map.set(subRegionKey, percentage);
+        map.set(subRegionKey, value);
       });
     } else {
       // Handle typos in source data
       if (regionKey === "southerasia") {
-        map.set("southernasia", percentage);
+        map.set("southernasia", value);
       } else if (regionKey === "northereurope") {
         // incoming "Norther Europe" from CSV normalizes to "northereurope"
-        map.set("northerneurope", percentage);
+        map.set("northerneurope", value);
       } else {
-        map.set(regionKey, percentage);
+        map.set(regionKey, value);
       }
     }
   });
@@ -190,24 +193,27 @@ function joinData(topoData, countryToRegionMap, agreementMap) {
 
     if (regionHierarchy) {
       // Try to find agreement data in order of specificity: intermediate -> sub -> region
-      const agreementValue =
+      const agreementData =
         agreementMap.get(regionHierarchy.intermediate) ??
         agreementMap.get(regionHierarchy.sub) ??
         agreementMap.get(regionHierarchy.region);
 
-      if (agreementValue !== undefined) {
-        country.properties.agreement_pct = agreementValue;
+      if (agreementData !== undefined) {
+        country.properties.agreement_pct = agreementData.agreement_pct;
+        country.properties.n = agreementData.n;
       } else {
         const searchedRegions = [regionHierarchy.intermediate, regionHierarchy.sub, regionHierarchy.region].filter(Boolean).join(", ");
         notFound.push(
           `${country.properties.name} (regions: [${searchedRegions}], no agreement value)`
         );
         country.properties.agreement_pct = null;
+        country.properties.n = null;
       }
     } else {
       if (country.properties.name && country.properties.name !== "Antarctica")
         notFound.push(country.properties.name);
       country.properties.agreement_pct = null;
+      country.properties.n = null;
     }
   });
 

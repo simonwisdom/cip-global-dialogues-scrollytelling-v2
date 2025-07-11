@@ -41,4 +41,4 @@ export const EmotionalUnderstandingPoll = forwardRef<HTMLDivElement, {}>(
   }
 );
 
-EmotionalUnderstandingPoll.displayName = "EmotionalUnderstandingPoll"; 
+EmotionalUnderstandingPoll.displayName = "EmotionalUnderstandingPoll";

@@ -42,7 +42,7 @@ export const HeroConsciousness = () => {
                   ],
                 }}
               >
-                <h1 className={s["main-title"]}>What makes us human?</h1>
+                <h1 className={s["main-title"]}>Are you there?</h1>
               </Animation>
               
               <Animation
@@ -63,7 +63,7 @@ export const HeroConsciousness = () => {
                 }}
               >
                 <p className={s["subtitle"]}>
-                  Exploring consciousness in the age of AI.
+                  Consciousness and connection in the age of AI.
                 </p>
               </Animation>
             </div>

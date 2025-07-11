@@ -12,6 +12,7 @@ interface CountryProps {
   admin?: string;
   ADMIN?: string;
   agreement_pct?: number | null;
+  n?: number | null;
 }
 
 const WIDTH = 1000;
@@ -89,7 +90,13 @@ export const WorldMap = forwardRef<HTMLDivElement>((_p, ref) => {
               .style("left", `${x + 12}px`)
               .style("top", `${y + 12}px`)
               .style("opacity", 1)
-              .html(`${d.properties.name || d.properties.NAME || d.properties.admin || d.properties.ADMIN || "Unknown"}<br>${d.properties.agreement_pct ?? "—"}%`);
+              .html(
+                `${d.properties.name || d.properties.NAME || d.properties.admin || d.properties.ADMIN || "Unknown"}<br>${
+                  d.properties.agreement_pct != null
+                    ? `${Math.round(d.properties.agreement_pct)}%`
+                    : "—"
+                } (n=${d.properties.n ?? "N/A"})`
+              );
             d3.select(ev.currentTarget).attr("stroke-width", 2);
           })
           .on("mouseleave", (ev) => {

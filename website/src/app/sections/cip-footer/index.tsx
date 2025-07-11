@@ -46,7 +46,7 @@ export const CipFooter = () => {
       <footer className={s["footer"]}>
         <div className={s["footer-content"]}>
           <div className={s["footer-main"]}>
-            <h3 className={s["footer-title"]}>What makes us human?</h3>
+            <h3 className={s["footer-title"]}>Are you there?</h3>
             <p className={s["footer-subtitle"]}>© 2025</p>
           </div>
           
@@ -58,7 +58,7 @@ export const CipFooter = () => {
           
           <div className={s["footer-meta"]}>
             <p className={s["footer-description"]}>
-              An exploration of consciousness in the age of AI
+              Consciousness and connection in the age of AI
             </p>
             
             <p className={s["template-credit"]}>

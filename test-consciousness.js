@@ -18,8 +18,8 @@ async function testConsciousnessScrollytelling() {
     // Test Hero Section
     console.log('🧠 Testing Hero Consciousness section...');
     const heroTitle = await page.textContent('h1').catch(() => null);
-    if (heroTitle && heroTitle.includes('What makes us human')) {
-      console.log('✅ Hero title found: "What makes us human?"');
+    if (heroTitle && heroTitle.includes('Are you there')) {
+      console.log('✅ Hero title found: "Are you there?"');
     } else {
       console.log('❌ Hero title not found or incorrect');
     }

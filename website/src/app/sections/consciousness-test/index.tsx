@@ -94,7 +94,7 @@ export const ConsciousnessTest = () => {
             }}
           >
             <div className={s["conclusion-content"]}>
-              <h3 className={s["conclusion-title"]}>What Makes Us Human?</h3>
+              <h3 className={s["conclusion-title"]}>Are you there?</h3>
               <p className={s["conclusion-text"]}>
                 In our quest to distinguish ourselves from artificial intelligence, we&apos;ve discovered something profound: humanity isn&apos;t found in perfection or performance, but in our contradictions, our doubts, and our capacity to question what consciousness truly means.
               </p>

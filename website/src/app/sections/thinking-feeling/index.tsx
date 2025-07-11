@@ -1,45 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import * as d3 from "d3";
 import { Root, Animation } from "~/lib/scrollytelling-client";
 import s from "./thinking-feeling.module.scss";
-import { WordCloud } from "./word-cloud";
-
-type Word = { text: string; size: number };
 
 export const ThinkingFeeling = () => {
-  const [thinkingWords, setThinkingWords] = useState<Word[]>([]);
-  const [feelingWords, setFeelingWords] = useState<Word[]>([]);
-
-  useEffect(() => {
-    const loadWords = async () => {
-      const thinkingData: any[] = await d3.csv(
-        "/data/discriminative_words_thinking.csv"
-      );
-      const feelingData: any[] = await d3.csv(
-        "/data/discriminative_words_feeling.csv"
-      );
-
-      const processData = (data: any[], minSize: number, maxSize: number): Word[] => {
-        const frequencies = data.map((d) => +d.frequency);
-        const scale = d3.scaleLinear()
-          .domain([d3.min(frequencies) ?? 0, d3.max(frequencies) ?? 1])
-          .range([minSize, maxSize]);
-        
-        return data.map((d) => ({
-          text: d.word,
-          size: scale(+d.frequency),
-        }));
-      };
-
-      setThinkingWords(processData(thinkingData, 20, 100));
-      setFeelingWords(processData(feelingData, 20, 100));
-    };
-
-    loadWords();
-  }, []);
-
   return (
     <Root
       defaults={{
@@ -76,14 +40,6 @@ export const ThinkingFeeling = () => {
 
         {/* Word Cloud Chart */}
         <div className={s["chart-container"]}>
-          <div className={s["word-cloud-wrapper"]}>
-            <h3 className={s["cloud-title"]}>Thinking</h3>
-            <WordCloud words={thinkingWords} color="rgb(56, 104, 178)" />
-          </div>
-          <div className={s["word-cloud-wrapper"]}>
-            <h3 className={s["cloud-title"]}>Feeling</h3>
-            <WordCloud words={feelingWords} color="rgb(224, 84, 126)" />
-          </div>
         </div>
 
         {/* Data Source Note */}

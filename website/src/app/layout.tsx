@@ -25,33 +25,31 @@ const basementGrotesque = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "What makes us human? An Exploration of Consciousness in the Age of AI",
-  description:
-    "This scrollytelling experience, created for the Collective Intelligence Project's Global Dialogues Challenge, explores the nature of consciousness as artificial intelligence becomes increasingly sophisticated.",
+  title: "Are you there?",
+  description: "Consciousness and connection in the age of AI",
   viewport: {
     height: "device-height",
     initialScale: 1,
     width: "device-width",
   },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "/favicon.ico",
   },
   manifest: "/manifest.webmanifest",
   twitter: {
     card: "summary_large_image",
     creator: "@cip_org",
-    description: "An interactive exploration of consciousness in the age of AI.",
+    description: "Consciousness and connection in the age of AI",
     images: [{ width: 1200, height: 630, url: `${siteOrigin}/og.jpg` }],
     site: "@cip_org",
-    title: "What makes us human?",
+    title: "Are you there?",
   },
   openGraph: {
-    description: "An interactive exploration of consciousness in the age of AI.",
+    description: "Consciousness and connection in the age of AI",
     images: [{ width: 1200, height: 630, url: `${siteOrigin}/og.jpg` }],
     locale: "en-US",
     siteName: "Collective Intelligence Project",
-    title: "What makes us human?",
+    title: "Are you there?",
     type: "website",
     url: siteOrigin,
   },

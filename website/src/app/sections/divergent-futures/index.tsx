@@ -145,6 +145,22 @@ export const DivergentFutures = () => {
           <div className={s["intro-content"]}>
             <Animation
               tween={{
+                start: 10,
+                end: 30,
+                fromTo: [
+                  { opacity: 0, y: 30 },
+                  { opacity: 1, y: 0, ease: 'power2.out' },
+                ],
+              }}
+            >
+              <p className={s['intro-text']}>
+                Conscious or not, AI is set to take on a much larger share of
+                human tasks - though people disagree on where they would and
+                would not like to see AI. What do you think?
+              </p>
+            </Animation>
+            <Animation
+              tween={{
                 start: 15,
                 end: 35,
                 fromTo: [

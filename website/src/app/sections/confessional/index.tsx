@@ -20,9 +20,9 @@ export const Confessional = () => {
         {/* Scenario Header */}
         <div className={s['scenario-header']}>
           <div>
-            <div className={s["scenario-number"]}>2</div>
-            <h2 className={s["scenario-title"]}>The Confessional</h2>
-            <p className={s["scenario-subtitle"]}>Confessions of an _____ </p>
+            <div className={s["scenario-number"]}>3</div>
+            <h2 className={s["scenario-title"]}>Speculative Future 3</h2>
+       
           </div>
         </div>
 
@@ -176,18 +176,7 @@ export const Confessional = () => {
               ]
             }}
           >
-            <div>
-              <p className={s["transition-text"]}>But doubt breeds strange behaviors...</p>
-              <div className={s["continue-arrow"]}>
-                <svg viewBox="0 0 24 12" fill="none">
-                  <path
-                    d="M14 0.226562L24 6.00007L14 11.7736L14 7.00006L0 7.00006V5.00006L14 5.00007L14 0.226562Z"
-                    fill="currentColor"
-                  />
-                </svg>
-                <span>Continue</span>
-              </div>
-            </div>
+
           </Animation>
         </div>
       </section>
