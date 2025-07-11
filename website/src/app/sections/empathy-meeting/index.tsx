@@ -11,11 +11,11 @@ export const EmpathyMeeting = () => {
       end="bottom bottom"
       defaults={{ ease: 'linear' }}
       scrub={1}
-      debug={
-        process.env.NODE_ENV === 'development'
-          ? { markers: true, label: 'EmpathyMeeting' }
-          : false
-      }
+      // debug={
+      //   process.env.NODE_ENV === 'development'
+      //     ? { markers: true, label: 'EmpathyMeeting' }
+      //     : false
+      // }
     >
       <section className={s['scenario']}>
         {/* Scenario Header */}

@@ -10,11 +10,11 @@ export const Confessional = () => {
       end="bottom bottom"
       defaults={{ ease: 'linear' }}
       scrub={1}
-      debug={
-        process.env.NODE_ENV === 'development'
-          ? { markers: true, label: 'Confessional' }
-          : false
-      }
+      // debug={
+      //   process.env.NODE_ENV === 'development'
+      //     ? { markers: true, label: 'Confessional' }
+      //     : false
+      // }
     >
       <section className={s['scenario']}>
         {/* Scenario Header */}

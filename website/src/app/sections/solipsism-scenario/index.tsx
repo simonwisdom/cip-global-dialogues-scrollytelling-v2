@@ -10,11 +10,11 @@ export const SolipsismScenario = () => {
       end="bottom bottom"
       defaults={{ ease: 'linear' }}
       scrub={1}
-      debug={
-        process.env.NODE_ENV === 'development'
-          ? { markers: true, label: 'SolipsismScenario' }
-          : false
-      }
+      // debug={
+      //   process.env.NODE_ENV === 'development'
+      //     ? { markers: true, label: 'SolipsismScenario' }
+      //     : false
+      // }
     >
       <section className={s['scenario']}>
         {/* Scenario Header */}

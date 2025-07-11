@@ -71,21 +71,27 @@ export const WorldMap = forwardRef<HTMLDivElement>((_p, ref) => {
           }
         }
 
-        if (landTopo) {
-          layer
-            .append("path")
-            .datum(topojson.feature(landTopo, (landTopo.objects as any).land))
-            .attr("d", path)
-            .attr("fill", "#f4f4f4")
-            .attr("stroke", "#ccc");
-        }
+        // if (landTopo) {
+        //   layer
+        //     .append("path")
+        //     .datum(topojson.feature(landTopo, (landTopo.objects as any).land))
+        //     .attr("d", path)
+        //     .attr("fill", "#f4f4f4")
+        //     .attr("stroke", "#ccc");
+        // }
 
         const countries = (
           topojson.feature(countryTopo, (countryTopo.objects as any).countries) as unknown as {
             type: "FeatureCollection";
             features: GeoJSON.Feature<GeoJSON.Geometry, CountryProps>[];
           }
-        ).features;
+        ).features.filter(
+          (d) =>
+            d.properties.name !== "Antarctica" &&
+            d.properties.NAME !== "Antarctica" &&
+            d.properties.admin !== "Antarctica" &&
+            d.properties.ADMIN !== "Antarctica"
+        );
 
         const paths = layer
           .selectAll<SVGPathElement, typeof countries[number]>("path.country")

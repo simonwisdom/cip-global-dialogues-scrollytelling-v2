@@ -1,0 +1,101 @@
+@import '~/app/css/helpers';
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 1200px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.content {
+  padding: 2rem;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.title {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.subtitle {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #aaa;
+}
+
+.question {
+  font-style: italic;
+  color: #ccc;
+  margin-bottom: 1rem;
+  border-left: 2px solid #3868b2;
+  padding-left: 1rem;
+}
+
+.tableContainer {
+  flex-grow: 1;
+  overflow-y: auto;
+  border: 1px solid #333;
+  border-radius: 4px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #333;
+    vertical-align: top;
+  }
+
+  th {
+    background-color: #252525;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  td {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+} 

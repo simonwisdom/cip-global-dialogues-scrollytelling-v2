@@ -113,11 +113,11 @@ export const DivergentFutures = () => {
       }}
       start="top 80%"
       end="bottom 20%"
-      debug={
-        process.env.NODE_ENV === 'development'
-          ? { markers: true, label: 'DivergentFutures' }
-          : false
-      }
+      // debug={
+      //   process.env.NODE_ENV === 'development'
+      //     ? { markers: true, label: 'DivergentFutures' }
+      //     : false
+      // }
     >
       <section className={s["scenario"]}>
         {/* Scenario Header */}
