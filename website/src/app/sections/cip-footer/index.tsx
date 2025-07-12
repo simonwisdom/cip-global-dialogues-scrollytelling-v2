@@ -40,7 +40,7 @@ export const CipFooter = () => {
             by the Collective Intelligence Project.
           </p>
           <p className={s["cip-contributors"]}>
-            <strong>Contributions:</strong> Simon Wisdom, Bridget Harris, and Christopher Ackerman.
+            <strong>Contributors:</strong> <br />Simon Wisdom, Bridget Harris, and Christopher Ackerman.
           </p>
           <p className={s["cip-date"]}>July 2025</p>
         </div>
@@ -51,7 +51,6 @@ export const CipFooter = () => {
         <div className={s["footer-content"]}>
           <div className={s["footer-main"]}>
             <h3 className={s["footer-title"]}>Are you there?</h3>
-            <p className={s["footer-subtitle"]}>© 2025</p>
           </div>
           
           <div className={s["footer-disclosure"]}>

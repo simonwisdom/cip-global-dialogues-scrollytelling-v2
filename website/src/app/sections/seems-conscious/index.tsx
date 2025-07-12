@@ -91,7 +91,7 @@ export const SeemsConscious = () => {
 
             <div className={s['explanation-container']}>
               <p className={s['explanation-intro']}>
-                And how people reasoned about the question seemed to matter.
+                And how people thought about the question seemed to matter.
               </p>
               <div className={s['explanation-split']}>
                 <div className={s['explanation-side']}>

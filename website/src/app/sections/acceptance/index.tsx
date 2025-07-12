@@ -164,7 +164,7 @@ export const Acceptance = () => {
             ]
           }}
         >
-          <h2 className={s.title}>Acceptance</h2>
+
         </Animation>
         
         <Animation
@@ -177,10 +177,7 @@ export const Acceptance = () => {
             ]
           }}
         >
-          <p className={s.subtitle}>
-            Exploring public sentiment on the societal impact of artificial
-            intelligence.
-          </p>
+
         </Animation>
 
         <Animation
@@ -205,7 +202,6 @@ export const Acceptance = () => {
         <div className={s["scenario-header"]}>
           <div>
             <div className={s["scenario-number"]}>6</div>
-            <h3 className={s.subtitle}>Acceptance</h3>
           </div>
         </div>
 

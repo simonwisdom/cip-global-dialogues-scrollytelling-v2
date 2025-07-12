@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import s from "./divergent-futures.module.scss";
 import { ProfessionCard } from "./profession-card";
 import {
@@ -298,7 +299,7 @@ export const DivergentFutures = () => {
                   }
                 }}
               >
-                <img src={p.icon} className={s['profession-icon']} alt="" aria-hidden="true" />
+                <Image src={p.icon} className={s['profession-icon']} alt="" aria-hidden="true" width={48} height={48} />
                 <span className={s['profession-name']}>{p.name}</span>
               </div>
             ))}

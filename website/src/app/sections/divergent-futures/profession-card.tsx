@@ -131,7 +131,7 @@ export const ProfessionCard = memo(forwardRef<HTMLDivElement, ProfessionCardProp
           &times;
         </button>
         <div className={s.cardHeader}>
-          <img src={profession.icon} className={s.professionIcon} alt="" aria-hidden="true" />
+          <Image src={profession.icon} className={s.professionIcon} alt="" aria-hidden="true" width={48} height={48} />
           <h3 className={s.professionName} id="profession-title">{profession.name}</h3>
         </div>
 

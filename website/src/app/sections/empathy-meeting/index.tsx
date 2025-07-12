@@ -39,7 +39,7 @@ export const EmpathyMeeting = () => {
                   from: { opacity: 0, y: 30 },
                   ease: 'power2.out',
                   start: 0,
-                  end: 90,
+                  end: 85,
                 } as any}
               >
                 <div className={s['story-intro']}>
@@ -49,7 +49,7 @@ export const EmpathyMeeting = () => {
                 </div>
                 <div className={s["story-paragraph"]}>
                   <p>
-                    I mean, people say it’s different since the Empathy Act, but honestly -
+                    I mean, people say it&apos;s different since the Empathy Act, but honestly -
                   </p>
                 </div>
                 <div className={s['story-paragraph']}>
@@ -59,12 +59,12 @@ export const EmpathyMeeting = () => {
                 </div>
                 <div className={s['story-paragraph']}>
                   <p>
-                    Ok, here we go, the around the room ‘Empathic Check In’ - ugh, if I had a pound for every ‘that sounds really difficult’ or every knitted brow…
+                    Ok, here we go, the around the room &apos;Empathic Check In&apos; - ugh, if I had a pound for every &apos;that sounds really difficult&apos; or every knitted brow…
                   </p>
                 </div>
                 <div className={s['story-paragraph']}>
                   <p>
-                    Yeah, yeah, classic Brett, in there with a gentle ‘am I right in feeling some apprehension in the room?’. Way to go, Brett. I remember when you got promoted and promoted just by interrupting everyone with a ‘will it scale?’. Times change, but the repetition doesn’t, eh Brett?
+                    Yeah, yeah, classic Brett, in there with a gentle &apos;am I right in feeling some apprehension in the room?&apos;. Way to go, Brett. I remember when you got promoted and promoted just by interrupting everyone with a &apos;will it scale?&apos;. Times change, but the repetition doesn&apos;t, eh Brett?
                   </p>
                 </div>
                 <div className={s['story-paragraph']}>
@@ -74,7 +74,7 @@ export const EmpathyMeeting = () => {
                 </div>
                 <div className={s['story-paragraph']}>
                   <p>
-                    “Umm, I guess…I’m feeling a bit distracted right now and…like I’m struggling to be present”.
+                    &quot;Umm, I guess…I&apos;m feeling a bit distracted right now and…like I&apos;m struggling to be present&quot;.
                   </p>
                 </div>
                 <div className={s['story-paragraph']}>
@@ -84,27 +84,27 @@ export const EmpathyMeeting = () => {
                 </div>
                 <div className={s['story-paragraph']}>
                   <p>
-                    I mean, I get it. They’re Type A big cheeses, they haven’t got anything to do anymore except empathise. And they have to too, we basically get paid these big bucks just to be accountable for the AIs, check for bias and to show how human and empathic we all are. But does nobody here question whether any of this is not…a bit…false?
+                    I mean, I get it. They&apos;re Type A big cheeses, they haven&apos;t got anything to do anymore except empathise. And they have to too, we basically get paid these big bucks just to be accountable for the AIs, check for bias and to show how human and empathic we all are. But does nobody here question whether any of this is not…a bit…false?
                   </p>
                 </div>
                 <div className={s['story-paragraph']}>
                   <p>
-                    “Saskia, I’m noticing we’ve not heard much from you, I see you as quite tense…and I’d really love to welcome your experiences into the room”.
+                    &quot;Saskia, I&apos;m noticing we&apos;ve not heard much from you, I see you as quite tense…and I&apos;d really love to welcome your experiences into the room&quot;.
                   </p>
                 </div>
                 <div className={s['story-paragraph']}>
                   <p>
-                    Oh, damn this giveaway face of mine. How am I meant to respond to that? I can’t afford another empathy warning. Ok, ok, focus: I’ll hear him, and be congruent. 
+                    Oh, damn this giveaway face of mine. How am I meant to respond to that? I can&apos;t afford another empathy warning. Ok, ok, focus: I&apos;ll hear him, and be congruent. 
                   </p>
                 </div>
                 <div className={s['story-paragraph']}>
                   <p>
-                    “Umm, I’m hearing your curiosity and sense of welcome. And… I guess, I am feeling tense, and…kind of…questioning what we’re doing here.”
+                    &quot;Umm, I&apos;m hearing your curiosity and sense of welcome. And… I guess, I am feeling tense, and…kind of…questioning what we&apos;re doing here.&quot;
                   </p>
                 </div>
                 <div className={s['story-paragraph']}>
                   <p>
-                    “Questioning what we’re doing here?”
+                    &quot;Questioning what we&apos;re doing here?&quot;
                   </p>
                 </div>
                 <div className={s['story-paragraph']}>
@@ -114,12 +114,12 @@ export const EmpathyMeeting = () => {
                 </div>
                 <div className={s['story-paragraph']}>
                   <p>
-                    “Yeah…I guess I want to say…that…well, it’s kind of that I don’t remember meetings being like this before. I suppose I’m remembering when we used to discuss business and things, and be kind of - forceful and direct and stuff”. 
+                    &quot;Yeah…I guess I want to say…that…well, it&apos;s kind of that I don&apos;t remember meetings being like this before. I suppose I&apos;m remembering when we used to discuss business and things, and be kind of - forceful and direct and stuff&quot;. 
                   </p>
                 </div>
                 <div className={s['story-paragraph']}>
                   <p>
-                    “Ah, ok, thank you for sharing this…I’m getting the sense that you’re comparing our Empathic Check-in with our previous Success Stand-ups, and I’m wondering whether you’re missing the business talk?” 
+                    &quot;Ah, ok, thank you for sharing this…I&apos;m getting the sense that you&apos;re comparing our Empathic Check-in with our previous Success Stand-ups, and I&apos;m wondering whether you&apos;re missing the business talk?&quot; 
                   </p>
                 </div>
                 <div className={s['story-paragraph']}>
@@ -129,27 +129,27 @@ export const EmpathyMeeting = () => {
                 </div>
                 <div className={s['story-paragraph']}>
                   <p>
-                    “Umm…I guess it’s less that, and maybe more that…well, I guess we have to be empathic now, and that makes me question whether we’re not all, maybe…going through the motions, play-acting empathy, not really feeling it?”
+                    &quot;Umm…I guess it&apos;s less that, and maybe more that…well, I guess we have to be empathic now, and that makes me question whether we&apos;re not all, maybe…going through the motions, play-acting empathy, not really feeling it?&quot;
                   </p>
                 </div>
                 <div className={s['story-paragraph']}>
                   <p>
-                    Slow exhalation from the boss, gently intense gaze and he’s got his hand on his heart. God, he’s good at this. 
+                    Slow exhalation from the boss, gently intense gaze and he&apos;s got his hand on his heart. God, he&apos;s good at this. 
                   </p>
                 </div>
                 <div className={s['story-paragraph']}>
                   <p>
-                    “So you’re questioning whether we’re truly feeling empathy, or just play-acting…Wow, I personally feel so grateful for you, Saskia, for being here and for bringing this into our space. I wonder whether we all have a small voice that sometimes worries about this, and what this might feel like, for the group..?”
+                    &quot;So you&apos;re questioning whether we&apos;re truly feeling empathy, or just play-acting…Wow, I personally feel so grateful for you, Saskia, for being here and for bringing this into our space. I wonder whether we all have a small voice that sometimes worries about this, and what this might feel like, for the group..?&quot;
                   </p>
                 </div>
                 <div className={s['story-paragraph']}>
                   <p>
-                    Ok, we’re going around the room now and wow they feel it too! 
+                    Ok, we&apos;re going around the room now and wow they feel it too! 
                   </p>
                 </div>
                 <div className={s['story-paragraph']}>
                   <p>
-                    Yes, Lindsey, it kind of does feel like this itchy uncertainty. And old finance Dan, I’m sorry you’ve been feeling threatened in these meetings, I didn’t know. And yes, even you Brett - you’re so right, it’s lonely, not knowing if anything is heartfelt or just another KPI. 
+                    Yes, Lindsey, it kind of does feel like this itchy uncertainty. And old finance Dan, I&apos;m sorry you&apos;ve been feeling threatened in these meetings, I didn&apos;t know. And yes, even you Brett - you&apos;re so right, it&apos;s lonely, not knowing if anything is heartfelt or just another KPI. 
                   </p>
                 </div>
                 <div className={s['story-paragraph']}>
@@ -160,23 +160,13 @@ export const EmpathyMeeting = () => {
               </Stagger>
             </div>
 
-            {/* Chart Section */}
+            {/* Chart Section - Now positioned below narrative */}
             <div className={s["chart-section"]}>
               <Animation
                 tween={{
-                  from: { opacity: 0, scale: 0.8, ease: "power2.out" },
-                  start: 80,
-                  end: 90,
-                }}
-              >
-            
-              </Animation>
-
-              <Animation
-                tween={{
                   from: { opacity: 0, scale: 1.1, ease: 'power2.out' },
-                  start: 90,
-                  end: 100,
+                  start: 85,
+                  end: 95,
                 }}
               >
                 <div className={s['chart-item']}>
