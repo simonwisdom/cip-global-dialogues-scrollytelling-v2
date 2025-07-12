@@ -1,11 +1,13 @@
+@import "../../css/themes";
+
 .chart-container {
   width: 100%;
   text-align: center;
 }
 
 .chart-title {
+  @include heading-primary;
   font-size: 1.3rem;
-  font-weight: 700;
   color: #206095;
   margin: 0 0 20px 0;
   line-height: 1.3;

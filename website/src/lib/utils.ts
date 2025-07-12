@@ -88,3 +88,24 @@ export const getTimeline = (config: {
 
   return animationChunks;
 };
+
+/**
+ * Development-only logging utility
+ * Only logs in development mode to reduce console noise in production
+ */
+export const devLog = {
+  log: (message: string, ...args: any[]) => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log(message, ...args);
+    }
+  },
+  warn: (message: string, ...args: any[]) => {
+    if (process.env.NODE_ENV === 'development') {
+      console.warn(message, ...args);
+    }
+  },
+  error: (message: string, ...args: any[]) => {
+    // Always log errors, even in production
+    console.error(message, ...args);
+  }
+};

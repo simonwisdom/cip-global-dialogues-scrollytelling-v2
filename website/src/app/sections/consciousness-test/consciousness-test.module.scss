@@ -1,3 +1,5 @@
+@import "../../css/themes";
+
 .scenario {
   background: linear-gradient(180deg, #e6f0ff 0%, #cce7f0 100%);
   color: #333;
@@ -30,8 +32,8 @@
 }
 
 .scenario-title {
+  @include heading-primary;
   font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 900;
   line-height: 1.1;
   margin: 0 0 16px 0;
   color: #206095;
@@ -95,8 +97,8 @@
 }
 
 .conclusion-title {
+  @include heading-primary;
   font-size: 2.5rem;
-  font-weight: 900;
   color: #ffcccc;
   margin: 0 0 30px 0;
 }

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import * as d3 from "d3";
 import { WordCloud } from "./word-cloud";
 import { ResponsesModal } from "./responses-modal";
+import { RegionalConsciousnessTable } from "./RegionalConsciousnessTable";
 
 type Word = { text: string; size: number };
 
@@ -72,7 +73,7 @@ export const SeemsConscious = () => {
             {/* Scenario Header */}
             <div className={s["scenario-header"]}>
               <div>
-                <div className={s["scenario-number"]}>2</div>
+                <div className={s["scenario-number"]}>1</div>
                 <h2 className={s["scenario-title"]}>Many people believe AI is already conscious.</h2>
               </div>
             </div>
@@ -120,6 +121,8 @@ export const SeemsConscious = () => {
                 an AI truly understood your emotions or seemed conscious?&quot; Word counts extracted from free text responses to the survey question.
               </p>
             </div>
+
+            {/* <RegionalConsciousnessTable /> */}
 
             <div className={s['concluding-text']}>
               <p>Either way, the perception of consciousness is large enough that it likely warrants a response. What might that response look like? Will the way we treat seemingly conscious AIs map onto - or affect - how we treat other beings? Will AI welfare become more of an issue? If so, what to make of the fact that this investigation may be led by AI labs themselves?</p>

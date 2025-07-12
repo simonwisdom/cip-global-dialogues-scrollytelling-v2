@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
+import { useEffect, useRef, forwardRef, useImperativeHandle, useState } from "react";
 import * as d3 from "d3";
 import s from "./bar-chart.module.scss";
 
@@ -15,10 +15,11 @@ type BarChartProps = {
   title?: string;
   sortBy?: "percentage" | "response";
   barColors?: { [key: string]: string };
+  customOrder?: string[]; // New prop for manual ordering
 };
 
 export const BarChart = forwardRef(
-  ({ chartId, data, title, sortBy = "percentage", barColors }: BarChartProps, ref) => {
+  ({ chartId, data, title, sortBy = "percentage", barColors, customOrder }: BarChartProps, ref) => {
     const chartContainerRef = useRef<HTMLDivElement>(null);
     const tooltipRef = useRef<HTMLDivElement>(null);
 
@@ -26,31 +27,34 @@ export const BarChart = forwardRef(
     const heightRef = useRef(0);
     const xRef = useRef<d3.ScaleLinear<number, number, never> | null>(null);
 
+    // Track if animation has already run
+    const [hasAnimated, setHasAnimated] = useState(false);
+
     useImperativeHandle(ref, () => ({
       animate() {
-        if (!gRef.current || !xRef.current) return;
+        if (!gRef.current || !xRef.current || hasAnimated) return;
         const g = d3.select(gRef.current);
         const x = xRef.current;
-
         g.selectAll(".bar")
           .transition()
           .duration(800)
           .delay((_d, i) => i * 100)
           .attr("width", (d: any) => x(d.percentage));
-
         g.selectAll(".bar-label")
           .transition()
           .duration(800)
           .delay((_d, i) => i * 100 + 400)
           .style("opacity", 1);
+        setHasAnimated(true);
       },
       reset() {
         if (!gRef.current) return;
         const g = d3.select(gRef.current);
         g.selectAll(".bar").attr("width", 0);
         g.selectAll(".bar-label").style("opacity", 0);
+        setHasAnimated(false);
       },
-    }));
+    }), [hasAnimated]);
 
     const wrap = (text: any, width: number) => {
       text.each(function (this: any) {
@@ -103,10 +107,15 @@ export const BarChart = forwardRef(
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
       let maxLabelWidth = 0;
-      const sortedData =
-        sortBy === "percentage"
-          ? [...data].sort((a, b) => b.percentage - a.percentage)
-          : [...data];
+      let sortedData: DataPoint[];
+      if (customOrder && Array.isArray(customOrder)) {
+        // Sort by custom order
+        sortedData = [...data].sort((a, b) => customOrder.indexOf(a.response) - customOrder.indexOf(b.response));
+      } else if (sortBy === "percentage") {
+        sortedData = [...data].sort((a, b) => b.percentage - a.percentage);
+      } else {
+        sortedData = [...data];
+      }
       if (ctx) {
         ctx.font = labelFont;
         maxLabelWidth = Math.max(
@@ -117,7 +126,8 @@ export const BarChart = forwardRef(
         top: 10,
         right: 20,
         bottom: 10,
-        left: Math.max(60, Math.ceil(maxLabelWidth) + 40), // 40px generous padding
+        // Increase minimum left margin for y-axis labels
+        left: Math.max(100, Math.ceil(maxLabelWidth) + 50), // 50px generous padding, min 100px
       };
       const barHeight = 36; // Minimum height per bar for readability
       const height = barHeight * data.length;
@@ -152,8 +162,10 @@ export const BarChart = forwardRef(
       g.append("g")
         .attr("class", "axis y-axis")
         .call(d3.axisLeft(y).tickSize(0))
-        .select(".domain")
-        .remove();
+        .selectAll(".tick text")
+        .style("fill", "#223") // Ensure dark, visible color
+        .style("font-size", "15px");
+      g.select(".domain").remove();
 
       const bars = g
         .selectAll(".bar")
@@ -218,6 +230,7 @@ export const BarChart = forwardRef(
 
     useEffect(() => {
       drawChart();
+      setHasAnimated(false); // Reset animation state on data/sortBy change
 
       const handleResize = () => {
         drawChart();
@@ -228,9 +241,10 @@ export const BarChart = forwardRef(
       return () => {
         window.removeEventListener("resize", handleResize);
       };
-    }, [data, sortBy]);
+    }, [data, sortBy, customOrder]);
 
-    const colorClassNumber = chartId.replace('chart', '');
+    const colorClassNumber = chartId.replace(/[^0-9]/g, '');
+    const dynamicColorClass = s[`chart-colors-${colorClassNumber}`] || '';
 
     return (
       <div className={s["chart-wrapper"]}>
@@ -238,7 +252,7 @@ export const BarChart = forwardRef(
         <div
           id={chartId}
           ref={chartContainerRef}
-          className={`${s.chart} ${s[`chart-colors-${colorClassNumber}`]}`}
+          className={`${s.chart} ${dynamicColorClass}`}
         ></div>
         <div ref={tooltipRef} className={s.tooltip}></div>
       </div>

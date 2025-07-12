@@ -1,3 +1,5 @@
+@import "../../css/themes";
+
 .card {
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(6px);
@@ -7,15 +9,18 @@
   width: 100%;
   max-width: 900px;
   margin: auto;
-  padding: 4px 16px 8px 16px;
+  padding: 32px 32px 32px 32px; // Increased padding for better centering
   position: relative;
   color: #222;
   perspective: 900px;
   display: flex;
   flex-direction: column;
-  min-height: 300px;
-  min-height: 70vh;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  min-height: 60vh;
   max-height: 90vh;
+  box-sizing: border-box;
   /* Remove overflow and centering that can collapse children */
 }
 
@@ -50,7 +55,10 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 0;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
   height: 100%;
   overflow: visible;
 }
@@ -108,10 +116,13 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   gap: 24px;
   min-height: 180px;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .choiceQuestion {
@@ -122,6 +133,7 @@
 }
 
 .choiceSubtitle {
+  @include heading-primary;
   font-size: 1.15rem;
   color: #444;
   max-width: 60ch;
@@ -198,8 +210,8 @@
 }
 
 .singleOption .optionTitle {
+  @include heading-primary;
   font-size: 1.08rem;
-  font-weight: 600;
   margin: 0 0 6px 0;
   line-height: 1.25;
 }
@@ -279,8 +291,8 @@
 
 @media (max-width: 768px) {
   .card {
-    padding: 2px 2px 6px 2px;
-    min-height: 90vh;
+    padding: 16px 4px 16px 4px;
+    min-height: 80vh;
     max-height: 98vh;
     max-width: 99vw;
   }
@@ -363,11 +375,14 @@
     white-space: normal;
     text-overflow: unset;
   }
+  .cardContent {
+    padding: 0;
+  }
 }
 
 @media (max-width: 480px) {
   .card {
-    padding: 1px 0 4px 0;
+    padding: 8px 0 8px 0;
     min-height: 98vh;
     max-height: 100vh;
     max-width: 100vw;
@@ -430,5 +445,8 @@
     overflow: visible;
     white-space: normal;
     text-overflow: unset;
+  }
+  .cardContent {
+    padding: 0;
   }
 }

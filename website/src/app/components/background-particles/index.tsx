@@ -1,12 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import s from './background-particles.module.scss';
 
 export const BackgroundParticles = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+    
     const container = containerRef.current;
     if (!container) return;
 
@@ -31,6 +34,11 @@ export const BackgroundParticles = () => {
       }
     };
   }, []);
+
+  // Don't render anything on the server to prevent hydration mismatch
+  if (!isMounted) {
+    return null;
+  }
 
   return <div ref={containerRef} className={s['bg-particles']} />;
 }; 

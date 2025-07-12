@@ -5,6 +5,7 @@ import Image from "next/image";
 import s from "./profession-card.module.scss";
 import { useIsoLayoutEffect } from "../../hooks/use-iso-layout-effect";
 import { gsap } from "gsap";
+import { devLog } from "~/lib/utils";
 
 interface Profession {
   id: string;
@@ -35,7 +36,11 @@ const preloadImage = (src: string) => {
 
 export const ProfessionCard = memo(forwardRef<HTMLDivElement, ProfessionCardProps>(
   ({ profession, onClose }, ref) => {
-    console.log('[ProfessionCard] Rendered. Profession:', profession);
+    // Development-only log that only fires when profession changes
+    useEffect(() => {
+      devLog.log('[ProfessionCard] Profession changed:', profession.name);
+    }, [profession.name]);
+    
     const [choice, setChoice] = useState<"human" | "ai" | null>(null);
     const [isFlipping, setIsFlipping] = useState(false);
     const cardContentRef = useRef<HTMLDivElement>(null);

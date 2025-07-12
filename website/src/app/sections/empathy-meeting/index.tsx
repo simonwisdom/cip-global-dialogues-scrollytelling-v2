@@ -21,7 +21,7 @@ export const EmpathyMeeting = () => {
         {/* Scenario Header */}
         <div className={s['scenario-header']}>
           <div>
-            <div className={s["scenario-number"]}>2</div>
+            <div className={s["scenario-number"]}>5</div>
             <h2 className={s["scenario-title"]}>Speculative Future 2</h2>
           </div>
         </div>
@@ -189,6 +189,8 @@ export const EmpathyMeeting = () => {
                       objectFit: 'cover',
                       borderRadius: '16px',
                       boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+                      width: 'auto',
+                      height: 'auto',
                     }}
                   />
                 </div>

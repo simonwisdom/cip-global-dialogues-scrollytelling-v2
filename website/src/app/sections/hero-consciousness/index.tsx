@@ -27,20 +27,47 @@ const HeroConsciousnessContent = forwardRef(
       gsap.registerPlugin(SplitText);
 
       const ctx = gsap.context(() => {
-        const split = new SplitText(titleRef.current, { type: "words,chars" });
-        const chars = split.chars;
-        gsap.set(titleRef.current, { opacity: 1 });
+        // Wait for fonts to load before creating SplitText
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(() => {
+            if (titleRef.current) {
+              const split = new SplitText(titleRef.current, { type: "words,chars" });
+              const chars = split.chars;
+              gsap.set(titleRef.current, { opacity: 1 });
 
-        timeline.from(
-          chars,
-          {
-            duration: 0.5, // this will take 50% of the timeline duration
-            opacity: 0,
-            stagger: { from: "random", each: 0.01 },
-            ease: "power2.out",
-          },
-          0 // start at the beginning of the timeline
-        );
+              timeline.from(
+                chars,
+                {
+                  duration: 0.5, // this will take 50% of the timeline duration
+                  opacity: 0,
+                  stagger: { from: "random", each: 0.01 },
+                  ease: "power2.out",
+                },
+                0 // start at the beginning of the timeline
+              );
+            }
+          });
+        } else {
+          // Fallback for browsers that don't support document.fonts
+          setTimeout(() => {
+            if (titleRef.current) {
+              const split = new SplitText(titleRef.current, { type: "words,chars" });
+              const chars = split.chars;
+              gsap.set(titleRef.current, { opacity: 1 });
+
+              timeline.from(
+                chars,
+                {
+                  duration: 0.5, // this will take 50% of the timeline duration
+                  opacity: 0,
+                  stagger: { from: "random", each: 0.01 },
+                  ease: "power2.out",
+                },
+                0 // start at the beginning of the timeline
+              );
+            }
+          }, 100);
+        }
       }, containerRef);
 
       return () => ctx.revert();

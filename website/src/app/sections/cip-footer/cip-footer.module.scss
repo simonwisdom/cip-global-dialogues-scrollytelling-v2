@@ -1,3 +1,5 @@
+@import "../../css/themes";
+
 .cip-section {
   padding: 60px 20px;
   background-image: url('/images/cip/global-dialogues.png');
@@ -56,6 +58,7 @@
   }
 
   .footer-title {
+    @include heading-primary;
     font-size: 1.5em;
     margin-bottom: 5px;
   }

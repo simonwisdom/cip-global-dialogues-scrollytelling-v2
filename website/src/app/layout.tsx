@@ -28,6 +28,32 @@ const basementGrotesque = localFont({
   preload: true,
 });
 
+// OPTI font configuration
+const optiFont = localFont({
+  src: [
+    { path: "./fonts/OPTIOptionMedium.otf", weight: "500" },
+    { path: "./fonts/OPTIOptionSemiBold.otf", weight: "600" },
+  ],
+  fallback: ["var(--font-system)"],
+  preload: true,
+  variable: "--font-opti",
+});
+
+// AktivGrotesk font configuration
+const aktivGrotesk = localFont({
+  src: [
+    { path: "./fonts/AktivGrotesk-Regular.ttf", weight: "400" },
+    { path: "./fonts/AktivGrotesk-Medium.ttf", weight: "500" },
+    { path: "./fonts/AktivGrotesk-Bold.ttf", weight: "700" },
+    { path: "./fonts/AktivGrotesk-Black.ttf", weight: "900" },
+  ],
+  fallback: ["var(--font-system)"],
+  preload: true,
+  variable: "--font-aktiv-grotesk",
+});
+
+
+
 export const metadata: Metadata = {
   title: "Are you there?",
   description: "Consciousness and connection in the age of AI",
@@ -65,9 +91,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      className={`${optiFont.variable} ${aktivGrotesk.variable}`}
       style={{
         ["--font-basement-grotesque" as string]: `${basementGrotesque.style.fontFamily}, var(--font-system), sans-serif`,
         ["--font-jetbrains-mono" as string]: `${jetBrainsMono.style.fontFamily}, var(--font-system), sans-serif`,
+        ["--font-opti" as string]: `${optiFont.style.fontFamily}, var(--font-system), sans-serif`,
+        ["--font-aktiv-grotesk" as string]: `${aktivGrotesk.style.fontFamily}, var(--font-system), sans-serif`,
       }}
     >
       <ScrollytellingRegistrar />

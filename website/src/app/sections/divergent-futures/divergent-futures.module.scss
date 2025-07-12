@@ -132,22 +132,46 @@
   transition: color 0.3s ease;
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .cardWrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   width: 100%;
   max-width: 900px;
   z-index: 10;
   opacity: 0;
   visibility: hidden;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  height: 50vh;
-  max-width: 900px;
+  min-height: 300px;
+  max-height: 90vh;
+  overflow-y: auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 16px;
   
   &.visible {
     opacity: 1;
@@ -247,9 +271,15 @@
     min-height: 20vh;
   }
 
+  .overlay {
+    padding: var(--space-md);
+  }
+
   .cardWrapper {
     max-width: 98vw;
-    height: 50vh;
+    min-height: 200px;
+    max-height: 98vh;
+    overflow-y: auto;
     padding: 0 var(--space-md);
   }
 }

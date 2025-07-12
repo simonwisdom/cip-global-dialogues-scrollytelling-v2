@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 const CURSOR_STYLE = `
   position: fixed;
@@ -15,22 +15,35 @@ const CURSOR_STYLE = `
 `;
 
 export const useCustomCursor = (glitchSelector: string) => {
+  const cursorRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     const cursor = document.createElement('div');
     cursor.style.cssText = CURSOR_STYLE;
-    document.body.appendChild(cursor);
+    cursorRef.current = cursor;
+    
+    // Check if cursor is already in the DOM before adding
+    if (!document.body.contains(cursor)) {
+      document.body.appendChild(cursor);
+    }
 
     const onMouseMove = (e: MouseEvent) => {
-      cursor.style.left = `${e.clientX - 10}px`;
-      cursor.style.top = `${e.clientY - 10}px`;
+      if (cursor && document.body.contains(cursor)) {
+        cursor.style.left = `${e.clientX - 10}px`;
+        cursor.style.top = `${e.clientY - 10}px`;
+      }
     };
 
     const onMouseEnter = () => {
-      cursor.style.transform = 'scale(2)';
+      if (cursor && document.body.contains(cursor)) {
+        cursor.style.transform = 'scale(2)';
+      }
     };
 
     const onMouseLeave = () => {
-      cursor.style.transform = 'scale(1)';
+      if (cursor && document.body.contains(cursor)) {
+        cursor.style.transform = 'scale(1)';
+      }
     };
 
     document.addEventListener('mousemove', onMouseMove);
@@ -47,7 +60,16 @@ export const useCustomCursor = (glitchSelector: string) => {
         el.removeEventListener('mouseenter', onMouseEnter);
         el.removeEventListener('mouseleave', onMouseLeave);
       });
-      document.body.removeChild(cursor);
+      
+      // Safely remove cursor element
+      if (cursor && document.body.contains(cursor)) {
+        try {
+          document.body.removeChild(cursor);
+        } catch (error) {
+          console.warn('[useCustomCursor] Failed to remove cursor element:', error);
+        }
+      }
+      cursorRef.current = null;
     };
   }, [glitchSelector]);
 }; 

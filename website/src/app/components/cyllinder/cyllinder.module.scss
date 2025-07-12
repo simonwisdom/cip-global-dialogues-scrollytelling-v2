@@ -1,4 +1,5 @@
 @import "../../css/helpers";
+@import "../../css/themes";
 
 .section {
   display: flex;
@@ -34,11 +35,11 @@
       width: 100%;
 
       .title {
+        @include heading-primary;
         position: relative;
         z-index: 10;
         width: 100%;
         position: relative;
-        font-weight: 900;
         text-align: center;
         white-space: nowrap;
         font-size: 3.5vw;

@@ -1,4 +1,5 @@
 @import "../../../css/helpers.scss";
+@import "../../../css/themes";
 
 .container {
   position: relative;
@@ -58,10 +59,10 @@
 }
 
 .title {
+  @include heading-primary;
   position: relative;
   z-index: 1;
   font-size: tovw(128px);
-  font-weight: 900;
   line-height: 0.91;
   max-width: tovw(1551px);
   margin-top: tovw(52px);
@@ -78,6 +79,7 @@
 }
 
 .subtitle {
+  @include heading-primary;
   font-size: tovw(32px);
   letter-spacing: -0.005em;
   margin-top: tovw(64px);

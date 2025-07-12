@@ -129,7 +129,7 @@
 }
 
 @mixin heading-secondary {
-  font-family: var(--heading-secondary-font-family);
+  font-family: var(--heading-primary-font-family);
   font-weight: var(--heading-font-weight);
   line-height: var(--heading-line-height);
   letter-spacing: 0em;

@@ -21,6 +21,10 @@ export const CipFooter = () => {
               width={200}
               height={55}
               className={s["cip-logo"]}
+              style={{
+                width: 'auto',
+                height: 'auto',
+              }}
             />
           </a>
           <p className={s["cip-description"]}>

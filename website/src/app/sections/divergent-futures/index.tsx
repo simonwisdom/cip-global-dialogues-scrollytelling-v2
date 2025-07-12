@@ -197,6 +197,27 @@ export const DivergentFutures = () => {
     setActiveProfession(null);
   }, []);
 
+  const handleOverlayClick = useCallback((e: React.MouseEvent) => {
+    // Only close if clicking the overlay itself, not its children
+    if (e.target === e.currentTarget) {
+      handleClose();
+    }
+  }, [handleClose]);
+
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape' && activeProfession) {
+      handleClose();
+    }
+  }, [activeProfession, handleClose]);
+
+  // Add keyboard event listener for Escape key
+  useEffect(() => {
+    if (activeProfession) {
+      document.addEventListener('keydown', handleKeyDown);
+      return () => document.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [activeProfession, handleKeyDown]);
+
   // Simplified animation - only animate card appearance
   useIsoLayoutEffect(() => {
     if (!activeProfession) return;
@@ -227,7 +248,7 @@ export const DivergentFutures = () => {
         {/* Scenario Header */}
         <div className={s["scenario-header"]}>
           <div>
-            <div className={s["scenario-number"]}>2</div>
+            <div className={s["scenario-number"]}>3</div>
             <h2 className={s["scenario-title"]}>Divergent Futures</h2>
     
           </div>
@@ -283,17 +304,23 @@ export const DivergentFutures = () => {
             ))}
           </div>
 
-          <div 
-            ref={cardWrapperRef} 
-            className={`${s.cardWrapper} ${activeProfession ? s.visible : ''}`}
-          >
-            {activeProfession && (
-              <ProfessionCard
-                profession={activeProfession}
-                onClose={handleClose}
-              />
-            )}
-          </div>
+          {activeProfession && (
+            <div 
+              className={s.overlay}
+              onClick={handleOverlayClick}
+              role="presentation"
+            >
+              <div 
+                ref={cardWrapperRef} 
+                className={`${s.cardWrapper} ${activeProfession ? s.visible : ''}`}
+              >
+                <ProfessionCard
+                  profession={activeProfession}
+                  onClose={handleClose}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </section>
       <UncomfortableResponsesModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />

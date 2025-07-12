@@ -1,13 +1,15 @@
+@import "../../css/themes";
+
 .human-concerns {
   background-color: #fff;
   color: #000;
-  padding: 10vh 0;
+  padding: 4vh 0;
   position: relative;
 }
 
 .narrative {
   max-width: 600px;
-  margin: 0 auto 10vh;
+  margin: 0 auto 3vh;
   p {
     margin-bottom: 1em;
   }
@@ -15,7 +17,7 @@
 
 .section-title {
   text-align: center;
-  margin: 5vh auto;
+  margin: 2vh auto;
   max-width: 800px;
 
   h3 {
@@ -39,9 +41,15 @@
 .content-row {
   display: grid;
   grid-template-columns: 3fr 7fr;
-  gap: 5vw;
+  gap: 2vw;
   align-items: center;
-  min-height: 120vh;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.pinned-row {
+  z-index: 10;
 }
 
 .row-reversed {
@@ -114,4 +122,34 @@
   grid-column: 2 / 3;
   width: 100%;
   height: auto;
+}
+
+.scenario-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.scenario-number {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #bdbdbd;
+  margin-bottom: 0.5rem;
+}
+
+.scenario-title {
+  @include heading-primary;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+  letter-spacing: -0.01em;
+}
+
+.scenario-subtitle {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 0.5rem;
 } 

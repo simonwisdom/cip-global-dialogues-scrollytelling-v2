@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useIsoLayoutEffect } from "~/app/hooks/use-iso-layout-effect";
 import { BarChart } from "~/app/components/bar-chart";
+import { devLog } from "~/lib/utils";
 import s from "./emotional-understanding-poll.module.scss";
 
 export const EmotionalUnderstandingPoll = forwardRef<HTMLDivElement, {}>(
@@ -30,7 +31,7 @@ export const EmotionalUnderstandingPoll = forwardRef<HTMLDivElement, {}>(
           trigger: containerRef.current,
           start: "top 80%",
           onEnter: () => {
-            console.log("ScrollTrigger entered for EmotionalUnderstandingPoll. chartRef.current:", chartRef.current);
+            devLog.log("[EmotionalUnderstandingPoll] ScrollTrigger activated");
             if (chartRef.current) {
               chartRef.current.animate();
             }

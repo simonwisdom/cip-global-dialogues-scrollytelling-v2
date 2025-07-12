@@ -1,3 +1,5 @@
+@import "../../css/themes";
+
 .chart-wrapper {
   background: white;
   border-radius: 12px;
@@ -12,8 +14,8 @@
 }
 
 .chart-title {
+  @include heading-primary;
   font-size: 1.1em;
-  font-weight: 600;
   margin-bottom: 20px;
   color: #34495e;
   line-height: 1.4;
@@ -85,18 +87,19 @@
   z-index: 1000;
 }
 
+// Updated chart colors using the new color palette
 .chart-colors-1 :global(.bar) {
-  fill: #3498db;
+  fill: #2d4a3d; // Deep Forest Green
 }
 .chart-colors-2 :global(.bar) {
-  fill: #e74c3c;
+  fill: #d4845a; // Terracotta Orange
 }
 .chart-colors-3 :global(.bar) {
-  fill: #2ecc71;
+  fill: #7a9b7e; // Sage Green
 }
 .chart-colors-4 :global(.bar) {
-  fill: #f39c12;
+  fill: #e6a380; // Dusty Rose/Coral
 }
 .chart-colors-5 :global(.bar) {
-  fill: #9b59b6;
+  fill: #8b9b6b; // Muted Olive
 } 

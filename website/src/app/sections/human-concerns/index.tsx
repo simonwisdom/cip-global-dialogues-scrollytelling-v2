@@ -7,8 +7,59 @@ import { useIsoLayoutEffect } from "../../hooks/use-iso-layout-effect";
 import s from "./human-concerns.module.scss";
 import { BarChart } from "../../components/bar-chart";
 import { surveyData } from "./data";
+import { devLog } from "~/lib/utils";
+
+// Custom color schemes for each chart using the provided palette
+const chartColors = {
+  chart1: {
+    "very likely": "#2d4a3d", // Deep Forest Green
+    "somewhat likely": "#7a9b7e", // Sage Green
+    "neutral / not sure": "#8b9b6b", // Muted Olive
+    "somewhat unlikely": "#e6a380", // Dusty Rose/Coral
+    "very unlikely": "#d4845a", // Terracotta Orange
+  },
+  chart2: {
+    "true empathy": "#2d4a3d", // Deep Forest Green
+    "physical comfort": "#d4845a", // Terracotta Orange
+    "unconditional love": "#7a9b7e", // Sage Green
+    "deep mutual trust": "#e6a380", // Dusty Rose/Coral
+    "shared experiences": "#8b9b6b", // Muted Olive
+    "spontaneity": "#f2c57c", // Golden Yellow
+    "moral judgment": "#f7d4a8", // Soft Peach
+    "other": "#f5f0d8", // Warm Cream/Ivory
+    "none of the above": "#2d4a3d", // Deep Forest Green
+  },
+  chart3: {
+    "strengthen connection": "#2d4a3d", // Deep Forest Green
+    "mixed effects": "#7a9b7e", // Sage Green
+    "weaken connection": "#d4845a", // Terracotta Orange
+    "no significant impact": "#8b9b6b", // Muted Olive
+    "not sure": "#e6a380", // Dusty Rose/Coral
+  },
+  chart4: {
+    "loss of genuine connection": "#2d4a3d", // Deep Forest Green
+    "over-dependence on ai": "#d4845a", // Terracotta Orange
+    "decline in empathy/skills": "#7a9b7e", // Sage Green
+    "manipulation of vulnerable": "#e6a380", // Dusty Rose/Coral
+    "erosion of privacy": "#8b9b6b", // Muted Olive
+    "widespread isolation": "#f2c57c", // Golden Yellow
+    "no strong fears": "#f7d4a8", // Soft Peach
+    "other": "#f5f0d8", // Warm Cream/Ivory
+  },
+  chart5: {
+    "enhanced learning/growth": "#2d4a3d", // Deep Forest Green
+    "accessible mental health": "#d4845a", // Terracotta Orange
+    "stronger support networks": "#7a9b7e", // Sage Green
+    "reduction in loneliness": "#e6a380", // Dusty Rose/Coral
+    "increased happiness": "#8b9b6b", // Muted Olive
+    "no strong hopes": "#f2c57c", // Golden Yellow
+    "other": "#f7d4a8", // Soft Peach
+  },
+};
 
 export const HumanConcerns = () => {
+  // Development-only log that only fires once on mount
+  devLog.log('[HumanConcerns] Component mounted');
   const containerRef = useRef<HTMLElement>(null);
   const chartRefs = useRef(surveyData.map(() => createRef<any>()));
 
@@ -29,6 +80,7 @@ export const HumanConcerns = () => {
 
         gsap.set(chartWrapper, { autoAlpha: 0 }); // hide initially
 
+        const pinnedClass = s["pinned-row"] || "pinned-row";
         ScrollTrigger.create({
           trigger: row,
           pin: true,
@@ -36,12 +88,20 @@ export const HumanConcerns = () => {
           end: "+=100%",
           pinSpacing: true,
           onEnter: () => {
+            row.classList.add(pinnedClass);
             gsap.to(chartWrapper, { autoAlpha: 1, duration: 0.5 });
             if (chartRef && chartRef.current) chartRef.current.animate();
           },
           onEnterBack: () => {
+            row.classList.add(pinnedClass);
             gsap.to(chartWrapper, { autoAlpha: 1, duration: 0.5 });
             if (chartRef && chartRef.current) chartRef.current.animate();
+          },
+          onLeave: () => {
+            row.classList.remove(pinnedClass);
+          },
+          onLeaveBack: () => {
+            row.classList.remove(pinnedClass);
           },
         });
       });
@@ -60,20 +120,21 @@ export const HumanConcerns = () => {
 
   return (
     <section className={s["human-concerns"]} ref={containerRef}>
-      <div className={s.narrative}>
-        <p>
-          Are we choosing where we want AI just based on where we value
-          humanity? Or maybe consciousness?
-        </p>
-        <p>
-          People seem to care about consciousness as it relates to empathy and
-          connection.
-        </p>
+      {/* New Section Header */}
+      <div className={s["scenario-header"]}>
+        <div>
+          <div className={s["scenario-number"]}>4</div>
+          <h2 className={s["scenario-title"]}>Human Concerns About AI Empathy</h2>
+  
+        </div>
       </div>
+      {/* Animate header entrance */}
+      {/* Narrative moved below header */}
+ 
 
       <div className={s["section-title"]}>
         <h3>
-          In fact - without a human sense of <b>‘care’ or ‘understanding’</b> -
+          Without a human sense of <b>‘care’ or ‘understanding’</b> -
           people reported being <b>reluctant to use an AI</b> for{" "}
           <b>emotional support</b> over the <b>long term</b>. Even if it had{" "}
           <b>helped them feel better</b> beforehand.
@@ -140,6 +201,7 @@ export const HumanConcerns = () => {
                         ? "response"
                         : "percentage"
                     }
+                    barColors={chartColors[chart.id as keyof typeof chartColors]}
                   />
                 </div>
               </div>

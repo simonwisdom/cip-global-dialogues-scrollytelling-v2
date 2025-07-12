@@ -1,3 +1,5 @@
+@import "../../css/themes";
+
 .quiz-container {
   background: white;
   border-radius: 16px;
@@ -12,8 +14,8 @@
 }
 
 .quiz-title {
+  @include heading-primary;
   font-size: 1.5rem;
-  font-weight: 700;
   color: #206095;
   margin: 0 0 20px 0;
 }
@@ -127,8 +129,8 @@
 }
 
 .results-title {
+  @include heading-primary;
   font-size: 1.8rem;
-  font-weight: 700;
   color: #206095;
   margin: 0 0 30px 0;
 }
@@ -181,8 +183,8 @@
 }
 
 .reflection-title {
+  @include heading-primary;
   font-size: 1.2rem;
-  font-weight: 600;
   color: #206095;
   margin: 0 0 12px 0;
 }

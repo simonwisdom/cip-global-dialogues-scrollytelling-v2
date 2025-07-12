@@ -24,7 +24,7 @@
 
 
 .content-container {
-  @include content-container(var(--container-max-width));
+  @include content-container(800px);
 }
 
 .content-grid {

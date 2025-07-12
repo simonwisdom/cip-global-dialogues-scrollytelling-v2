@@ -1,0 +1,29 @@
+// Theme Colors for Basement Scrollytelling
+// Primary Colors
+$deep-forest-green: #2d4a3d;    // Dominant dark green background
+$warm-cream-ivory: #f5f0d8;     // Large sun/moon and lighter elements
+$terracotta-orange: #d4845a;    // Warm orange accents and smaller celestial bodies
+$sage-green: #7a9b7e;           // Muted green landscape forms
+
+// Secondary Colors
+$dusty-rose-coral: #e6a380;     // Subtle pink-orange tones in clouds and forms
+$golden-yellow: #f2c57c;        // Warm highlights and sun elements
+$muted-olive: #8b9b6b;          // Transitional green-brown tones
+$soft-peach: #f7d4a8;           // Lighter warm accents
+
+// SCSS Variables for use in other SCSS files
+$theme-colors: (
+  'deep-forest-green': $deep-forest-green,
+  'warm-cream-ivory': $warm-cream-ivory,
+  'terracotta-orange': $terracotta-orange,
+  'sage-green': $sage-green,
+  'dusty-rose-coral': $dusty-rose-coral,
+  'golden-yellow': $golden-yellow,
+  'muted-olive': $muted-olive,
+  'soft-peach': $soft-peach
+);
+
+// Helper function to get theme color
+@function theme-color($color-name) {
+  @return map-get($theme-colors, $color-name);
+} 

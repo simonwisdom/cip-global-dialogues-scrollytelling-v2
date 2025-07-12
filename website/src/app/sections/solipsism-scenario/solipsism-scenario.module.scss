@@ -1,4 +1,5 @@
 @import "../../css/themes";
+@import "../../css/theme-colors";
 
 .scenario {
   @include scenario-wrapper(200vh);
@@ -33,41 +34,45 @@
   @include scenario-subtitle;
 }
 
-
 .content-container {
   @include content-container(var(--container-max-width));
-  @include content-grid;
-}
-
-.content-grid {
-  @include content-grid;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
   margin-bottom: var(--section-padding-y);
 }
 
-.chart-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+.story-wrapper {
   position: relative;
-  border: 2px solid red;
+  background-color: rgba(26, 26, 26, 0.8);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.chart-item {
+.grain-overlay {
   position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.chart-caption {
-  margin-top: 1rem;
-  font-size: 0.875rem;
-  font-style: italic;
-  color: #888;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    radial-gradient(circle at 10% 80%, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    radial-gradient(circle at 90% 20%, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+    radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+  background-size: 40px 40px, 25px 25px, 15px 15px, 35px 35px, 20px 20px, 30px 30px, 18px 18px;
+  background-position: 0 0, 12px 12px, 8px 8px, 18px 18px, 10px 10px, 15px 15px, 9px 9px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.8;
 }
 
 .narrative-section {
@@ -75,6 +80,10 @@
   flex-direction: column;
   justify-content: center;
   gap: var(--space-xl);
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 .story-container {
@@ -86,9 +95,10 @@
 .story-intro {
   @include story-paragraph;
   padding: var(--space-lg);
-  border-left: 3px solid var(--dark-accent);
-  background-color: rgba(255, 107, 107, 0.05);
-  color: var(--dark-text-primary);
+  border-left: 3px solid $terracotta-orange;
+  background-color: rgba($terracotta-orange, 0.1);
+  color: $terracotta-orange;
+  font-weight: 500;
 }
 
 .story-paragraph {
@@ -137,7 +147,7 @@
     padding: var(--space-5xl) var(--space-lg) var(--space-4xl);
   }
   
-  .chart-section {
+  .story-wrapper {
     padding: var(--space-lg);
   }
   

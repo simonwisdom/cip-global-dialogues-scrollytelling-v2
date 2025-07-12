@@ -1,4 +1,5 @@
 @import '~/app/css/helpers';
+@import "../../css/themes";
 
 .overlay {
   position: fixed;
@@ -56,9 +57,9 @@
 }
 
 .title {
+  @include heading-primary;
   margin-bottom: 0.5rem;
   font-size: 1.5rem;
-  font-weight: bold;
 }
 
 .subtitle {

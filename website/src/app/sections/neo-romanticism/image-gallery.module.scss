@@ -1,3 +1,5 @@
+@import "../../css/themes";
+
 .gallery-container {
   background: rgba(74, 0, 0, 0.8);
   border-radius: 16px;
@@ -7,8 +9,8 @@
 }
 
 .gallery-title {
+  @include heading-primary;
   font-size: 1.5rem;
-  font-weight: 600;
   color: #ffcccc;
   text-align: center;
   margin: 0 0 30px 0;
@@ -46,8 +48,8 @@
 }
 
 .image-title {
+  @include heading-primary;
   font-size: 1.5rem;
-  font-weight: 700;
   color: #333;
   margin: 0 0 12px 0;
 }
@@ -148,8 +150,8 @@
 }
 
 .thumbnail-title {
+  @include heading-primary;
   font-size: 0.7rem;
-  font-weight: 600;
   color: #333;
   text-align: center;
   line-height: 1.1;
