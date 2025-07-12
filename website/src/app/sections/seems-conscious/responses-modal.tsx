@@ -121,7 +121,7 @@ export const ResponsesModal = ({ isOpen, onClose }: ResponsesModalProps) => {
           <div className={s.header}>
             <h2 className={s.title}>What People Said</h2>
             <p className={s.mainQuestion}>
-              "Have you ever felt an AI truly understood your emotions or seemed conscious?"
+              &quot;Have you ever felt an AI truly understood your emotions or seemed conscious?&quot;
             </p>
             <p className={s.subtitle}>Full, unedited responses from the survey.</p>
           </div>
@@ -173,9 +173,9 @@ export const ResponsesModal = ({ isOpen, onClose }: ResponsesModalProps) => {
                   >
                     <div className={s.responseContent}>
                       {expandedResponses.has(response.id) || response.text.length <= 120 ? (
-                        <p className={s.responseText}>"{response.text}"</p>
+                        <p className={s.responseText}>&quot;{response.text}&quot;</p>
                       ) : (
-                        <p className={s.responseText}>"{truncateText(response.text)}"</p>
+                        <p className={s.responseText}>&quot;{truncateText(response.text)}&quot;</p>
                       )}
                       
                       {response.text.length > 120 && (

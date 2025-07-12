@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, forwardRef, useImperativeHandle, useState } from "react";
+import { useEffect, useRef, forwardRef, useImperativeHandle, useState, useCallback } from "react";
 import * as d3 from "d3";
 import s from "./bar-chart.module.scss";
 
@@ -91,7 +91,7 @@ export const BarChart = forwardRef(
       });
     };
 
-    const drawChart = () => {
+    const drawChart = useCallback(() => {
       if (!chartContainerRef.current) return;
 
       // Clear previous chart
@@ -226,7 +226,7 @@ export const BarChart = forwardRef(
         .on("mouseout", function () {
           tooltip.style("opacity", 0);
         });
-    };
+    }, [data, sortBy, customOrder, barColors]);
 
     useEffect(() => {
       drawChart();
@@ -241,7 +241,7 @@ export const BarChart = forwardRef(
       return () => {
         window.removeEventListener("resize", handleResize);
       };
-    }, [data, sortBy, customOrder]);
+    }, [data, sortBy, customOrder, drawChart]);
 
     const colorClassNumber = chartId.replace(/[^0-9]/g, '');
     const dynamicColorClass = s[`chart-colors-${colorClassNumber}`] || '';

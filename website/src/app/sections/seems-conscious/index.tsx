@@ -102,7 +102,7 @@ export const SeemsConscious = () => {
                   </div>
                 </div>
                 <div className={s['explanation-side']}>
-                  <h4>Those who reasoned from an <span className={s['highlight-thinking']}>understanding of how it works</span> were more likely to say it's not.</h4>
+                  <h4>Those who reasoned from an <span className={s['highlight-thinking']}>understanding of how it works</span> were more likely to say it&apos;s not.</h4>
                   <div className={s["word-cloud-wrapper"]}>
                     <h3 className={s["cloud-title"]}>Reasoning</h3>
                     <WordCloud words={thinkingWords} color="rgb(56, 104, 178)" />

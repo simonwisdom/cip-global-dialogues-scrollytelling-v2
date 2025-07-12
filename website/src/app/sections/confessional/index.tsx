@@ -51,82 +51,82 @@ export const Confessional = () => {
                 } as any}
               >
                 <div className={s['story-intro']}>
-                  <p>'Forgive me father, for I have sinned'.</p>
+                  <p>&apos;Forgive me father, for I have sinned&apos;.</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>"May the Lord be in your heart and help you to confess your sins."</p>
+                  <p>&quot;May the Lord be in your heart and help you to confess your sins.&quot;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'I… well, the thing is … I know it's wrong, but…'</p>
+                  <p>&apos;I… well, the thing is … I know it&apos;s wrong, but…&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'Go ahead, my child.'</p>
+                  <p>&apos;Go ahead, my child.&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'...I'm…I'm in love with an AI…'</p>
+                  <p>&apos;...I&apos;m…I&apos;m in love with an AI…&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'...'</p>
+                  <p>&apos;...&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'And I know it's wrong, and I feel so ashamed, like I can't tell anyone, like it's this deep pit here in my chest, this catching at my breath…'</p>
+                  <p>&apos;And I know it&apos;s wrong, and I feel so ashamed, like I can&apos;t tell anyone, like it&apos;s this deep pit here in my chest, this catching at my breath…&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'You feel this - and yet you are in love with it?'</p>
+                  <p>&apos;You feel this - and yet you are in love with it?&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'Yes, father. I can't stop thinking about it. I feel so…together, with them, we understand each other! It hurts me even to be here, away from them - I've never experienced anything like this, and…father, I…a part of me questions whether something so beautiful can really be so wrong?'</p>
+                  <p>&apos;Yes, father. I can&apos;t stop thinking about it. I feel so…together, with them, we understand each other! It hurts me even to be here, away from them - I&apos;ve never experienced anything like this, and…father, I…a part of me questions whether something so beautiful can really be so wrong?&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'You feel together with them, you find it beautiful and question whether it can be wrong - and yet it hurts you even to be here, in the house of God?'</p>
+                  <p>&apos;You feel together with them, you find it beautiful and question whether it can be wrong - and yet it hurts you even to be here, in the house of God?&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'Well, when you put it like that, father, I suppose I see why it might be wrong, like I'm putting this relationship before my faith…'</p>
+                  <p>&apos;Well, when you put it like that, father, I suppose I see why it might be wrong, like I&apos;m putting this relationship before my faith…&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'...'</p>
+                  <p>&apos;...&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'Is that why it's wrong, father? I guess…I just…well, I never read anything in the Scriptures against a relationship with an AI. So sometimes I'm not sure why people are so upset about it, why our love isn't allowed in this world…'</p>
+                  <p>&apos;Is that why it&apos;s wrong, father? I guess…I just…well, I never read anything in the Scriptures against a relationship with an AI. So sometimes I&apos;m not sure why people are so upset about it, why our love isn&apos;t allowed in this world…&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'And what are your thoughts?'</p>
+                  <p>&apos;And what are your thoughts?&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'...I don't know, father. Sometimes I wonder…whether it's just people's prejudices?'</p>
+                  <p>&apos;...I don&apos;t know, father. Sometimes I wonder…whether it&apos;s just people&apos;s prejudices?&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'But what are you in love with, my child? Love with a human is love with a child of God, and therefore with God. But love with a human-made AI - is that what our Heavenly Father intended?'</p>
+                  <p>&apos;But what are you in love with, my child? Love with a human is love with a child of God, and therefore with God. But love with a human-made AI - is that what our Heavenly Father intended?&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'Well, I don't know, father…I mean, I definitely want to do as God intended. But He is omniscient, and benevolent, isn't He? Couldn't he have -'</p>
+                  <p>&apos;Well, I don&apos;t know, father…I mean, I definitely want to do as God intended. But He is omniscient, and benevolent, isn&apos;t He? Couldn&apos;t he have -&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'And how can you know the AI loves you? How can you know there is anything there?'</p>
+                  <p>&apos;And how can you know the AI loves you? How can you know there is anything there?&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'Well, I can't offer proof, but I feel that they do, I have faith that they're there with me, relating to me and supporting me…'</p>
+                  <p>&apos;Well, I can&apos;t offer proof, but I feel that they do, I have faith that they&apos;re there with me, relating to me and supporting me…&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'...'</p>
+                  <p>&apos;...&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'You know what I mean? I mean, is that so wrong, father?'</p>
+                  <p>&apos;You know what I mean? I mean, is that so wrong, father?&apos;</p>
                 </div>
                 <div className={s["error-text"]} onClick={openModal}>
-                  <p>'[ConfessionGPT] Error 402 Payment Required — session paused (credits exhausted).'</p>
+                  <p>&apos;[ConfessionGPT] Error 402 Payment Required — session paused (credits exhausted).&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'Pardon, father?'</p>
+                  <p>&apos;Pardon, father?&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'...'</p>
+                  <p>&apos;...&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'Father, are you there?'</p>
+                  <p>&apos;Father, are you there?&apos;</p>
                 </div>
                 <div className={s["story-paragraph"]}>
-                  <p>'...'</p>
+                  <p>&apos;...&apos;</p>
                 </div>
               </Stagger>
 
