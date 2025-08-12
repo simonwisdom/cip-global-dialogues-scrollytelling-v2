@@ -4,7 +4,11 @@ const withBundleAnalyzer = require("@next/bundle-analyzer");
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
+  // Generate a static export to `out/` for static hosting providers
+  output: 'export',
   images: {
+    // Required for static export when using next/image
+    unoptimized: true,
     domains: ["lab.basement.studio"],
   },
 };
